@@ -1,7 +1,7 @@
 @extends('pages.layouts.guest.master')
 
 @section('title')
-    {{ ucwords('Sistem rekomendasi pemilihan mahasiswa berprestasi politeknik negeri Batam') }}
+    Sistem Rekomendasi Pemilihan Mahasiswa Berprestasi Politeknik Negeri Batam
 @endsection
 
 @section('content')

@@ -9,5 +9,13 @@
         content="ie=edge"
     >
     <title>@yield('title')</title>
+    <link
+        rel="stylesheet"
+        href="{{ asset('assets/css/style.css') }}"
+    >
+    <link
+        rel="stylesheet"
+        href="{{ asset('vendor/bootstrap-v5.3.2/css/bootstrap.min.css') }}"
+    >
     @stack('styles')
 </head>
