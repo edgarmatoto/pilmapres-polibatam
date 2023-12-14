@@ -20,7 +20,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div
-            class="collapse navbar-collapse justify-content-end"
+            class="collapse navbar-collapse justify-content-end pt-3 pt-md-0"
             id="navbarNavAltMarkup"
         >
             <div class="navbar-nav justify-content-end pe-md-5">
