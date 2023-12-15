@@ -5,11 +5,11 @@
 @endsection
 
 @section('content')
-    <div class="container px-0">
-        <section
-            class="pt-3 py-4 position-relative"
-            style="min-height: calc(100vh - 280px);"
-        >
+    <section
+        class="pt-3 py-4 position-relative"
+        style="min-height: calc(100vh - 280px);"
+    >
+        <div class="container px-0">
             <div class="d-flex justify-content-center px-3">
                 <div
                     class="card"
@@ -173,6 +173,6 @@
                     alt="bg graduation"
                 >
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
 @endsection
