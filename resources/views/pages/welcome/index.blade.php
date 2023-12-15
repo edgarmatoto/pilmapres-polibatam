@@ -41,7 +41,7 @@
                             </h1>
                         </div>
                     </div>
-                    <div class="col-xl mx-auto">
+                    <div class="col-xl">
                         <div class="d-flex justify-content-center justify-content-xl-start">
                             <div
                                 class="card mb-5"
@@ -55,7 +55,7 @@
                                             class="card-img-top img-fluid"
                                             alt="logo poltek"
                                         >
-                                        <p class="mt-3">Masuk ke Akun Anda</p>
+                                        <p class="mt-3 fw-bold">Masuk ke Akun Anda</p>
                                     </div>
                                     <div class="card-body">
                                         <div class="mb-3">
@@ -105,13 +105,14 @@
                                             </a>
                                         </div>
                                         <div class="mb-3 text-center">
-                                            <button
-                                                type="submit"
-                                                class="rounded-3 px-5 py-1 bg-transparent fw-bold"
+                                            <a
+                                                href="{{ route('register.index') }}"
+                                                role="button"
+                                                class="rounded-3 px-5 py-1 bg-transparent fw-bold text-decoration-none"
                                                 style="color: #009DCE; border: 1px solid #009DCE;"
                                             >
                                                 Daftar
-                                            </button>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>

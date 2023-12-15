@@ -15,3 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+
+Route::group([
+    'as'            => 'register.',
+    'middleware'    => 'guest',
+    'namespace'     => 'App\Http\Controllers\Auth',
+], function () {
+    Route::get('/register', 'RegisterController@index')->name('index');
+});
