@@ -5,159 +5,39 @@
 @endsection
 
 @section('content')
-    <section
+    <div
         class="pt-3 py-4"
-        style="min-height: calc(100vh - 280px); background-color: #EDEDED;"
+        style="min-height: calc(100vh - 100px); background-color: #EDEDED;"
     >
-        <div class="container px-0">
-            <div class="d-flex justify-content-center px-3">
+        <div
+            class="container p-2 p-md-3"
+            style="background-color: white;"
+        >
+            <section class="welcome mb-3">
                 <div
-                    class="card"
-                    style="width: 25rem;"
+                    class="p-3 p-md-5"
+                    style="background-color: #7EA7E3;"
                 >
-                    <div class="pt-4 px-2">
-                        <p class="mt-3 text-center fw-bold h5">Ajukan Prestasi</p>
-                        <div class="card-body">
-                            <div class="mb-3">
-                                <label
-                                    style="color: #00000087;"
-                                    for="nama"
-                                    class="form-label mb-0"
-                                >Nama Lengkap</label>
-                                <input
-                                    type="text"
-                                    class="form-control rounded-0 shadow-none px-0 border-0"
-                                    name="nama"
-                                    id="nama"
-                                    style="border-bottom: 1px solid #00000040 !important;"
-                                >
-                            </div>
-                            <div class="mb-3">
-                                <label
-                                    style="color: #00000087;"
-                                    for="nim"
-                                    class="form-label mb-0"
-                                >NIM</label>
-                                <input
-                                    type="text"
-                                    class="form-control rounded-0 shadow-none px-0 border-0"
-                                    name="nim"
-                                    id="nim"
-                                    style="border-bottom: 1px solid #00000040 !important;"
-                                >
-                            </div>
-                            <div class="mb-3">
-                                <label
-                                    style="color: #00000087;"
-                                    for="email"
-                                    class="form-label mb-0"
-                                >Email</label>
-                                <input
-                                    type="email"
-                                    class="form-control rounded-0 shadow-none px-0 border-0"
-                                    name="email"
-                                    id="email"
-                                    style="border-bottom: 1px solid #00000040 !important;"
-                                >
-                            </div>
-                            <div class="mb-3">
-                                <label
-                                    style="color: #00000087;"
-                                    for="noHp"
-                                    class="form-label mb-0"
-                                >No Hp</label>
-                                <input
-                                    type="text"
-                                    class="form-control rounded-0 shadow-none px-0 border-0"
-                                    name="no_hp"
-                                    id="noHp"
-                                    style="border-bottom: 1px solid #00000040 !important;"
-                                >
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label mb-1">Tanggal Lahir</label>
-                                <div class="d-flex gap-3">
-                                    <div>
-                                        <label
-                                            style="color: #00000087;"
-                                            for="tgl"
-                                            class="form-label mb-0"
-                                        >Tanggal</label>
-                                        <input
-                                            type="text"
-                                            class="form-control rounded-0 shadow-none px-0 border-0"
-                                            name="tanggal"
-                                            id="tgl"
-                                            style="border-bottom: 1px solid #00000040 !important;"
-                                        >
-                                    </div>
-                                    <div>
-                                        <label
-                                            style="color: #00000087;"
-                                            for="bulan"
-                                            class="form-label mb-0"
-                                        >Bulan</label>
-                                        <input
-                                            type="text"
-                                            class="form-control rounded-0 shadow-none px-0 border-0"
-                                            name="bulan"
-                                            id="bulan"
-                                            style="border-bottom: 1px solid #00000040 !important;"
-                                        >
-                                    </div>
-                                    <div>
-                                        <label
-                                            style="color: #00000087;"
-                                            for="tahun"
-                                            class="form-label mb-0"
-                                        >Tahun</label>
-                                        <input
-                                            type="text"
-                                            class="form-control rounded-0 shadow-none px-0 border-0"
-                                            name="tahun"
-                                            id="tahun"
-                                            style="border-bottom: 1px solid #00000040 !important;"
-                                        >
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label
-                                    style="color: #00000087;"
-                                    for="password"
-                                    class="form-label mb-0"
-                                >Password</label>
-                                <input
-                                    type="text"
-                                    class="form-control rounded-0 shadow-none px-0 border-0"
-                                    name="password"
-                                    id="password"
-                                    style="border-bottom: 1px solid #00000040 !important;"
-                                >
-                            </div>
-                            <div class="mb-5 pt-3 text-center">
-                                <button
-                                    type="submit"
-                                    class="rounded-3 border-0 text-white px-5 py-1 fw-bold"
-                                    style="background-color: #0094FF;"
-                                >
-                                    Lanjutkan
-                                </button>
-                            </div>
-                            <div class="mb-3 text-center">
-                                Sudah Punya Akun?
-                                <a
-                                    href="{{ route('welcome') }}"
-                                    class="text-decoration-none"
-                                    style="color: #009DCE;"
-                                >
-                                    Masuk
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    <p class="h2 text-white lh-base">Selamat Datang di Sistem Rekomendasi Pemilihan Mahasiswa Berprestasi Politeknik Negeri Batam</p>
                 </div>
-            </div>
+            </section>
+            <section class="mb-3">
+                <div
+                    class="px-3 py-2"
+                    style="background-color: #F2EBA6;"
+                >
+                    <p class="m-0">Silahkan update data diri anda terlebih dahulu di menu <span class="fw-bold">PROFILE</span> sebelum melakukan pengajuan, sebagai pemutakhiran data untuk berbagai kebutuhan. Terima Kasih</p>
+                </div>
+            </section>
+            <hr>
+            <section class="mb-3">
+                <p class="h2 fw-bold mb-3">Mahasiswa Berprestasi</p>
+                <img
+                    class="img-fluid"
+                    src="{{ asset('assets/images/img_01.png') }}"
+                    alt="img 01"
+                >
+            </section>
         </div>
-    </section>
+    </div>
 @endsection

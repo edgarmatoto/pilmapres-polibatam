@@ -29,5 +29,6 @@ Route::group([
     'prefix'        => 'mhs',
     'namespace'     => 'App\Http\Controllers\Mahasiswa',
 ], function () {
-    Route::get('/home', 'HomeController@index')->name('index');
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/pelayanan', 'PelayananController@index')->name('pelayanan.index');
 });

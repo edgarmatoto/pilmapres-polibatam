@@ -26,11 +26,11 @@
             <div class="navbar-nav gap-xl-3 me-auto">
                 <a
                     class="nav-link active"
-                    href="#"
+                    href="{{ route('mhs.home') }}"
                 >Home</a>
                 <a
                     class="nav-link"
-                    href="#"
+                    href="{{ route('mhs.pelayanan.index') }}"
                 >Pelayanan</a>
                 <a
                     class="nav-link"

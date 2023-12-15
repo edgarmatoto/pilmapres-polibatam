@@ -18,7 +18,7 @@
 @section('content')
     <section
         class="pt-3 py-md-4 position-relative"
-        style="min-height: calc(100vh - 280px);"
+        style="min-height: calc(100vh - 170px);"
     >
         <div class="container">
             <div class="row gy-3">

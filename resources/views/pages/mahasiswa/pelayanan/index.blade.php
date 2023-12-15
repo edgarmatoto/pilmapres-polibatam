@@ -1,30 +1,22 @@
-@extends('pages.layouts.guest.master')
+@extends('pages.layouts.mahasiswa.master')
 
 @section('title')
-    Register - Sistem Rekomendasi Pemilihan Mahasiswa Berprestasi Politeknik Negeri Batam
+    Pengajuan Prestasi - Sistem Rekomendasi Pemilihan Mahasiswa Berprestasi Politeknik Negeri Batam
 @endsection
 
 @section('content')
     <section
-        class="pt-3 py-4 position-relative"
-        style="min-height: calc(100vh - 170px);"
+        class="pt-3 py-4"
+        style="min-height: calc(100vh - 100px); background-color: #EDEDED;"
     >
-        <div class="container px-0">
+        <div class="container">
             <div class="d-flex justify-content-center px-3">
                 <div
                     class="card"
                     style="width: 25rem;"
                 >
                     <div class="pt-4 px-2">
-                        <div class="text-center">
-                            <img
-                                style="width: 100px;"
-                                src="{{ asset('assets/images/logo_poltek.png') }}"
-                                class="card-img-top img-fluid"
-                                alt="logo poltek"
-                            >
-                            <p class="mt-3 fw-bold">Daftar Akun Anda</p>
-                        </div>
+                        <p class="mt-3 text-center fw-bold h5">Ajukan Prestasi</p>
                         <div class="card-body">
                             <div class="mb-3">
                                 <label
@@ -165,13 +157,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="position-absolute bottom-0 start-50 translate-middle-x z-n1 w-100">
-                <img
-                    class="img-fluid bg-header"
-                    src="{{ asset('assets/images/bg_graduation.png') }}"
-                    alt="bg graduation"
-                >
             </div>
         </div>
     </section>
