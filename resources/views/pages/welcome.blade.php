@@ -19,18 +19,12 @@
     <div class="container px-0">
         <section
             class="pt-3 py-md-4 position-relative"
-            style="min-height: calc(100vh - 280px); border: 2px solid;"
+            style="min-height: calc(100vh - 280px);"
         >
             <div class="container">
                 <div class="row gy-3">
-                    <div
-                        class="col-xl-8"
-                        style="border: 2px solid red"
-                    >
-                        <div
-                            class="d-flex justify-content-center justify-content-xl-end"
-                            style="border: 2px solid red;"
-                        >
+                    <div class="col-xl-8">
+                        <div class="d-flex justify-content-center justify-content-xl-end">
                             <h1 class="d-inline-block text-center text-xl-start pe-xl-5">
                                 <span class="h2 d-block">
                                     Sistem Rekomendasi Pemilihan
@@ -48,10 +42,7 @@
                         </div>
                     </div>
                     <div class="col-xl mx-auto">
-                        <div
-                            class="d-flex justify-content-center justify-content-xl-start"
-                            style="border: 2px solid blue"
-                        >
+                        <div class="d-flex justify-content-center justify-content-xl-start">
                             <div
                                 class="card mb-5"
                                 style="width: 18rem;"
@@ -128,16 +119,29 @@
                         </div>
                     </div>
                 </div>
-                <div
-                    class="position-absolute bottom-0 start-0 z-n1"
-                    style="border: 2px solid green;"
+            </div>
+            <div class="position-absolute bottom-0 start-0 z-n1">
+                <img
+                    class="img-fluid bg-header"
+                    src="{{ asset('assets/images/bg_poltek.png') }}"
+                    alt="bg_poltek"
                 >
-                    <img
-                        class="img-fluid bg-header"
-                        src="{{ asset('assets/images/bg_poltek.png') }}"
-                        alt="bg_poltek"
-                    >
-                </div>
+            </div>
+        </section>
+        <section>
+            <div
+                class="text-center py-3 text-white"
+                style="background: linear-gradient(to bottom, #5080B9, #1F68BD);"
+            >
+                <a
+                    href="#"
+                    class="text-white text-decoration-none"
+                >Ketentuan</a>
+                <span class="mx-1">|</span>
+                <a
+                    href="#"
+                    class="text-white text-decoration-none"
+                >Privasi</a>
             </div>
         </section>
     </div>
