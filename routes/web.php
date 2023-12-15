@@ -31,4 +31,5 @@ Route::group([
 ], function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/pelayanan', 'PelayananController@index')->name('pelayanan.index');
+    Route::get('/profile', 'ProfileController@index')->name('profile.index');
 });

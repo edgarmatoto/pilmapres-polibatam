@@ -57,11 +57,11 @@
                         alt="user icon"
                     >
                 </button>
-                <ul class="dropdown-menu dropdown-menu-end mt-3">
+                <ul class="dropdown-menu dropdown-menu-end mt-4">
                     <li>
                         <a
                             class="dropdown-item py-2"
-                            href="#"
+                            href="{{ route('mhs.profile.index') }}"
                         >Profile</a>
                     </li>
                     <li>
