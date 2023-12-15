@@ -23,3 +23,11 @@ Route::group([
 ], function () {
     Route::get('/register', 'RegisterController@index')->name('index');
 });
+
+Route::group([
+    'as'            => 'mhs.',
+    'prefix'        => 'mhs',
+    'namespace'     => 'App\Http\Controllers\Mahasiswa',
+], function () {
+    Route::get('/home', 'HomeController@index')->name('index');
+});

@@ -20,15 +20,57 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div
-            class="collapse navbar-collapse justify-content-end pt-3 pt-md-0"
+            class="collapse navbar-collapse px-xl-5"
             id="navbarNavAltMarkup"
         >
-            <div class="navbar-nav justify-content-end pe-md-5">
+            <div class="navbar-nav gap-xl-3 me-auto">
                 <a
-                    class="nav-link active text-blue-sky fw-semibold"
-                    aria-current="page"
+                    class="nav-link active"
+                    href="#"
+                >Home</a>
+                <a
+                    class="nav-link"
+                    href="#"
+                >Pelayanan</a>
+                <a
+                    class="nav-link"
                     href="#"
                 >Bantuan</a>
+                <a
+                    class="nav-link d-lg-none"
+                    href="#"
+                >Profile</a>
+                <a
+                    class="nav-link d-lg-none"
+                    href="#"
+                >logout</a>
+            </div>
+            <div class="btn-group d-none d-lg-block">
+                <button
+                    class="border-0 bg-transparent"
+                    type="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                >
+                    <img
+                        src="{{ asset('assets/icons/user.svg') }}"
+                        alt="user icon"
+                    >
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end mt-3">
+                    <li>
+                        <a
+                            class="dropdown-item py-2"
+                            href="#"
+                        >Profile</a>
+                    </li>
+                    <li>
+                        <a
+                            class="dropdown-item py-2"
+                            href="#"
+                        >Logout</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
