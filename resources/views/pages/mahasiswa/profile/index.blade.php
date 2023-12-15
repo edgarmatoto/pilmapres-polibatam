@@ -358,6 +358,15 @@
                             >
                         </div>
                     </div>
+                    <div class="mb-3 pt-5 text-center">
+                        <button
+                            type="submit"
+                            class="rounded-3 border-0 text-white px-5 py-1 fw-bold"
+                            style="background-color: #0094FF;"
+                        >
+                            Update
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
