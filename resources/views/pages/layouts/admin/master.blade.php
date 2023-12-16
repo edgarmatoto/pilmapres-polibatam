@@ -3,8 +3,10 @@
 @include('pages.layouts.admin.components.head')
 
 <body>
-    @include('pages.layouts.admin.components.navbar')
-    @yield('content')
+    <div id="app">
+        @include('pages.layouts.admin.components.sidebar')
+        @yield('content')
+    </div>
     @include('pages.layouts.admin.components.scripts')
 </body>
 

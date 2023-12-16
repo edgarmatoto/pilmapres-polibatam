@@ -15,7 +15,23 @@
     >
     <link
         rel="stylesheet"
-        href="{{ asset('vendor/bootstrap-v5.3.2/css/bootstrap.min.css') }}"
+        href="{{ asset('assets/css/app.css') }}"
+    >
+    <link
+        rel="stylesheet"
+        href="{{ asset('vendor/iconly/bold.css') }}"
+    >
+    <link
+        rel="stylesheet"
+        href="{{ asset('vendor/perfect-scrollbar/perfect-scrollbar.css') }}"
+    >
+    <link
+        rel="stylesheet"
+        href="{{ asset('vendor/bootstrap-icons/bootstrap-icons.css') }}"
+    >
+    <link
+        rel="stylesheet"
+        href="{{ asset('assets/css/bootstrap.css') }}"
     >
     @stack('styles')
 </head>
