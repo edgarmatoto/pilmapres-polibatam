@@ -42,4 +42,8 @@ Route::group([
     'namespace'     => 'App\Http\Controllers\Admin',
 ], function () {
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/alternatif', 'AlternatifController@index')->name('alternatif.index');
+    Route::get('/bobot-kriteria', 'BobotKriteriaController@index')->name('bobot-kriteria.index');
+    Route::get('/matrik', 'MatrikController@index')->name('matrik.index');
+    Route::get('/preferensi', 'PreferensiController@index')->name('preferensi.index');
 });

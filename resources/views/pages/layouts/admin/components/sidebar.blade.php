@@ -6,7 +6,7 @@
         <div class="sidebar-header">
             <div class="d-flex justify-content-between">
                 <div class="logo">
-                    <a href="./">Mahasiswa Berprestasi Politeknik Negeri Batam</a>
+                    <a href="{{ route('admin.home') }}">Mahasiswa Berprestasi Politeknik Negeri Batam</a>
                 </div>
                 <div class="toggler">
                     <a
@@ -22,7 +22,7 @@
 
                 <li class="sidebar-item">
                     <a
-                        href="./"
+                        href="{{ route('admin.home') }}"
                         class='sidebar-link'
                     >
                         <i class="bi bi-grid-fill"></i>
@@ -31,26 +31,23 @@
                 </li>
 
                 <li class="sidebar-item  has-sub">
-                    <a
-                        href="#"
-                        class='sidebar-link'
-                    >
+                    <div class='sidebar-link'>
                         <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                         <span>Data</span>
-                    </a>
-                    <ul class="submenu ">
-                        <li class="submenu-item ">
-                            <a href="alternatif.php">Alternatif</a>
+                    </div>
+                    <ul class="submenu">
+                        <li class="submenu-item">
+                            <a href="{{ route('admin.alternatif.index') }}">Alternatif</a>
                         </li>
                         <li class="submenu-item ">
-                            <a href="bobot.php">Bobot &amp; Kriteria</a>
+                            <a href="{{ route('admin.bobot-kriteria.index') }}">Bobot &amp; Kriteria</a>
                         </li>
                     </ul>
                 </li>
 
                 <li class="sidebar-item">
                     <a
-                        href="matrik.php"
+                        href="{{ route('admin.matrik.index') }}"
                         class='sidebar-link'
                     >
                         <i class="bi bi-pentagon-fill"></i>
@@ -60,7 +57,7 @@
 
                 <li class="sidebar-item">
                     <a
-                        href="preferensi.php"
+                        href="{{ route('admin.preferensi.index') }}"
                         class='sidebar-link'
                     >
                         <i class="bi bi-bar-chart-fill"></i>

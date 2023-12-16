@@ -17,13 +17,6 @@
         <div class="page-heading">
             <h3>Dashboard</h3>
         </div>
-        <div class="nav-content">
-            <ul class="nav">
-                <li><a href="index.php">Home</a></li>
-                <li><a href="pelayanan.php">Pelayanan</a></li>
-                <li><a href="#">Bantuan</a></li>
-            </ul>
-        </div>
         <div class="page-content">
             <section class="row">
                 <div class="col-12">
