@@ -24,6 +24,7 @@ Route::group([
     Route::get('/register', 'RegisterController@index')->name('index');
 });
 
+//== mahasiswa route
 Route::group([
     'as'            => 'mhs.',
     'prefix'        => 'mhs',
@@ -32,4 +33,13 @@ Route::group([
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/pelayanan', 'PelayananController@index')->name('pelayanan.index');
     Route::get('/profile', 'ProfileController@index')->name('profile.index');
+});
+
+//== admin route
+Route::group([
+    'as'            => 'admin.',
+    'prefix'        => 'admin',
+    'namespace'     => 'App\Http\Controllers\Admin',
+], function () {
+    Route::get('/home', 'HomeController@index')->name('home');
 });

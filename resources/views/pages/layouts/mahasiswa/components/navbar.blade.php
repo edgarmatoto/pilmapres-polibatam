@@ -38,7 +38,7 @@
                 >Bantuan</a>
                 <a
                     class="nav-link d-lg-none"
-                    href="#"
+                    href="{{ route('mhs.profile.index') }}"
                 >Profile</a>
                 <a
                     class="nav-link d-lg-none"
