@@ -8,6 +8,7 @@ use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 class AlternatifController extends Controller
 {
@@ -63,6 +64,55 @@ class AlternatifController extends Controller
                 ->withSuccess('Data alternatif berhasil disimpan.');
         } catch (\Throwable $th) {
             return back()->withError('Data yang anda inputkan gagal disimpan, silahkan coba lagi nanti.');
+        }
+    }
+
+    public function update(Request $request, Alternatif $alternatif)
+    {
+        $rules = [
+            'nama'                  => 'required|string|max:100',
+            'nim'                   => ['required', 'numeric', 'max_digits:15', Rule::unique('mahasiswa')->ignore($alternatif->id)],
+            'jenis_perlombaan'      => 'required|string|max:100',
+            'tingkat_perlombaan'    => 'required|in:internasional,nasional,kabupaten/kota',
+            'capaian_prestasi'      => 'required|string|max:100',
+            'tmpt_perlombaan'       => 'required|string|max:100',
+            'tgl_perlombaan'        => 'required|date',
+            'berkas'                => 'nullable|file|mimes:pdf,jpeg,png|max:5120',
+        ];
+        $attributes = [
+            'nama'                  => 'Nama Lengkap',
+            'nim'                   => 'NIM',
+            'jenis_perlombaan'      => 'Jenis Perlombaan',
+            'tingkat_perlombaan'    => 'Tingkat Perlombaan',
+            'capaian_prestasi'      => 'Capaian Prestasi',
+            'tmpt_perlombaan'       => 'Tempat Perlombaan',
+            'tgl_perlombaan'        => 'Tanggal Perlombaan',
+            'berkas'                => 'Berkas',
+        ];
+        $request->validate($rules, [], $attributes);
+
+        try {
+            //== perbaharui data mahasiswa
+            $dataMahasiswa              = $request->only(['nama', 'nim']);
+            $dataMahasiswa['password']  = Hash::make($request->nim);
+            $alternatif->mahasiswa()->update($dataMahasiswa);
+
+            //== perbaharui data alternatif
+            $dataAlternatif = $request->except(['nama', 'nim', 'berkas']);
+            if ($request->file('berkas')) {
+                $berkasLama = Storage::exists($alternatif->lokasi_berkas);
+                if ($berkasLama) Storage::delete($alternatif->lokasi_berkas);
+
+                $dataAlternatif['lokasi_berkas']    = $request->file('berkas')->store('alternatif');
+                $dataAlternatif['nama_berkas']      = $request->file('berkas')->getClientOriginalName();
+            }
+            $alternatif->update($dataAlternatif);
+
+            return redirect()
+                ->route('admin.alternatif.index')
+                ->withSuccess('Data alternatif berhasil diperbaharui.');
+        } catch (\Throwable $th) {
+            return back()->withError('Data yang anda inputkan gagal diperbaharui, silahkan coba lagi nanti.');
         }
     }
 

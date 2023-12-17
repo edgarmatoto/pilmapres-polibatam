@@ -57,6 +57,7 @@ Route::group([
         Route::get('/alternatif', 'index')->name('index');
         Route::post('/alternatif', 'store')->name('store');
         Route::get('/alternatif/{alternatif}/edit', 'edit')->name('edit');
+        Route::put('/alternatif/{alternatif}', 'update')->name('update');
         Route::get('/alternatif/{alternatif}/unduh-berkas', 'unduhBerkas')->name('unduh-berkas');
     });
 
