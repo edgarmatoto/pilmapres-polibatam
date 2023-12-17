@@ -4,7 +4,7 @@
             icon: 'success',
             title: 'Success!',
             text: '{{ session('success') }}',
-            confirmButtonColor: "#045464"
+            confirmButtonColor: "#435ebe"
         })
     </script>
 @endif
@@ -15,7 +15,7 @@
             icon: 'error',
             title: 'Oops!',
             text: '{{ session('error') }}',
-            confirmButtonColor: "#045464"
+            confirmButtonColor: "#435ebe"
         })
     </script>
 @endif
