@@ -31,26 +31,119 @@
                                     action="alternatif-edit-act.php"
                                     method="POST"
                                 >
-                                    <div class="form-group">
-                                        <label for="basicInput">Name</label>
+                                    <div class="mb-3">
+                                        <label
+                                            for="nama"
+                                            class="form-label"
+                                        >Nama Lengkap</label>
                                         <input
                                             type="text"
                                             class="form-control"
-                                            name="id_alternative"
-                                            value=""
-                                            hidden
-                                        >
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            name="name"
-                                            value=""
+                                            id="nama"
+                                            name="nama"
+                                            value="{{ old('nama', $alternatif->mahasiswa?->nama) }}"
                                         >
                                     </div>
-                                    <div class="form-group">
+                                    <div class="mb-3">
+                                        <label
+                                            for="nim"
+                                            class="form-label"
+                                        >NIM</label>
                                         <input
-                                            type="submit"
-                                            class="btn btn-info btn-sm"
+                                            type="text"
+                                            class="form-control"
+                                            id="nim"
+                                            name="nim"
+                                            value="{{ old('nim', $alternatif->mahasiswa?->nim) }}"
+                                        >
+                                    </div>
+                                    <div class="mb-3">
+                                        <label
+                                            for="jenisPerlombaan"
+                                            class="form-label"
+                                        >Jenis Perlombaan</label>
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="jenisPerlombaan"
+                                            name="jenis_perlombaan"
+                                            value="{{ old('jenis_perlombaan', $alternatif->jenis_perlombaan) }}"
+                                        >
+                                    </div>
+                                    <div class="mb-3">
+                                        <label
+                                            for="tingkatPerlombaan"
+                                            class="form-label"
+                                        >Tingkat Perlombaan</label>
+                                        <select
+                                            id="tingkatPerlombaan"
+                                            class="form-select"
+                                            aria-label="Default select example"
+                                            name="tingkat_perlombaan"
+                                        >
+                                            <option
+                                                value="internasional"
+                                                {{ old('tingkat_perlombaan', $alternatif->tingkat_perlombaan) == 'internasional' ? 'selected' : '' }}
+                                            >Internasional</option>
+                                            <option
+                                                value="nasional"
+                                                {{ old('tingkat_perlombaan', $alternatif->tingkat_perlombaan) == 'nasional' ? 'selected' : '' }}
+                                            >Nasional</option>
+                                            <option
+                                                value="kabupaten/kota"
+                                                {{ old('tingkat_perlombaan', $alternatif->tingkat_perlombaan) == 'kabupaten/kota' ? 'selected' : '' }}
+                                            >Kabupaten/Kota</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label
+                                            for="capaianPrestasi"
+                                            class="form-label"
+                                        >Capaian Prestasi</label>
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="capaianPrestasi"
+                                            name="capaian_prestasi"
+                                            value="{{ old('capaian_prestasi', $alternatif->capaian_prestasi) }}"
+                                        >
+                                    </div>
+                                    <div class="mb-3">
+                                        <label
+                                            for="tmptPerlombaan"
+                                            class="form-label"
+                                        >Tempat Perlombaan</label>
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="tmptPerlombaan"
+                                            name="tmpt_perlombaan"
+                                            value="{{ old('tmpt_perlombaan', $alternatif->tmpt_perlombaan) }}"
+                                        >
+                                    </div>
+                                    <div class="mb-3">
+                                        <label
+                                            for="tglPerlombaan"
+                                            class="form-label"
+                                        >Tanggal Perlombaan</label>
+                                        <input
+                                            type="date"
+                                            class="form-control"
+                                            id="tglPerlombaan"
+                                            name="tgl_perlombaan"
+                                            value="{{ old('tgl_perlombaan', $alternatif->tgl_perlombaan) }}"
+                                        >
+                                    </div>
+                                    <div class="mb-3">
+                                        <label
+                                            for="berkas"
+                                            class="form-label"
+                                        >Berkas</label>
+                                        <input
+                                            type="file"
+                                            class="form-control"
+                                            id="berkas"
+                                            name="berkas"
                                         >
                                     </div>
                                 </form>

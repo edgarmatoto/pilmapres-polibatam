@@ -227,19 +227,19 @@
                                 id="tingkatPerlombaan"
                                 class="form-select"
                                 aria-label="Default select example"
-                                name="tngkat_perlombaan"
+                                name="tingkat_perlombaan"
                             >
                                 <option
                                     value="internasional"
-                                    {{ old('jenis_perlombaan') == 'internasional' ? 'selected' : '' }}
+                                    {{ old('tingkat_perlombaan') == 'internasional' ? 'selected' : '' }}
                                 >Internasional</option>
                                 <option
                                     value="nasional"
-                                    {{ old('jenis_perlombaan') == 'nasional' ? 'selected' : '' }}
+                                    {{ old('tingkat_perlombaan') == 'nasional' ? 'selected' : '' }}
                                 >Nasional</option>
                                 <option
                                     value="kabupaten/kota"
-                                    {{ old('jenis_perlombaan') == 'kabupaten/kota' ? 'selected' : '' }}
+                                    {{ old('tingkat_perlombaan') == 'kabupaten/kota' ? 'selected' : '' }}
                                 >Kabupaten/Kota</option>
                             </select>
                         </div>

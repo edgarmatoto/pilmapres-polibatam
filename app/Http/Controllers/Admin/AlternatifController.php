@@ -25,24 +25,24 @@ class AlternatifController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'nama'              => 'required|string|max:100',
-            'nim'               => 'required|numeric|max_digits:15|unique:mahasiswa',
-            'jenis_perlombaan'  => 'required|string|max:100',
-            'tngkat_perlombaan' => 'required|in:internasional,nasional,kabupaten/kota',
-            'capaian_prestasi'  => 'required|string|max:100',
-            'tmpt_perlombaan'   => 'required|string|max:100',
-            'tgl_perlombaan'    => 'required|date',
-            'berkas'            => 'required|file|mimes:pdf,jpeg,png|max:5120',
+            'nama'                  => 'required|string|max:100',
+            'nim'                   => 'required|numeric|max_digits:15|unique:mahasiswa',
+            'jenis_perlombaan'      => 'required|string|max:100',
+            'tingkat_perlombaan'    => 'required|in:internasional,nasional,kabupaten/kota',
+            'capaian_prestasi'      => 'required|string|max:100',
+            'tmpt_perlombaan'       => 'required|string|max:100',
+            'tgl_perlombaan'        => 'required|date',
+            'berkas'                => 'required|file|mimes:pdf,jpeg,png|max:5120',
         ];
         $attributes = [
-            'nama'              => 'Nama Lengkap',
-            'nim'               => 'NIM',
-            'jenis_perlombaan'  => 'Jenis Perlombaan',
-            'tngkat_perlombaan' => 'Tingkat Perlombaan',
-            'capaian_prestasi'  => 'Capaian Prestasi',
-            'tmpt_perlombaan'   => 'Tempat Perlombaan',
-            'tgl_perlombaan'    => 'Tanggal Perlombaan',
-            'berkas'            => 'Berkas',
+            'nama'                  => 'Nama Lengkap',
+            'nim'                   => 'NIM',
+            'jenis_perlombaan'      => 'Jenis Perlombaan',
+            'tingkat_perlombaan'    => 'Tingkat Perlombaan',
+            'capaian_prestasi'      => 'Capaian Prestasi',
+            'tmpt_perlombaan'       => 'Tempat Perlombaan',
+            'tgl_perlombaan'        => 'Tanggal Perlombaan',
+            'berkas'                => 'Berkas',
         ];
         $request->validate($rules, [], $attributes);
 
