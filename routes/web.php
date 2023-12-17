@@ -58,7 +58,14 @@ Route::group([
         Route::post('/alternatif', 'store')->name('store');
     });
 
-    Route::get('/bobot-kriteria', 'BobotKriteriaController@index')->name('bobot-kriteria.index');
+    Route::group([
+        'as'            => 'bobot-kriteria.',
+        'controller'    => 'BobotKriteriaController'
+    ], function () {
+        Route::get('/bobot-kriteria', 'index')->name('index');
+        Route::post('/bobot-kriteria', 'store')->name('store');
+    });
+
     Route::get('/matrik', 'MatrikController@index')->name('matrik.index');
     Route::get('/preferensi', 'PreferensiController@index')->name('preferensi.index');
 });

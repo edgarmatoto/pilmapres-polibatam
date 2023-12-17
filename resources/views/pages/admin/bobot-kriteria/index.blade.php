@@ -18,6 +18,27 @@
             <h3>Bobot Kriteria</h3>
         </div>
         <div class="page-content">
+            @if (session()->has('errors'))
+                <div
+                    class="alert alert-danger alert-dismissible fade show"
+                    role="alert"
+                >
+                    <div>
+                        <h1 class="fw-bold h6">Take a look at the following error warnings:</h1>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{!! $error !!}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert"
+                        aria-label="Close"
+                    ></button>
+                </div>
+            @endif
             <section class="row">
                 <div class="col-12">
                     <div class="card">
@@ -30,6 +51,14 @@
                                 <p class="card-text">Pengambil keputusan memberi bobot preferensi dari setiap kriteria dengan
                                     masing-masing jenisnya (keuntungan/benefit atau biaya/cost):</p>
                             </div>
+                            <button
+                                type="button"
+                                class="btn btn-outline-success btn-sm m-2"
+                                data-bs-toggle="modal"
+                                data-bs-target="#inlineForm"
+                            >
+                                Tambah Bobot Kriteria
+                            </button>
                             <div class="table-responsive">
                                 <table class="table table-striped mb-0">
                                     <caption>
@@ -42,19 +71,28 @@
                                         <th>Bobot</th>
                                         <th colspan="2">Atribut</th>
                                     </tr>
-                                    <tr>
-                                        <td class='right'>...</td>
-                                        <td class='center'>...</td>
-                                        <td>...</td>
-                                        <td>...</td>
-                                        <td>...</td>
-                                        <td>
-                                            <a
-                                                href='bobot-edit.php?id={$row->id_criteria}'
-                                                class='btn btn-info btn-sm'
-                                            >Edit</a>
-                                        </td>
-                                    </tr>
+                                    @forelse ($kriteria as $item)
+                                        <tr>
+                                            <td class='right'>{{ $loop->iteration }}</td>
+                                            <td class='center'>{{ $item->simbol }}</td>
+                                            <td class='center'>{{ $item->nama }}</td>
+                                            <td class='center'>{{ $item->bobot }}</td>
+                                            <td class='center'>{{ $item->atribut }}</td>
+                                            <td>
+                                                <a
+                                                    href='bobot-edit.php?id={$row->id_criteria}'
+                                                    class='btn btn-info btn-sm'
+                                                >Edit</a>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td
+                                                colspan="6"
+                                                class='text-center'
+                                            >Tidak ada data ditemukan</td>
+                                        </tr>
+                                    @endforelse
                                 </table>
                             </div>
                         </div>
@@ -63,5 +101,120 @@
             </section>
         </div>
         @include('pages.layouts.admin.components.footer')
+    </div>
+
+    <div
+        class="modal fade text-left"
+        id="inlineForm"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="myModalLabel33"
+        aria-hidden="true"
+    >
+        <div
+            class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+            role="document"
+        >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4
+                        class="modal-title"
+                        id="myModalLabel33"
+                    >Tabel Bobot Kriteria</h4>
+                    <button
+                        type="button"
+                        class="close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                    >
+                        <i data-feather="x"></i>
+                    </button>
+                </div>
+                <form
+                    action="{{ route('admin.bobot-kriteria.store') }}"
+                    method="POST"
+                >
+                    @csrf
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label
+                                for="simbol"
+                                class="form-label"
+                            >Simbol</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="simbol"
+                                name="simbol"
+                                value="{{ old('simbol') }}"
+                            >
+                        </div>
+                        <div class="mb-3">
+                            <label
+                                for="nama"
+                                class="form-label"
+                            >Kriteria</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="nama"
+                                name="nama"
+                                value="{{ old('nama') }}"
+                            >
+                        </div>
+                        <div class="mb-3">
+                            <label
+                                for="bobot"
+                                class="form-label"
+                            >Bobot</label>
+                            <input
+                                type="number"
+                                class="form-control"
+                                id="bobot"
+                                name="bobot"
+                                value="{{ old('bobot') }}"
+                            >
+                        </div>
+                        <div class="mb-3">
+                            <label
+                                for="atribut"
+                                class="form-label"
+                            >Attribute</label>
+                            <select
+                                class="form-select"
+                                aria-label="Default select example"
+                                name="atribut"
+                            >
+                                <option
+                                    value="cost"
+                                    {{ old('atribut') == 'cost' ? 'selected' : '' }}
+                                >Cost</option>
+                                <option
+                                    value="benefit"
+                                    {{ old('atribute') == 'benefit' ? 'selected' : '' }}
+                                >Benefit</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button
+                            type="button"
+                            class="btn btn-light-secondary"
+                            data-bs-dismiss="modal"
+                        >
+                            <i class="bx bx-x d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Close</span>
+                        </button>
+                        <button
+                            type="submit"
+                            class="btn btn-primary ml-1"
+                        >
+                            <i class="bx bx-check d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Simpan</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 @endsection
