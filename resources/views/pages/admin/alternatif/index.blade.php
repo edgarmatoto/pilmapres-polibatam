@@ -18,6 +18,27 @@
             <h3>Alternatif</h3>
         </div>
         <div class="page-content">
+            @if (session()->has('errors'))
+                <div
+                    class="alert alert-danger alert-dismissible fade show"
+                    role="alert"
+                >
+                    <div>
+                        <h1 class="fw-bold h6">Take a look at the following error warnings:</h1>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{!! $error !!}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert"
+                        aria-label="Close"
+                    ></button>
+                </div>
+            @endif
             <section class="row">
                 <div class="col-12">
                     <div class="card">
@@ -48,43 +69,55 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th colspan="2">Name</th>
+                                            <th>NIM</th>
+                                            <th colspan="2">Nama</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td class='right'>...</td>
-                                            <td class='center'>...</td>
-                                            <td>
-                                                <div class='btn-group mb-1'>
-                                                    <div class='dropdown'>
-                                                        <button
-                                                            class='btn btn-primary dropdown-toggle me-1 btn-sm'
-                                                            type='button'
-                                                            id='dropdownMenuButton'
-                                                            data-bs-toggle='dropdown'
-                                                            aria-haspopup='true'
-                                                            aria-expanded='false'
-                                                        >
-                                                            Aksi
-                                                        </button>
-                                                        <div
-                                                            class='dropdown-menu'
-                                                            aria-labelledby='dropdownMenuButton'
-                                                        >
-                                                            <a
-                                                                class='dropdown-item'
-                                                                href='alternatif-edit.php?id={$row->id_alternative}'
-                                                            >Edit</a>
-                                                            <a
-                                                                class='dropdown-item'
-                                                                href='alternatif-hapus.php?id={$row->id_alternative}'
-                                                            >Hapus</a>
+                                        @forelse ($mahasiswa as $item)
+                                            <tr>
+                                                <td class='right'>{{ $loop->iteration }}</td>
+                                                <td class='center'>{{ $item->nim }}</td>
+                                                <td class='center'>{{ ucwords($item->nama) }}</td>
+                                                <td>
+                                                    <div class='btn-group mb-1'>
+                                                        <div class='dropdown'>
+                                                            <button
+                                                                class='btn btn-primary dropdown-toggle me-1 btn-sm'
+                                                                type='button'
+                                                                id='dropdownMenuButton'
+                                                                data-bs-toggle='dropdown'
+                                                                aria-haspopup='true'
+                                                                aria-expanded='false'
+                                                            >
+                                                                Aksi
+                                                            </button>
+                                                            <div
+                                                                class='dropdown-menu'
+                                                                aria-labelledby='dropdownMenuButton'
+                                                            >
+                                                                <a
+                                                                    class='dropdown-item'
+                                                                    href='alternatif-edit.php?id={$row->id_alternative}'
+                                                                >Edit</a>
+                                                                <a
+                                                                    class='dropdown-item'
+                                                                    href='alternatif-hapus.php?id={$row->id_alternative}'
+                                                                >Hapus</a>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td
+                                                    colspan="4"
+                                                    class="text-center"
+                                                >Tidak ada data ditemukan</td>
+                                            </tr>
+                                        @endforelse
+
                                     </tbody>
                                 </table>
                             </div>
@@ -124,18 +157,74 @@
                     </button>
                 </div>
                 <form
-                    action="alternatif-simpan.php"
+                    action="{{ route('admin.alternatif.store') }}"
                     method="POST"
                 >
+                    @csrf
                     <div class="modal-body">
-                        <label>Name: </label>
-                        <div class="form-group">
+                        <div class="mb-3">
+                            <label
+                                for="nama"
+                                class="form-label"
+                            >Nama Lengkap</label>
                             <input
                                 type="text"
-                                name="name"
-                                placeholder="Nama Kandidat..."
                                 class="form-control"
-                                required
+                                id="nama"
+                                name="nama"
+                                value="{{ old('nama') }}"
+                            >
+                        </div>
+                        <div class="mb-3">
+                            <label
+                                for="nim"
+                                class="form-label"
+                            >NIM</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="nim"
+                                name="nim"
+                                value="{{ old('nim') }}"
+                            >
+                        </div>
+                        <div class="mb-3">
+                            <label
+                                for="email"
+                                class="form-label"
+                            >Email</label>
+                            <input
+                                type="email"
+                                class="form-control"
+                                id="email"
+                                name="email"
+                                value="{{ old('email') }}"
+                            >
+                        </div>
+                        <div class="mb-3">
+                            <label
+                                for="no_hp"
+                                class="form-label"
+                            >No Hp</label>
+                            <input
+                                type="number"
+                                class="form-control"
+                                id="no_hp"
+                                name="no_hp"
+                                value="{{ old('no_hp') }}"
+                            >
+                        </div>
+                        <div class="mb-3">
+                            <label
+                                for="tglLahir"
+                                class="form-label"
+                            >Tanggal Lahir</label>
+                            <input
+                                type="date"
+                                class="form-control"
+                                id="tglLahir"
+                                name="tgl_lahir"
+                                value="{{ old('tgl_lahir') }}"
                             >
                         </div>
                     </div>
@@ -150,7 +239,6 @@
                         </button>
                         <button
                             type="submit"
-                            name="submit"
                             class="btn btn-primary ml-1"
                         >
                             <i class="bx bx-check d-block d-sm-none"></i>

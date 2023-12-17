@@ -8,6 +8,7 @@
         @yield('content')
     </div>
     @include('pages.layouts.admin.components.scripts')
+    @include('pages.layouts.admin.components.alerts')
 </body>
 
 </html>

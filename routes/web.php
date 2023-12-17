@@ -19,19 +19,14 @@ Route::redirect('/admin', '/admin/home');
 
 //== guest route
 Route::group([
-    'as'            => 'register.',
     'middleware'    => 'guest',
     'namespace'     => 'App\Http\Controllers',
 ], function () {
     Route::get('/', 'WelcomeController@index')->name('welcome');
 
-    Route::group([
-        'as'            => 'mhs.',
-        'prefix'        => 'mhs',
-        'namespace'     => 'App\Http\Controllers\Auth',
-    ], function () {
+    Route::group(['namespace' => 'App\Http\Controllers\Auth'], function () {
         Route::post('/authentication', 'LoginController@authentication')->name('authentication');
-        Route::get('/register', 'RegisterController@index')->name('index');
+        Route::get('/register', 'RegisterController@index')->name('register.index');
     });
 });
 
@@ -54,7 +49,15 @@ Route::group([
     'middleware'    => ['auth:admin']
 ], function () {
     Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('/alternatif', 'AlternatifController@index')->name('alternatif.index');
+
+    Route::group([
+        'as'            => 'alternatif.',
+        'controller'    => 'AlternatifController'
+    ], function () {
+        Route::get('/alternatif', 'index')->name('index');
+        Route::post('/alternatif', 'store')->name('store');
+    });
+
     Route::get('/bobot-kriteria', 'BobotKriteriaController@index')->name('bobot-kriteria.index');
     Route::get('/matrik', 'MatrikController@index')->name('matrik.index');
     Route::get('/preferensi', 'PreferensiController@index')->name('preferensi.index');
