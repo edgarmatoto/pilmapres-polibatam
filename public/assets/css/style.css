@@ -8,3 +8,24 @@ body {
 .text-blue-sky {
     color: #009dce !important;
 }
+
+.swal2-popup {
+    width: auto;
+    border-radius: 35px;
+}
+
+.swal2-popup .swal2-actions button {
+    border-radius: 10px;
+}
+
+.swal2-popup .swal2-html-container {
+    width: auto;
+}
+
+/* `md` applies to small devices (landscape phones, less than 768px) */
+@media (min-width: 768px) {
+    .swal2-popup {
+        padding: 15px 15px 50px 15px;
+        max-width: 580px;
+    }
+}

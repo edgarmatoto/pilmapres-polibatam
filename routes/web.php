@@ -43,7 +43,7 @@ Route::group([
     'as'            => 'admin.',
     'prefix'        => 'admin',
     'namespace'     => 'App\Http\Controllers\Admin',
-    'middleware'    => ['auth:admin', 'roles:admin']
+    'middleware'    => ['auth:admin']
 ], function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/alternatif', 'AlternatifController@index')->name('alternatif.index');

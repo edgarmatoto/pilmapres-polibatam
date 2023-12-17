@@ -57,62 +57,78 @@
                                     <p class="mt-3 fw-bold">Masuk ke Akun Anda</p>
                                 </div>
                                 <div class="card-body">
-                                    <div class="mb-3">
-                                        <label
-                                            style="color: #00000087;"
-                                            for="nim"
-                                            class="form-label mb-0"
-                                        >NIM</label>
-                                        <input
-                                            type="text"
-                                            class="form-control rounded-0 shadow-none px-0 border-0"
-                                            name="nim"
-                                            id="nim"
-                                            style="border-bottom: 1px solid #00000040 !important;"
-                                        >
-                                    </div>
-                                    <div class="mb-3">
-                                        <label
-                                            style="color: #00000087;"
-                                            for="password"
-                                            class="form-label mb-0"
-                                        >Password</label>
-                                        <input
-                                            type="text"
-                                            class="form-control rounded-0 shadow-none px-0 border-0"
-                                            name="password"
-                                            id="password"
-                                            style="border-bottom: 1px solid #00000040 !important;"
-                                        >
-                                    </div>
-                                    <div class="mb-3 text-center">
-                                        <button
-                                            type="submit"
-                                            class="rounded-3 border-0 text-white px-5 py-1"
-                                            style="background-color: #36CE00;"
-                                        >
-                                            Masuk
-                                        </button>
-                                    </div>
-                                    <div class="mb-5 text-end">
-                                        <a
-                                            href="#"
-                                            class="text-decoration-none"
-                                            style="color: #009DCE;"
-                                        >
-                                            Lupa Password?
-                                        </a>
-                                    </div>
-                                    <div class="mb-3 text-center">
-                                        <a
-                                            href="{{ route('register.index') }}"
-                                            role="button"
-                                            class="rounded-3 px-5 py-1 bg-transparent fw-bold text-decoration-none"
-                                            style="color: #009DCE; border: 1px solid #009DCE;"
-                                        >
-                                            Daftar
-                                        </a>
-                                    </div>
+                                    <form
+                                        action="{{ route('authentication') }}"
+                                        method="post"
+                                    >
+                                        @csrf
+                                        <div class="mb-3">
+                                            <label
+                                                style="color: #00000087;"
+                                                for="nim"
+                                                class="form-label mb-0"
+                                            >NIM</label>
+                                            <input
+                                                type="text"
+                                                class="@error('nim') is-invalid @enderror form-control rounded-0 shadow-none px-0 border-0"
+                                                name="nim"
+                                                id="nim"
+                                                style="border-bottom: 1px solid #00000040 !important;"
+                                            >
+                                            @error('nim')
+                                                <div class="text-danger small">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-3">
+                                            <label
+                                                style="color: #00000087;"
+                                                for="password"
+                                                class="form-label mb-0"
+                                            >Password</label>
+                                            <input
+                                                type="password"
+                                                class="@error('password') is-invalid @enderror form-control rounded-0 shadow-none px-0 border-0"
+                                                name="password"
+                                                id="password"
+                                                style="border-bottom: 1px solid #00000040 !important;"
+                                            >
+                                            @error('password')
+                                                <div class="text-danger small">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-3 text-center">
+                                            <button
+                                                type="submit"
+                                                class="rounded-3 border-0 text-white px-5 py-1"
+                                                style="background-color: #36CE00;"
+                                            >
+                                                Masuk
+                                            </button>
+                                        </div>
+                                        <div class="mb-5 text-end">
+                                            <a
+                                                href="#"
+                                                class="text-decoration-none"
+                                                style="color: #009DCE;"
+                                            >
+                                                Lupa Password?
+                                            </a>
+                                        </div>
+                                        <div class="mb-3 text-center">
+                                            <a
+                                                href="{{ route('register.index') }}"
+                                                role="button"
+                                                class="rounded-3 px-5 py-1 bg-transparent fw-bold text-decoration-none"
+                                                style="color: #009DCE; border: 1px solid #009DCE;"
+                                            >
+                                                Daftar
+                                            </a>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
