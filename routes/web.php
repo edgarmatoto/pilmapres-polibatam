@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+Route::post('/authentication', [LoginController::class, 'authentication'])->name('authentication');
+
 
 Route::group([
     'as'            => 'register.',
@@ -40,6 +43,7 @@ Route::group([
     'as'            => 'admin.',
     'prefix'        => 'admin',
     'namespace'     => 'App\Http\Controllers\Admin',
+    'middleware'    => ['auth:admin', 'roles:admin']
 ], function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/alternatif', 'AlternatifController@index')->name('alternatif.index');
