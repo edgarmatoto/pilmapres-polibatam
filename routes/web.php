@@ -58,6 +58,7 @@ Route::group([
         Route::post('/alternatif', 'store')->name('store');
         Route::get('/alternatif/{alternatif}/edit', 'edit')->name('edit');
         Route::put('/alternatif/{alternatif}', 'update')->name('update');
+        Route::delete('/alternatif/{alternatif}', 'destroy')->name('destroy');
         Route::get('/alternatif/{alternatif}/unduh-berkas', 'unduhBerkas')->name('unduh-berkas');
     });
 

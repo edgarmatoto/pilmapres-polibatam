@@ -116,6 +116,25 @@ class AlternatifController extends Controller
         }
     }
 
+    public function destroy(Alternatif $alternatif)
+    {
+        try {
+            $berkasLama = Storage::exists($alternatif->lokasi_berkas);
+            if ($berkasLama) Storage::delete($alternatif->lokasi_berkas);
+            $alternatif->mahasiswa()->delete();
+
+            $alternatif = Alternatif::latest()->get();
+            $data       = view('pages.admin.alternatif.data', compact('alternatif'))->render();
+
+            return response()->json([
+                'success'   => 'Data alternatif berhasil dihapus.',
+                'data'      => $data
+            ]);
+        } catch (\Throwable $th) {
+            return back()->withError('Data gagal dihapus, silahkan coba lagi nanti.');
+        }
+    }
+
     public function unduhBerkas(Alternatif $alternatif)
     {
         $berkas = Storage::exists($alternatif->lokasi_berkas);

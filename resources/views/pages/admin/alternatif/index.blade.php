@@ -79,61 +79,8 @@
                                             <th colspan="2">Berkas</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        @forelse ($alternatif as $item)
-                                            <tr>
-                                                <td class='right'>{{ $loop->iteration }}</td>
-                                                <td class='center'>{{ $item->mahasiswa->nim }}</td>
-                                                <td class='center'>{{ ucwords($item->mahasiswa->nama) }}</td>
-                                                <td class='center'>{{ $item->jenis_perlombaan }}</td>
-                                                <td class='center'>{{ $item->tingkat_perlombaan }}</td>
-                                                <td class='center'>{{ $item->capaian_prestasi }}</td>
-                                                <td class='center'>{{ $item->tmpt_perlombaan }}</td>
-                                                <td class='center'>{{ date('d/m/y', strtotime($item->tgl_perlombaan)) }}</td>
-                                                <td class='center'>
-                                                    <a href="{{ route('admin.alternatif.unduh-berkas', ['alternatif' => $item]) }}">
-                                                        {{ $item->nama_berkas }}
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <div class='btn-group mb-1'>
-                                                        <div class='dropdown'>
-                                                            <button
-                                                                class='btn btn-primary dropdown-toggle me-1 btn-sm'
-                                                                type='button'
-                                                                id='dropdownMenuButton'
-                                                                data-bs-toggle='dropdown'
-                                                                aria-haspopup='true'
-                                                                aria-expanded='false'
-                                                            >
-                                                                Aksi
-                                                            </button>
-                                                            <div
-                                                                class='dropdown-menu'
-                                                                aria-labelledby='dropdownMenuButton'
-                                                            >
-                                                                <a
-                                                                    class='dropdown-item'
-                                                                    href='{{ route('admin.alternatif.edit', ['alternatif' => $item]) }}'
-                                                                >Edit</a>
-                                                                <a
-                                                                    class='dropdown-item'
-                                                                    href='alternatif-hapus.php?id={$row->id_alternative}'
-                                                                >Hapus</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @empty
-                                            <tr>
-                                                <td
-                                                    colspan="9"
-                                                    class="text-center"
-                                                >Tidak ada data ditemukan</td>
-                                            </tr>
-                                        @endforelse
-
+                                    <tbody id="data">
+                                        @include('pages.admin.alternatif.data')
                                     </tbody>
                                 </table>
                             </div>
@@ -317,3 +264,68 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        function hapusData(url) {
+            Swal.fire({
+                title: "Anda Yakin?",
+                text: "Dengan menghapus data alternatif maka data mahasiswa yang berkaitan dengan alternatif ini juga akan terhapus. mengahapus data ini bersifat permanen.",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#045464",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: url,
+                        type: 'DELETE',
+                        data: {
+                            '_token': '{{ csrf_token() }}'
+                        },
+                        beforeSend: () => {
+                            Swal.fire({
+                                allowOutsideClick: false,
+                                showConfirmButton: false,
+                                willOpen: () => Swal.showLoading(),
+                            });
+                        },
+                        success: (response) => {
+                            if (response.success) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Success!',
+                                    text: response.success,
+                                    confirmButtonColor: "#045464"
+                                }).then(() => $('#data').html(response.data));
+                            } else if (response.error) {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops!',
+                                    text: response.error,
+                                    confirmButtonColor: "#045464"
+                                });
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops!',
+                                    text: 'Data gagal dihapus, silahkan coba lagi atau hubungi administrator untuk permasalahan ini.',
+                                    confirmButtonColor: "#045464"
+                                });
+                            }
+                        },
+                        error: () => {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops!',
+                                text: 'Data gagal dieksekusi, silahkan coba lagi atau hubungi administrator untuk permasalahan ini.',
+                                confirmButtonColor: "#045464"
+                            });
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+@endpush
