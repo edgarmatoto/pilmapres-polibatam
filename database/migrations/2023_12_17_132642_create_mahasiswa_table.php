@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('prodi_id')->nullable()->constrained('prodi')->onDelete('set null')->onUpdate('cascade');
             $table->string('nim')->unique();
-            $table->string('email')->unique();
-            $table->string('no_hp')->unique();
+            $table->string('email')->nullable()->unique();
+            $table->string('no_hp')->nullable()->unique();
             $table->string('nik')->nullable()->unique();
             $table->string('nama');
-            $table->date('tgl_lahir');
+            $table->date('tgl_lahir')->nullable();
             $table->string('kelas')->nullable();
             $table->year('angkatan')->nullable();
             $table->string('dosen_wali')->nullable();

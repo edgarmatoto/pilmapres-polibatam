@@ -70,15 +70,31 @@
                                         <tr>
                                             <th>No</th>
                                             <th>NIM</th>
-                                            <th colspan="2">Nama</th>
+                                            <th>Nama</th>
+                                            <th>Jenis Perlombaan</th>
+                                            <th>Tingkat Perlombaan</th>
+                                            <th>Capaian Prestasi</th>
+                                            <th>Tempat Perlombaan</th>
+                                            <th>Tanggal Perlombaan</th>
+                                            <th colspan="2">Berkas</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($mahasiswa as $item)
+                                        @forelse ($alternatif as $item)
                                             <tr>
                                                 <td class='right'>{{ $loop->iteration }}</td>
-                                                <td class='center'>{{ $item->nim }}</td>
-                                                <td class='center'>{{ ucwords($item->nama) }}</td>
+                                                <td class='center'>{{ $item->mahasiswa->nim }}</td>
+                                                <td class='center'>{{ ucwords($item->mahasiswa->nama) }}</td>
+                                                <td class='center'>{{ $item->jenis_perlombaan }}</td>
+                                                <td class='center'>{{ $item->tingkat_perlombaan }}</td>
+                                                <td class='center'>{{ $item->capaian_prestasi }}</td>
+                                                <td class='center'>{{ $item->tmpt_perlombaan }}</td>
+                                                <td class='center'>{{ date('d/m/y', strtotime($item->tgl_perlombaan)) }}</td>
+                                                <td class='center'>
+                                                    <a href="{{ route('admin.alternatif.unduh-berkas', ['alternatif' => $item]) }}">
+                                                        {{ $item->nama_berkas }}
+                                                    </a>
+                                                </td>
                                                 <td>
                                                     <div class='btn-group mb-1'>
                                                         <div class='dropdown'>
@@ -98,7 +114,7 @@
                                                             >
                                                                 <a
                                                                     class='dropdown-item'
-                                                                    href='alternatif-edit.php?id={$row->id_alternative}'
+                                                                    href='{{ route('admin.alternatif.edit', ['alternatif' => $item]) }}'
                                                                 >Edit</a>
                                                                 <a
                                                                     class='dropdown-item'
@@ -112,7 +128,7 @@
                                         @empty
                                             <tr>
                                                 <td
-                                                    colspan="4"
+                                                    colspan="9"
                                                     class="text-center"
                                                 >Tidak ada data ditemukan</td>
                                             </tr>
@@ -159,6 +175,7 @@
                 <form
                     action="{{ route('admin.alternatif.store') }}"
                     method="POST"
+                    enctype="multipart/form-data"
                 >
                     @csrf
                     <div class="modal-body">
@@ -190,41 +207,91 @@
                         </div>
                         <div class="mb-3">
                             <label
-                                for="email"
+                                for="jenisPerlombaan"
                                 class="form-label"
-                            >Email</label>
+                            >Jenis Perlombaan</label>
                             <input
-                                type="email"
+                                type="text"
                                 class="form-control"
-                                id="email"
-                                name="email"
-                                value="{{ old('email') }}"
+                                id="jenisPerlombaan"
+                                name="jenis_perlombaan"
+                                value="{{ old('jenis_perlombaan') }}"
                             >
                         </div>
                         <div class="mb-3">
                             <label
-                                for="no_hp"
+                                for="tingkatPerlombaan"
                                 class="form-label"
-                            >No Hp</label>
+                            >Tingkat Perlombaan</label>
+                            <select
+                                id="tingkatPerlombaan"
+                                class="form-select"
+                                aria-label="Default select example"
+                                name="tngkat_perlombaan"
+                            >
+                                <option
+                                    value="internasional"
+                                    {{ old('jenis_perlombaan') == 'internasional' ? 'selected' : '' }}
+                                >Internasional</option>
+                                <option
+                                    value="nasional"
+                                    {{ old('jenis_perlombaan') == 'nasional' ? 'selected' : '' }}
+                                >Nasional</option>
+                                <option
+                                    value="kabupaten/kota"
+                                    {{ old('jenis_perlombaan') == 'kabupaten/kota' ? 'selected' : '' }}
+                                >Kabupaten/Kota</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label
+                                for="capaianPrestasi"
+                                class="form-label"
+                            >Capaian Prestasi</label>
                             <input
-                                type="number"
+                                type="text"
                                 class="form-control"
-                                id="no_hp"
-                                name="no_hp"
-                                value="{{ old('no_hp') }}"
+                                id="capaianPrestasi"
+                                name="capaian_prestasi"
+                                value="{{ old('capaian_prestasi') }}"
                             >
                         </div>
                         <div class="mb-3">
                             <label
-                                for="tglLahir"
+                                for="tmptPerlombaan"
                                 class="form-label"
-                            >Tanggal Lahir</label>
+                            >Tempat Perlombaan</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="tmptPerlombaan"
+                                name="tmpt_perlombaan"
+                                value="{{ old('tmpt_perlombaan') }}"
+                            >
+                        </div>
+                        <div class="mb-3">
+                            <label
+                                for="tglPerlombaan"
+                                class="form-label"
+                            >Tanggal Perlombaan</label>
                             <input
                                 type="date"
                                 class="form-control"
-                                id="tglLahir"
-                                name="tgl_lahir"
-                                value="{{ old('tgl_lahir') }}"
+                                id="tglPerlombaan"
+                                name="tgl_perlombaan"
+                                value="{{ old('tgl_perlombaan') }}"
+                            >
+                        </div>
+                        <div class="mb-3">
+                            <label
+                                for="berkas"
+                                class="form-label"
+                            >Berkas</label>
+                            <input
+                                type="file"
+                                class="form-control"
+                                id="berkas"
+                                name="berkas"
                             >
                         </div>
                     </div>
