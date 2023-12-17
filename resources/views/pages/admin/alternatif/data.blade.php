@@ -47,7 +47,7 @@
 @empty
     <tr>
         <td
-            colspan="9"
+            colspan="10"
             class="text-center"
         >Tidak ada data ditemukan</td>
     </tr>

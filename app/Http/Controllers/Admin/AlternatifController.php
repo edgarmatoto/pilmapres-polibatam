@@ -121,7 +121,7 @@ class AlternatifController extends Controller
         try {
             $berkasLama = Storage::exists($alternatif->lokasi_berkas);
             if ($berkasLama) Storage::delete($alternatif->lokasi_berkas);
-            $alternatif->mahasiswa()->delete();
+            $alternatif->delete();
 
             $alternatif = Alternatif::latest()->get();
             $data       = view('pages.admin.alternatif.data', compact('alternatif'))->render();

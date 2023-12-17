@@ -270,7 +270,7 @@
         function hapusData(url) {
             Swal.fire({
                 title: "Anda Yakin?",
-                text: "Dengan menghapus data alternatif maka data mahasiswa yang berkaitan dengan alternatif ini juga akan terhapus. mengahapus data ini bersifat permanen.",
+                text: "Mengahapus data ini bersifat permanen dan tidak dapat diurungkan.",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#045464",
