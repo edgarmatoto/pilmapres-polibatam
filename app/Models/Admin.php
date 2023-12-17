@@ -13,7 +13,6 @@ class Admin extends Authenticatable
 
     protected
         $table      = 'admin',
-        $guard      = 'admin',
         $guarded    = ['id'];
 
     /**

@@ -15,16 +15,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
-Route::post('/authentication', [LoginController::class, 'authentication'])->name('authentication');
+Route::redirect('/admin', '/admin/home');
 
-
+//== guest route
 Route::group([
     'as'            => 'register.',
     'middleware'    => 'guest',
-    'namespace'     => 'App\Http\Controllers\Auth',
+    'namespace'     => 'App\Http\Controllers',
 ], function () {
-    Route::get('/register', 'RegisterController@index')->name('index');
+    Route::get('/', 'WelcomeController@index')->name('welcome');
+
+    Route::group([
+        'as'            => 'mhs.',
+        'prefix'        => 'mhs',
+        'namespace'     => 'App\Http\Controllers\Auth',
+    ], function () {
+        Route::post('/authentication', 'LoginController@authentication')->name('authentication');
+        Route::get('/register', 'RegisterController@index')->name('index');
+    });
 });
 
 //== mahasiswa route

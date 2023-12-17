@@ -16,17 +16,12 @@ class LoginController extends Controller
         ];
         $request->validate($rules);
 
-        $guards = array_keys(config('auth.guards'));
-        foreach ($guards as $guard) {
-            if ($guard === 'admin') {
-                $credentials['username']    = $request->nim;
-                $credentials['password']    = $request->password;
-
-                if (Auth::guard($guard)->attempt($credentials)) {
-                    $request->session()->regenerate();
-                    return redirect()->route("$guard.home");
-                }
-            }
+        //== admin authentication
+        $credentials['username']    = $request->nim;
+        $credentials['password']    = $request->password;
+        if (Auth::guard('admin')->attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->route("admin.home");
         }
 
         return back()->withError('Pastikan email dan password telah diinputkan dengan benar.');
