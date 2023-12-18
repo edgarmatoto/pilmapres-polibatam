@@ -1,11 +1,11 @@
-@forelse ($alternatif as $item)
+@forelse ($alternatif as $alt)
     <tr class='center'>
-        <th>A</th>
-        <td>C1</td>
-        <td>C2</td>
-        <td>C3</td>
-        <td>C4</td>
-        <td>C5</td>
+        <th>{{ 'A' . $loop->iteration }}</th>
+        @foreach ($kriteria as $kri)
+            <td>
+                {{ round($alt->evaluasi()->where('evaluasi.kriteria_id', $kri->id)->first()?->nilai,2) }}
+            </td>
+        @endforeach
     </tr>
 @empty
     <tr class='center'>

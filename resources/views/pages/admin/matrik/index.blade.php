@@ -18,6 +18,27 @@
             <h3>Matrik</h3>
         </div>
         <div class="page-content">
+            @if (session()->has('errors'))
+                <div
+                    class="alert alert-danger alert-dismissible fade show"
+                    role="alert"
+                >
+                    <div>
+                        <h1 class="fw-bold h6">Take a look at the following error warnings:</h1>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{!! $error !!}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert"
+                        aria-label="Close"
+                    ></button>
+                </div>
+            @endif
             <section class="row">
                 <div class="col-12">
                     <div class="card">
@@ -56,7 +77,7 @@
                                             <th>...</th>
                                         @endforelse
                                     </tr>
-                                    <tbody id="data">
+                                    <tbody id="dataX">
                                         @include('pages.admin.matrik.data_x')
                                     </tbody>
                                 </table>
@@ -117,46 +138,62 @@
                     </button>
                 </div>
                 <form
-                    action="matrik-simpan.php"
+                    action="{{ route('admin.matrik.store') }}"
                     method="POST"
                 >
+                    @csrf
                     <div class="modal-body">
-                        <label>Name: </label>
+                        <label>Alternatif: </label>
                         <div class="form-group">
                             <select
                                 class="form-control form-select"
-                                name="id_alternative"
+                                name="alternatif_id"
                             >
-                                <option value="">...</option>
+                                @forelse ($alternatif as $item)
+                                    <option
+                                        value="{{ $item->mahasiswa->id }}"
+                                        {{ old('alternatif') == $item->mahasiswa->id ? 'selected' : '' }}
+                                    >{{ 'A' . $loop->iteration }} - {{ ucwords($item->mahasiswa->nama) }}</option>
+                                @empty
+                                    <option>...</option>
+                                @endforelse
+
                             </select>
                         </div>
                     </div>
                     <div class="modal-body">
-                        <label>Criteria: </label>
+                        <label>Kriteria: </label>
                         <div class="form-group">
                             <select
                                 class="form-control form-select"
-                                name="id_criteria"
+                                name="kriteria_id"
                             >
-                                <option value="">...</option>
+                                @forelse ($kriteria as $item)
+                                    <option
+                                        value="{{ $item->id }}"
+                                        {{ old('kriteria') == $item->id ? 'selected' : '' }}
+                                    >{{ 'C' . $loop->iteration }} - {{ ucwords($item->nama) }}</option>
+                                @empty
+                                    <option>...</option>
+                                @endforelse
                             </select>
                         </div>
                     </div>
                     <div class="modal-body">
-                        <label>Value: </label>
+                        <label>Nilai: </label>
                         <div class="form-group">
                             <input
-                                type="text"
-                                name="value"
-                                placeholder="value..."
+                                type="number"
+                                name="nilai"
+                                placeholder="Nilai..."
                                 class="form-control"
-                                required
+                                value="{{ old('nilai') }}"
                             >
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button
-                            type="button"
+                            type="reset"
                             class="btn btn-light-secondary"
                             data-bs-dismiss="modal"
                         >
@@ -165,7 +202,6 @@
                         </button>
                         <button
                             type="submit"
-                            name="submit"
                             class="btn btn-primary ml-1"
                         >
                             <i class="bx bx-check d-block d-sm-none"></i>
@@ -177,3 +213,71 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        function hapusData(url) {
+            Swal.fire({
+                title: "Anda Yakin?",
+                text: "Mengahapus data ini bersifat permanen dan tidak dapat diurungkan.",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#045464",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: url,
+                        type: 'DELETE',
+                        data: {
+                            '_token': '{{ csrf_token() }}'
+                        },
+                        beforeSend: () => {
+                            Swal.fire({
+                                allowOutsideClick: false,
+                                showConfirmButton: false,
+                                willOpen: () => Swal.showLoading(),
+                            });
+                        },
+                        success: (response) => {
+                            if (response.success) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Success!',
+                                    text: response.success,
+                                    confirmButtonColor: "#045464"
+                                }).then(() => {
+                                    $('#dataX').html(response.dataX);
+                                    $('#dataR').html(response.dataR);
+                                })
+                            } else if (response.error) {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops!',
+                                    text: response.error,
+                                    confirmButtonColor: "#045464"
+                                });
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops!',
+                                    text: 'Data gagal dihapus, silahkan coba lagi atau hubungi administrator untuk permasalahan ini.',
+                                    confirmButtonColor: "#045464"
+                                });
+                            }
+                        },
+                        error: () => {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops!',
+                                text: 'Data gagal dieksekusi, silahkan coba lagi atau hubungi administrator untuk permasalahan ini.',
+                                confirmButtonColor: "#045464"
+                            });
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+@endpush

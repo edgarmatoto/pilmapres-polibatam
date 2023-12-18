@@ -168,7 +168,7 @@
                     </div>
                     <div class="modal-footer">
                         <button
-                            type="button"
+                            type="reset"
                             class="btn btn-light-secondary"
                             data-bs-dismiss="modal"
                         >

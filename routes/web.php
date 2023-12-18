@@ -46,6 +46,7 @@ Route::group([
     'middleware'    => ['auth:admin']
 ], function () {
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/preferensi', 'PreferensiController@index')->name('preferensi.index');
 
     Route::group([
         'as'            => 'alternatif.',
@@ -70,6 +71,12 @@ Route::group([
         Route::delete('/bobot-kriteria/{kriteria}', 'destroy')->name('destroy');
     });
 
-    Route::get('/matrik', 'MatrikController@index')->name('matrik.index');
-    Route::get('/preferensi', 'PreferensiController@index')->name('preferensi.index');
+    Route::group([
+        'as'            => 'matrik.',
+        'controller'    => 'MatrikController'
+    ], function () {
+        Route::get('/matrik', 'index')->name('index');
+        Route::post('/matrik', 'store')->name('store');
+        Route::delete('/matrik/{alternatif}', 'destroy')->name('destroy');
+    });
 });

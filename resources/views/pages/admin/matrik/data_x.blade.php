@@ -5,10 +5,11 @@
             <td>{{ round($alt->evaluasi()->where('evaluasi.kriteria_id', $kri->id)->first()?->nilai,2) }}</td>
         @endforeach
         <td>
-            <a
-                href='#'
+            <button
+                onclick="hapusData('{{ route('admin.matrik.destroy', ['alternatif' => $alt]) }}')"
+                type="button"
                 class='btn btn-danger btn-sm'
-            >Hapus</a>
+            >Hapus</button>
         </td>
     </tr>
 @empty
