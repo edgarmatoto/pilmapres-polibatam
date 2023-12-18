@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Mahasiswa;
 use App\Models\Prodi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -71,11 +72,15 @@ class ProfileController extends Controller
             'nama.regex'        => 'Only accepts letters.',
             'password.regex'    => 'Passwords must contain at least 1 uppercase letter, lowercase letter, and numbers.'
         ];
-        $validator = $request->validate($rules, $messages, $attributes);
+        $request->validate($rules, $messages, $attributes);
 
         try {
-            $mahasiswa = Mahasiswa::findOrFail(auth()->user()->id);
-            $mahasiswa->update($validator);
+            $mahasiswa  = Mahasiswa::findOrFail(auth()->user()->id);
+            $data       = $request->except(['password']);
+            if ($request->password) {
+                $data['password'] = Hash::make($request->password);
+            }
+            $mahasiswa->update($data);
 
             return redirect()
                 ->route('mhs.profile.index')
