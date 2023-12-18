@@ -3,7 +3,18 @@
         <th>{{ 'A' . $loop->iteration }}</th>
         @foreach ($kriteria as $kri)
             <td>
-                {{ round($alt->evaluasi()->where('evaluasi.kriteria_id', $kri->id)->first()?->nilai,2) }}
+                @php
+                    $bobot = $kri
+                        ->evaluasi()
+                        ->orderByRaw('CAST(evaluasi.nilai AS INT) ' . ($kri->atribut == 'benefit' ? 'DESC' : 'ASC'))
+                        ->value('evaluasi.nilai');
+
+                    $matrikX = $alt
+                        ->evaluasi()
+                        ->where('evaluasi.kriteria_id', $kri->id)
+                        ->first()?->nilai;
+                @endphp
+                {{ round($kri->atribut == 'benefit' ? $matrikX / $bobot : $bobot / $matrikX, 2) }}
             </td>
         @endforeach
     </tr>
