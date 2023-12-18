@@ -24,6 +24,14 @@ class LoginController extends Controller
             return redirect()->route("admin.home");
         }
 
+        //== mhs authentication
+        $credentials['nim']         = $request->nim;
+        $credentials['password']    = $request->password;
+        if (Auth::guard('mhs')->attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->route("mhs.home");
+        }
+
         return back()->withError('Pastikan email dan password telah diinputkan dengan benar.');
     }
 }

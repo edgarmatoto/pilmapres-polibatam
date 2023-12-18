@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::redirect('/mhs', '/mhs/home');
 Route::redirect('/admin', '/admin/home');
 
 //== guest route
@@ -32,6 +33,7 @@ Route::group([
     'as'            => 'mhs.',
     'prefix'        => 'mhs',
     'namespace'     => 'App\Http\Controllers\Mahasiswa',
+    'middleware'    => ['auth:mhs']
 ], function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/pelayanan', 'PelayananController@index')->name('pelayanan.index');

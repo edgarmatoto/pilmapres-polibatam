@@ -44,6 +44,10 @@ return [
             'driver'    => 'session',
             'provider'  => 'admins',
         ],
+        'mhs' => [
+            'driver'    => 'session',
+            'provider'  => 'mhs',
+        ]
     ],
 
     /*
@@ -72,6 +76,10 @@ return [
             'driver'    => 'eloquent',
             'model'     => App\Models\Admin::class,
         ],
+        'mhs' => [
+            'driver'    => 'eloquent',
+            'model'     => App\Models\Mahasiswa::class,
+        ]
 
         // 'users' => [
         //     'driver' => 'database',
@@ -111,6 +119,12 @@ return [
             'expire'    => 60,
             'throttle'  => 60,
         ],
+        'mhs' => [
+            'provider'  => 'mhs',
+            'table'     => 'password_reset_tokens',
+            'expire'    => 60,
+            'throttle'  => 60,
+        ]
     ],
 
     /*
