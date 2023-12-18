@@ -66,15 +66,22 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a
-                        href="logout.php"
-                        class='sidebar-link'
+                    <form
+                        action="{{ route('admin.logout') }}"
+                        method="POST"
                     >
-                        <i class="bi bi-box-arrow-right"></i>
-                        <span>Logout</span>
-                    </a>
+                        @csrf
+                        <button
+                            type="submit"
+                            class=' bg-transparent w-100 border-0 p-0'
+                        >
+                            <div class="sidebar-link">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span class="fw-bold">Logout</span>
+                            </div>
+                        </button>
+                    </form>
                 </li>
-
             </ul>
         </div>
         <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>

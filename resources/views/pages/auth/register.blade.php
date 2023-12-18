@@ -34,11 +34,16 @@
                                 >Nama Lengkap</label>
                                 <input
                                     type="text"
-                                    class="form-control rounded-0 shadow-none px-0 border-0"
+                                    class="@error('nama') is-invalid @enderror form-control form-control rounded-0 shadow-none px-0 border-0"
                                     name="nama"
                                     id="nama"
                                     style="border-bottom: 1px solid #00000040 !important;"
                                 >
+                                @error('nama')
+                                    <div class="text-danger small">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                             <div class="mb-3">
                                 <label
@@ -48,11 +53,16 @@
                                 >NIM</label>
                                 <input
                                     type="text"
-                                    class="form-control rounded-0 shadow-none px-0 border-0"
+                                    class="@error('nim') is-invalid @enderror form-control rounded-0 shadow-none px-0 border-0"
                                     name="nim"
                                     id="nim"
                                     style="border-bottom: 1px solid #00000040 !important;"
                                 >
+                                @error('nim')
+                                    <div class="text-danger small">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                             <div class="mb-3">
                                 <label
@@ -62,11 +72,16 @@
                                 >Email</label>
                                 <input
                                     type="email"
-                                    class="form-control rounded-0 shadow-none px-0 border-0"
+                                    class="@error('email') is-invalid @enderror form-control rounded-0 shadow-none px-0 border-0"
                                     name="email"
                                     id="email"
                                     style="border-bottom: 1px solid #00000040 !important;"
                                 >
+                                @error('email')
+                                    <div class="text-danger small">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                             <div class="mb-3">
                                 <label
@@ -76,11 +91,16 @@
                                 >No Hp</label>
                                 <input
                                     type="text"
-                                    class="form-control rounded-0 shadow-none px-0 border-0"
+                                    class="@error('no_hp') is-invalid @enderror form-control rounded-0 shadow-none px-0 border-0"
                                     name="no_hp"
                                     id="noHp"
                                     style="border-bottom: 1px solid #00000040 !important;"
                                 >
+                                @error('no_hp')
+                                    <div class="text-danger small">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                             <div class="mb-3">
                                 <label class="form-label mb-1">Tanggal Lahir</label>

@@ -49,6 +49,7 @@ Route::group([
 ], function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/preferensi', 'PreferensiController@index')->name('preferensi.index');
+    Route::post('/logout', 'LogoutController@logout')->name('logout');
 
     Route::group([
         'as'            => 'alternatif.',
