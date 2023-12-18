@@ -130,7 +130,7 @@
                                         class="form-label mb-0"
                                     >Tanggal Perlombaan</label>
                                     <input
-                                        type="text"
+                                        type="date"
                                         class="@error('tgl_perlombaan') is-invalid @enderror form-control rounded-0 shadow-none px-0 border-0"
                                         name="tgl_perlombaan"
                                         id="tglPerlombaan"
