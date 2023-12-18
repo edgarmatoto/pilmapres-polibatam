@@ -25,6 +25,7 @@ class LoginController extends Controller
         }
 
         //== mhs authentication
+        $credentials                = [];
         $credentials['nim']         = $request->nim;
         $credentials['password']    = $request->password;
         if (Auth::guard('mhs')->attempt($credentials)) {
