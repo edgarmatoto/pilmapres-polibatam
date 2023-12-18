@@ -11,7 +11,7 @@ class MatrikController extends Controller
 {
     public function index()
     {
-        $kriteria = Kriteria::orderBy('simbol', 'ASC')->orderBy('nama', 'ASC')->orderBy('bobot', 'ASC')->get();
+        $kriteria = Kriteria::orderBy('nama', 'ASC')->orderBy('bobot', 'ASC')->get();
         $alternatif = Alternatif::latest()->get();
 
         return view('pages.admin.matrik.index', compact('kriteria', 'alternatif'));

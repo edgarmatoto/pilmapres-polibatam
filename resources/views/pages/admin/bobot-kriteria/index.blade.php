@@ -121,19 +121,6 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label
-                                for="simbol"
-                                class="form-label"
-                            >Simbol</label>
-                            <input
-                                type="text"
-                                class="form-control"
-                                id="simbol"
-                                name="simbol"
-                                value="{{ old('simbol') }}"
-                            >
-                        </div>
-                        <div class="mb-3">
-                            <label
                                 for="nama"
                                 class="form-label"
                             >Kriteria</label>

@@ -47,11 +47,11 @@
                                     </caption>
                                     <tr>
                                         <th rowspan='{{ $alternatif->count() + 2 }}'>Alternatif</th>
-                                        <th colspan='{{ $kriteria->count() }}'>Kriteria</th>
+                                        <th colspan='{{ $kriteria->count() + 1 }}'>Kriteria</th>
                                     </tr>
                                     <tr>
                                         @forelse ($kriteria as $item)
-                                            <th {{ $loop->last ? 'colspan="2"' : '' }}>{{ $item->nama }}</th>
+                                            <th @if ($loop->last) colspan="2" @endif>{{ 'C' . $loop->iteration }}</th>
                                         @empty
                                             <th>...</th>
                                         @endforelse
@@ -71,7 +71,7 @@
                                     </tr>
                                     <tr>
                                         @forelse ($kriteria as $item)
-                                            <th>{{ $item->nama }}</th>
+                                            <th>{{ 'C' . $loop->iteration }}</th>
                                         @empty
                                             <th>...</th>
                                         @endforelse

@@ -35,24 +35,6 @@
                                     @method('PUT')
                                     <div class="mb-3">
                                         <label
-                                            for="simbol"
-                                            class="form-label"
-                                        >Simbol</label>
-                                        <input
-                                            type="text"
-                                            class="@error('simbol') is-invalid @enderror form-control"
-                                            id="simbol"
-                                            name="simbol"
-                                            value="{{ old('simbol', $kriteria->simbol) }}"
-                                        >
-                                        @error('simbol')
-                                            <div class="text-danger small">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
-                                    <div class="mb-3">
-                                        <label
                                             for="kriteria"
                                             class="form-label"
                                         >Kriteria</label>

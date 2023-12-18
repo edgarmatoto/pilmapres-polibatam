@@ -1,8 +1,8 @@
 @forelse ($kriteria as $item)
     <tr>
         <td class='right'>{{ $loop->iteration }}</td>
-        <td class='center'>{{ $item->simbol }}</td>
-        <td class='center'>{{ $item->nama }}</td>
+        <td class='center'>{{ 'C' . $loop->iteration }}</td>
+        <td class='center'>{{ ucwords($item->nama) }}</td>
         <td class='center'>{{ $item->bobot }}</td>
         <td class='center'>{{ $item->atribut }}</td>
         <td>
@@ -39,7 +39,7 @@
 @empty
     <tr>
         <td
-            colspan="6"
+            colspan="5"
             class='text-center'
         >Tidak ada data ditemukan</td>
     </tr>
