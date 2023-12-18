@@ -37,8 +37,22 @@ Route::group([
     'middleware'    => ['auth:mhs']
 ], function () {
     Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('/pelayanan', 'PelayananController@index')->name('pelayanan.index');
-    Route::get('/profile', 'ProfileController@index')->name('profile.index');
+
+    Route::group([
+        'as'            => 'pelayanan.',
+        'controller'    => 'PelayananController'
+    ], function () {
+        Route::get('/pelayanan', 'index')->name('index');
+        Route::post('/pelayanan', 'store')->name('store');
+    });
+
+    Route::group([
+        'as'            => 'profile.',
+        'controller'    => 'ProfileController'
+    ], function () {
+        Route::get('/profile', 'index')->name('index');
+        Route::put('/profile', 'update')->name('update');
+    });
 });
 
 //== admin route
