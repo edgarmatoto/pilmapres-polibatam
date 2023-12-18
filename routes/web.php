@@ -25,6 +25,7 @@ Route::group(['middleware' => 'guest'], function () {
     Route::group(['namespace' => 'App\Http\Controllers\Auth'], function () {
         Route::post('/authentication', 'LoginController@authentication')->name('authentication');
         Route::get('/register', 'RegisterController@index')->name('register.index');
+        Route::post('/register', 'RegisterController@store')->name('register.store');
     });
 });
 

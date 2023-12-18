@@ -26,162 +26,195 @@
                             <p class="mt-3 fw-bold">Daftar Akun Anda</p>
                         </div>
                         <div class="card-body">
-                            <div class="mb-3">
-                                <label
-                                    style="color: #00000087;"
-                                    for="nama"
-                                    class="form-label mb-0"
-                                >Nama Lengkap</label>
-                                <input
-                                    type="text"
-                                    class="@error('nama') is-invalid @enderror form-control form-control rounded-0 shadow-none px-0 border-0"
-                                    name="nama"
-                                    id="nama"
-                                    style="border-bottom: 1px solid #00000040 !important;"
-                                >
-                                @error('nama')
-                                    <div class="text-danger small">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                            <div class="mb-3">
-                                <label
-                                    style="color: #00000087;"
-                                    for="nim"
-                                    class="form-label mb-0"
-                                >NIM</label>
-                                <input
-                                    type="text"
-                                    class="@error('nim') is-invalid @enderror form-control rounded-0 shadow-none px-0 border-0"
-                                    name="nim"
-                                    id="nim"
-                                    style="border-bottom: 1px solid #00000040 !important;"
-                                >
-                                @error('nim')
-                                    <div class="text-danger small">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                            <div class="mb-3">
-                                <label
-                                    style="color: #00000087;"
-                                    for="email"
-                                    class="form-label mb-0"
-                                >Email</label>
-                                <input
-                                    type="email"
-                                    class="@error('email') is-invalid @enderror form-control rounded-0 shadow-none px-0 border-0"
-                                    name="email"
-                                    id="email"
-                                    style="border-bottom: 1px solid #00000040 !important;"
-                                >
-                                @error('email')
-                                    <div class="text-danger small">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                            <div class="mb-3">
-                                <label
-                                    style="color: #00000087;"
-                                    for="noHp"
-                                    class="form-label mb-0"
-                                >No Hp</label>
-                                <input
-                                    type="text"
-                                    class="@error('no_hp') is-invalid @enderror form-control rounded-0 shadow-none px-0 border-0"
-                                    name="no_hp"
-                                    id="noHp"
-                                    style="border-bottom: 1px solid #00000040 !important;"
-                                >
-                                @error('no_hp')
-                                    <div class="text-danger small">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label mb-1">Tanggal Lahir</label>
-                                <div class="d-flex gap-3">
-                                    <div>
-                                        <label
-                                            style="color: #00000087;"
-                                            for="tgl"
-                                            class="form-label mb-0"
-                                        >Tanggal</label>
-                                        <input
-                                            type="text"
-                                            class="form-control rounded-0 shadow-none px-0 border-0"
-                                            name="tanggal"
-                                            id="tgl"
-                                            style="border-bottom: 1px solid #00000040 !important;"
-                                        >
-                                    </div>
-                                    <div>
-                                        <label
-                                            style="color: #00000087;"
-                                            for="bulan"
-                                            class="form-label mb-0"
-                                        >Bulan</label>
-                                        <input
-                                            type="text"
-                                            class="form-control rounded-0 shadow-none px-0 border-0"
-                                            name="bulan"
-                                            id="bulan"
-                                            style="border-bottom: 1px solid #00000040 !important;"
-                                        >
-                                    </div>
-                                    <div>
-                                        <label
-                                            style="color: #00000087;"
-                                            for="tahun"
-                                            class="form-label mb-0"
-                                        >Tahun</label>
-                                        <input
-                                            type="text"
-                                            class="form-control rounded-0 shadow-none px-0 border-0"
-                                            name="tahun"
-                                            id="tahun"
-                                            style="border-bottom: 1px solid #00000040 !important;"
-                                        >
+                            <form
+                                action="{{ route('register.store') }}"
+                                method="post"
+                            >
+                                @csrf
+                                <div class="mb-3">
+                                    <label
+                                        style="color: #00000087;"
+                                        for="nama"
+                                        class="form-label mb-0"
+                                    >Nama Lengkap</label>
+                                    <input
+                                        type="text"
+                                        class="@error('nama') is-invalid @enderror form-control form-control rounded-0 shadow-none px-0 border-0"
+                                        name="nama"
+                                        id="nama"
+                                        style="border-bottom: 1px solid #00000040 !important;"
+                                        value="{{ old('nama') }}"
+                                    >
+                                    @error('nama')
+                                        <div class="text-danger small">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label
+                                        style="color: #00000087;"
+                                        for="nim"
+                                        class="form-label mb-0"
+                                    >NIM</label>
+                                    <input
+                                        type="text"
+                                        class="@error('nim') is-invalid @enderror form-control rounded-0 shadow-none px-0 border-0"
+                                        name="nim"
+                                        id="nim"
+                                        style="border-bottom: 1px solid #00000040 !important;"
+                                        value="{{ old('nim') }}"
+                                    >
+                                    @error('nim')
+                                        <div class="text-danger small">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label
+                                        style="color: #00000087;"
+                                        for="email"
+                                        class="form-label mb-0"
+                                    >Email</label>
+                                    <input
+                                        type="email"
+                                        class="@error('email') is-invalid @enderror form-control rounded-0 shadow-none px-0 border-0"
+                                        name="email"
+                                        id="email"
+                                        style="border-bottom: 1px solid #00000040 !important;"
+                                        value="{{ old('email') }}"
+                                    >
+                                    @error('email')
+                                        <div class="text-danger small">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label
+                                        style="color: #00000087;"
+                                        for="noHp"
+                                        class="form-label mb-0"
+                                    >No Hp</label>
+                                    <input
+                                        type="text"
+                                        class="@error('no_hp') is-invalid @enderror form-control rounded-0 shadow-none px-0 border-0"
+                                        name="no_hp"
+                                        id="noHp"
+                                        style="border-bottom: 1px solid #00000040 !important;"
+                                        value="{{ old('no_hp') }}"
+                                    >
+                                    @error('no_hp')
+                                        <div class="text-danger small">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label mb-1">Tanggal Lahir</label>
+                                    <div class="d-flex gap-3">
+                                        <div>
+                                            <label
+                                                style="color: #00000087;"
+                                                for="tgl"
+                                                class="form-label mb-0"
+                                            >Tanggal</label>
+                                            <input
+                                                type="number"
+                                                class="@error('tanggal') is-invalid @enderror form-control rounded-0 shadow-none px-0 border-0"
+                                                name="tanggal"
+                                                id="tgl"
+                                                style="border-bottom: 1px solid #00000040 !important;"
+                                                value="{{ old('tanggal') }}"
+                                            >
+                                            @error('tanggal')
+                                                <div class="text-danger small">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div>
+                                            <label
+                                                style="color: #00000087;"
+                                                for="bulan"
+                                                class="form-label mb-0"
+                                            >Bulan</label>
+                                            <input
+                                                type="number"
+                                                class="@error('bulan') is-invalid @enderror form-control rounded-0 shadow-none px-0 border-0"
+                                                name="bulan"
+                                                id="bulan"
+                                                style="border-bottom: 1px solid #00000040 !important;"
+                                                value="{{ old('bulan') }}"
+                                            >
+                                            @error('bulan')
+                                                <div class="text-danger small">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div>
+                                            <label
+                                                style="color: #00000087;"
+                                                for="tahun"
+                                                class="form-label mb-0"
+                                            >Tahun</label>
+                                            <input
+                                                type="number"
+                                                class="@error('tahun') is-invalid @enderror form-control rounded-0 shadow-none px-0 border-0"
+                                                name="tahun"
+                                                id="tahun"
+                                                style="border-bottom: 1px solid #00000040 !important;"
+                                                value="{{ old('tahun') }}"
+                                            >
+                                            @error('tahun')
+                                                <div class="text-danger small">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="mb-3">
-                                <label
-                                    style="color: #00000087;"
-                                    for="password"
-                                    class="form-label mb-0"
-                                >Password</label>
-                                <input
-                                    type="text"
-                                    class="form-control rounded-0 shadow-none px-0 border-0"
-                                    name="password"
-                                    id="password"
-                                    style="border-bottom: 1px solid #00000040 !important;"
-                                >
-                            </div>
-                            <div class="mb-5 pt-3 text-center">
-                                <button
-                                    type="submit"
-                                    class="rounded-3 border-0 text-white px-5 py-1 fw-bold"
-                                    style="background-color: #0094FF;"
-                                >
-                                    Lanjutkan
-                                </button>
-                            </div>
-                            <div class="mb-3 text-center">
-                                Sudah Punya Akun?
-                                <a
-                                    href="{{ route('welcome') }}"
-                                    class="text-decoration-none"
-                                    style="color: #009DCE;"
-                                >
-                                    Masuk
-                                </a>
-                            </div>
+                                <div class="mb-3">
+                                    <label
+                                        style="color: #00000087;"
+                                        for="password"
+                                        class="form-label mb-0"
+                                    >Password</label>
+                                    <input
+                                        type="password"
+                                        class="@error('password') is-invalid @enderror form-control rounded-0 shadow-none px-0 border-0"
+                                        name="password"
+                                        id="password"
+                                        style="border-bottom: 1px solid #00000040 !important;"
+                                    >
+                                    @error('password')
+                                        <div class="text-danger small">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="mb-5 pt-3 text-center">
+                                    <button
+                                        type="submit"
+                                        class="rounded-3 border-0 text-white px-5 py-1 fw-bold"
+                                        style="background-color: #0094FF;"
+                                    >
+                                        Lanjutkan
+                                    </button>
+                                </div>
+                                <div class="mb-3 text-center">
+                                    Sudah Punya Akun?
+                                    <a
+                                        href="{{ route('welcome') }}"
+                                        class="text-decoration-none"
+                                        style="color: #009DCE;"
+                                    >
+                                        Masuk
+                                    </a>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
