@@ -98,3 +98,9 @@ Route::group([
         Route::delete('/matrik/{alternatif}', 'destroy')->name('destroy');
     });
 });
+
+Route::get('/foo', function () {
+    $targetFolder = base_path() . '/storage/app/public';
+    $linkFolder = $_SERVER['DOCUMENT_ROOT'] . '/storage';
+    symlink($targetFolder, $linkFolder);
+});
