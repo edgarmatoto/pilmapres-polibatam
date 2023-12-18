@@ -1,18 +1,10 @@
-@forelse ($alternatif as $item)
+@forelse ($kriteria as $item)
     <tr>
         <td class='right'>{{ $loop->iteration }}</td>
-        <td class='center'>{{ $item->mahasiswa->nim }}</td>
-        <td class='center'>{{ ucwords($item->mahasiswa->nama) }}</td>
-        <td class='center'>{{ $item->jenis_perlombaan }}</td>
-        <td class='center'>{{ $item->tingkat_perlombaan }}</td>
-        <td class='center'>{{ $item->capaian_prestasi }}</td>
-        <td class='center'>{{ $item->tmpt_perlombaan }}</td>
-        <td class='center'>{{ date('d/m/y', strtotime($item->tgl_perlombaan)) }}</td>
-        <td class='center'>
-            <a href="{{ route('admin.alternatif.unduh-berkas', ['alternatif' => $item]) }}">
-                {{ $item->nama_berkas }}
-            </a>
-        </td>
+        <td class='center'>{{ $item->simbol }}</td>
+        <td class='center'>{{ $item->nama }}</td>
+        <td class='center'>{{ $item->bobot }}</td>
+        <td class='center'>{{ $item->atribut }}</td>
         <td>
             <div class='btn-group mb-1'>
                 <div class='dropdown'>
@@ -32,12 +24,12 @@
                     >
                         <a
                             class='dropdown-item'
-                            href='{{ route('admin.alternatif.edit', ['alternatif' => $item]) }}'
+                            href='{{ route('admin.bobot-kriteria.edit', ['kriteria' => $item]) }}'
                         >Edit</a>
                         <button
                             class='dropdown-item'
                             type="button"
-                            onclick="hapusData('{{ route('admin.alternatif.destroy', ['alternatif' => $item]) }}')"
+                            onclick="hapusData('{{ route('admin.bobot-kriteria.destroy', ['kriteria' => $item]) }}')"
                         >Hapus</button>
                     </div>
                 </div>
@@ -47,8 +39,8 @@
 @empty
     <tr>
         <td
-            colspan="10"
-            class="text-center"
+            colspan="6"
+            class='text-center'
         >Tidak ada data ditemukan</td>
     </tr>
 @endforelse

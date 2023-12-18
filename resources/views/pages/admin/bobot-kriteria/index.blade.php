@@ -42,7 +42,6 @@
             <section class="row">
                 <div class="col-12">
                     <div class="card">
-
                         <div class="card-header">
                             <h4 class="card-title">Tabel Bobot Kriteria</h4>
                         </div>
@@ -59,40 +58,24 @@
                             >
                                 Tambah Bobot Kriteria
                             </button>
+                            <hr>
                             <div class="table-responsive">
                                 <table class="table table-striped mb-0">
                                     <caption>
                                         Tabel Kriteria C<sub>i</sub>
                                     </caption>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Simbol</th>
-                                        <th>Kriteria</th>
-                                        <th>Bobot</th>
-                                        <th colspan="2">Atribut</th>
-                                    </tr>
-                                    @forelse ($kriteria as $item)
+                                    <thead>
                                         <tr>
-                                            <td class='right'>{{ $loop->iteration }}</td>
-                                            <td class='center'>{{ $item->simbol }}</td>
-                                            <td class='center'>{{ $item->nama }}</td>
-                                            <td class='center'>{{ $item->bobot }}</td>
-                                            <td class='center'>{{ $item->atribut }}</td>
-                                            <td>
-                                                <a
-                                                    href='bobot-edit.php?id={$row->id_criteria}'
-                                                    class='btn btn-info btn-sm'
-                                                >Edit</a>
-                                            </td>
+                                            <th>No</th>
+                                            <th>Simbol</th>
+                                            <th>Kriteria</th>
+                                            <th>Bobot</th>
+                                            <th colspan="2">Atribut</th>
                                         </tr>
-                                    @empty
-                                        <tr>
-                                            <td
-                                                colspan="6"
-                                                class='text-center'
-                                            >Tidak ada data ditemukan</td>
-                                        </tr>
-                                    @endforelse
+                                    </thead>
+                                    <tbody id="data">
+                                        @include('pages.admin.bobot-kriteria.data')
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -218,3 +201,68 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        function hapusData(url) {
+            Swal.fire({
+                title: "Anda Yakin?",
+                text: "Mengahapus data ini bersifat permanen dan tidak dapat diurungkan.",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#045464",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: url,
+                        type: 'DELETE',
+                        data: {
+                            '_token': '{{ csrf_token() }}'
+                        },
+                        beforeSend: () => {
+                            Swal.fire({
+                                allowOutsideClick: false,
+                                showConfirmButton: false,
+                                willOpen: () => Swal.showLoading(),
+                            });
+                        },
+                        success: (response) => {
+                            if (response.success) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Success!',
+                                    text: response.success,
+                                    confirmButtonColor: "#045464"
+                                }).then(() => $('#data').html(response.data));
+                            } else if (response.error) {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops!',
+                                    text: response.error,
+                                    confirmButtonColor: "#045464"
+                                });
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops!',
+                                    text: 'Data gagal dihapus, silahkan coba lagi atau hubungi administrator untuk permasalahan ini.',
+                                    confirmButtonColor: "#045464"
+                                });
+                            }
+                        },
+                        error: () => {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops!',
+                                text: 'Data gagal dieksekusi, silahkan coba lagi atau hubungi administrator untuk permasalahan ini.',
+                                confirmButtonColor: "#045464"
+                            });
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+@endpush

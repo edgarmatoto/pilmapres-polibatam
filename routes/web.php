@@ -18,11 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::redirect('/admin', '/admin/home');
 
 //== guest route
-Route::group([
-    'middleware'    => 'guest',
-    'namespace'     => 'App\Http\Controllers',
-], function () {
-    Route::get('/', 'WelcomeController@index')->name('welcome');
+Route::group(['middleware' => 'guest'], function () {
+    Route::get('/', 'App\Http\Controllers\WelcomeController@index')->name('welcome');
 
     Route::group(['namespace' => 'App\Http\Controllers\Auth'], function () {
         Route::post('/authentication', 'LoginController@authentication')->name('authentication');
@@ -67,7 +64,10 @@ Route::group([
         'controller'    => 'BobotKriteriaController'
     ], function () {
         Route::get('/bobot-kriteria', 'index')->name('index');
+        Route::get('/bobot-kriteria/{kriteria}/edit', 'edit')->name('edit');
+        Route::put('/bobot-kriteria/{kriteria}', 'update')->name('update');
         Route::post('/bobot-kriteria', 'store')->name('store');
+        Route::delete('/bobot-kriteria/{kriteria}', 'destroy')->name('destroy');
     });
 
     Route::get('/matrik', 'MatrikController@index')->name('matrik.index');
