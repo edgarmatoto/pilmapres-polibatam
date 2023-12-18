@@ -46,10 +46,16 @@
                             <input
                                 style="background-color: #D9D9D9;"
                                 type="text"
-                                class="form-control"
+                                class="@error('nama') is-invalid @enderror form-control"
                                 id="nama"
                                 name="nama"
+                                value="{{ old('nama', auth()->user()->nama) }}"
                             >
+                            @error('nama')
+                                <div class="text-danger small">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="col-md-4">
                             <label
@@ -60,10 +66,16 @@
                             <input
                                 style="background-color: #D9D9D9;"
                                 type="text"
-                                class="form-control"
+                                class="@error('nim') is-invalid @enderror form-control"
                                 id="nim"
                                 name="nim"
+                                value="{{ old('nim', auth()->user()->nim) }}"
                             >
+                            @error('nim')
+                                <div class="text-danger small">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="col-md-4">
                             <label
@@ -74,11 +86,21 @@
                             <select
                                 style="background-color: #D9D9D9;"
                                 id="prodi"
-                                class="form-select"
+                                class="@error('nim') is-invalid @enderror form-select"
+                                name="prodi_id"
                             >
-                                <option value="teknik informatika">Teknik Informatika</option>
-                                <option value="manajemen bisnis">Manajemen Bisnis</option>
+                                @foreach ($prodi as $item)
+                                    <option
+                                        value="{{ $item->id }}"
+                                        {{ old('prodi_id', auth()->user()->prodi_id) == $item->id ? 'selected' : '' }}
+                                    >{{ $item->nama }}</option>
+                                @endforeach
                             </select>
+                            @error('nim')
+                                <div class="text-danger small">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="w-100 d-none d-md-block"></div>
                         <div class="col-md-4">
@@ -90,10 +112,16 @@
                             <input
                                 style="background-color: #D9D9D9;"
                                 type="text"
-                                class="form-control"
+                                class="@error('kelas') is-invalid @enderror form-control"
                                 id="kelas"
                                 name="kelas"
+                                value="{{ old('kelas', auth()->user()->kelas) }}"
                             >
+                            @error('kelas')
+                                <div class="text-danger small">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="col-md-4">
                             <label
@@ -104,10 +132,16 @@
                             <input
                                 style="background-color: #D9D9D9;"
                                 type="text"
-                                class="form-control"
+                                class="@error('angkatan') is-invalid @enderror form-control"
                                 id="angkatan"
                                 name="angkatan"
+                                value="{{ old('angkatan', auth()->user()->angkatan) }}"
                             >
+                            @error('angkatan')
+                                <div class="text-danger small">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="col-md-4">
                             <label
@@ -118,10 +152,16 @@
                             <input
                                 style="background-color: #D9D9D9;"
                                 type="text"
-                                class="form-control"
+                                class="@error('waldos') is-invalid @enderror form-control"
                                 id="waldos"
                                 name="waldos"
+                                value="{{ old('waldos', auth()->user()->waldos) }}"
                             >
+                            @error('waldos')
+                                <div class="text-danger small">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="w-100 d-none d-md-block"></div>
                         <div class="col-md-4">
@@ -133,10 +173,16 @@
                             <input
                                 style="background-color: #D9D9D9;"
                                 type="date"
-                                class="form-control"
+                                class="@error('tgl_masuk') is-invalid @enderror form-control"
                                 id="tglMasuk"
                                 name="tgl_masuk"
+                                value="{{ old('tgl_masuk', auth()->user()->tgl_masuk) }}"
                             >
+                            @error('tgl_masuk')
+                                <div class="text-danger small">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="col-md-4">
                             <label
@@ -147,11 +193,23 @@
                             <select
                                 style="background-color: #D9D9D9;"
                                 id="status"
-                                class="form-select"
+                                class="@error('status') is-invalid @enderror form-select"
+                                name="status"
                             >
-                                <option value="aktif">Aktif</option>
-                                <option value="cuti">Cuti</option>
+                                <option
+                                    value="aktif"
+                                    {{ old('status', auth()->user()->status) == 'aktif' ? 'selected' : '' }}
+                                >Aktif</option>
+                                <option
+                                    value="cuti"
+                                    {{ old('status', auth()->user()->status) == 'cuti' ? 'selected' : '' }}
+                                >Cuti</option>
                             </select>
+                            @error('status')
+                                <div class="text-danger small">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
                     <hr class="my-5">
@@ -165,10 +223,16 @@
                             <input
                                 style="background-color: #D9D9D9;"
                                 type="text"
-                                class="form-control"
+                                class="@error('nik') is-invalid @enderror form-control"
                                 id="nik"
                                 name="nik"
+                                value="{{ old('nik', auth()->user()->nik) }}"
                             >
+                            @error('nik')
+                                <div class="text-danger small">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="col-md-4">
                             <label
@@ -179,10 +243,16 @@
                             <input
                                 style="background-color: #D9D9D9;"
                                 type="text"
-                                class="form-control"
+                                class="@error('tmpt_lahir') is-invalid @enderror form-control"
                                 id="tmptLahir"
                                 name="tmpt_lahir"
+                                value="{{ old('tmpt_lahir', auth()->user()->tmpt_lahir) }}"
                             >
+                            @error('tmpt_lahir')
+                                <div class="text-danger small">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="col-md-4">
                             <label
@@ -193,10 +263,16 @@
                             <input
                                 style="background-color: #D9D9D9;"
                                 type="date"
-                                class="form-control"
+                                class="@error('tgl_lahir') is-invalid @enderror form-control"
                                 id="tglLahir"
                                 name="tgl_lahir"
+                                value="{{ old('tgl_lahir', auth()->user()->tgl_lahir) }}"
                             >
+                            @error('tgl_lahir')
+                                <div class="text-danger small">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="w-100 d-none d-md-block"></div>
                         <div class="col-md-4">
@@ -208,25 +284,43 @@
                             <input
                                 style="background-color: #D9D9D9;"
                                 type="text"
-                                class="form-control"
+                                class="@error('kewarganegaraan') is-invalid @enderror form-control"
                                 id="kewarganegaraan"
                                 name="kewarganegaraan"
+                                value="{{ old('kewarganegaraan', auth()->user()->kewarganegaraan) }}"
                             >
+                            @error('kewarganegaraan')
+                                <div class="text-danger small">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="col-md-4">
                             <label
                                 style="color: #A1A1A1;"
-                                for="kelamin"
+                                for="jenkel"
                                 class="form-label fw-bold"
                             >Jenis Kelamin</label>
                             <select
                                 style="background-color: #D9D9D9;"
-                                id="kelamin"
-                                class="form-select"
+                                id="jenkel"
+                                class="@error('jenkel') is-invalid @enderror form-select"
+                                name="jenkel"
                             >
-                                <option value="laki-laki">Laki-Laki</option>
-                                <option value="perempuan">Perempuan</option>
+                                <option
+                                    value="laki-laki"
+                                    {{ old('jenkel', auth()->user()->jenkel) == 'laki-laki' ? 'selected' : '' }}
+                                >Laki-Laki</option>
+                                <option
+                                    value="perempuan"
+                                    {{ old('jenkel', auth()->user()->jenkel) == 'perempuan' ? 'selected' : '' }}
+                                >Perempuan</option>
                             </select>
+                            @error('jenkel')
+                                <div class="text-danger small">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="col-md-4">
                             <label
@@ -237,10 +331,16 @@
                             <input
                                 style="background-color: #D9D9D9;"
                                 type="text"
-                                class="form-control"
+                                class="@error('agama') is-invalid @enderror form-control"
                                 id="agama"
                                 name="agama"
+                                value="{{ old('agama', auth()->user()->agama) }}"
                             >
+                            @error('agama')
+                                <div class="text-danger small">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="w-100 d-none d-md-block"></div>
                         <div class="col-md-4">
@@ -252,11 +352,23 @@
                             <select
                                 style="background-color: #D9D9D9;"
                                 id="statusMartial"
-                                class="form-select"
+                                class="@error('status_martial') is-invalid @enderror form-select"
+                                name="status_martial"
                             >
-                                <option value="lajang">Lajang</option>
-                                <option value="sudah menikah">sudah menikah</option>
+                                <option
+                                    value="lajang"
+                                    {{ old('status_martial', auth()->user()->status_martial) == 'lajang' ? 'selected' : '' }}
+                                >Lajang</option>
+                                <option
+                                    value="sudah menikah"
+                                    {{ old('status_martial', auth()->user()->status_martial) == 'sudah menikah' ? 'selected' : '' }}
+                                >sudah menikah</option>
                             </select>
+                            @error('status_martial')
+                                <div class="text-danger small">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="col-md-4">
                             <label
@@ -267,10 +379,16 @@
                             <input
                                 style="background-color: #D9D9D9;"
                                 type="text"
-                                class="form-control"
+                                class="@error('gol_darah') is-invalid @enderror form-control"
                                 id="golDarah"
                                 name="gol_darah"
+                                value="{{ old('gol_darah', auth()->user()->gol_darah) }}"
                             >
+                            @error('gol_darah')
+                                <div class="text-danger small">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="col-md-4">
                             <label
@@ -281,10 +399,16 @@
                             <input
                                 style="background-color: #D9D9D9;"
                                 type="text"
-                                class="form-control"
+                                class="@error('kode_pos') is-invalid @enderror form-control"
                                 id="kodePos"
                                 name="kode_pos"
+                                value="{{ old('kode_pos', auth()->user()->kode_pos) }}"
                             >
+                            @error('kode_pos')
+                                <div class="text-danger small">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="w-100 d-none d-md-block"></div>
                         <div class="col-md-8">
@@ -295,10 +419,15 @@
                             >Alamat Lengkap</label>
                             <textarea
                                 style="background-color: #D9D9D9;"
-                                class="form-control"
+                                class="@error('alamat') is-invalid @enderror form-control"
                                 id="alamat"
                                 rows="3"
-                            ></textarea>
+                            >{{ old('alamat', auth()->user()->alamat) }}</textarea>
+                            @error('alamat')
+                                <div class="text-danger small">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="col-md-4">
                             <label
@@ -309,10 +438,16 @@
                             <input
                                 style="background-color: #D9D9D9;"
                                 type="text"
-                                class="form-control"
+                                class="@error('kelurahan') is-invalid @enderror form-control"
                                 id="kelurahan"
                                 name="kelurahan"
+                                value="{{ old('kelurahan', auth()->user()->kelurahan) }}"
                             >
+                            @error('kelurahan')
+                                <div class="text-danger small">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="w-100 d-none d-md-block"></div>
                         <div class="col-md-4">
@@ -324,10 +459,16 @@
                             <input
                                 style="background-color: #D9D9D9;"
                                 type="text"
-                                class="form-control"
+                                class="@error('kecamatan') is-invalid @enderror form-control"
                                 id="kecamatan"
                                 name="kecamatan"
+                                value="{{ old('kecamatan', auth()->user()->kecamatan) }}"
                             >
+                            @error('kecamatan')
+                                <div class="text-danger small">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="col-md-4">
                             <label
@@ -338,10 +479,16 @@
                             <input
                                 style="background-color: #D9D9D9;"
                                 type="email"
-                                class="form-control"
+                                class="@error('email') is-invalid @enderror form-control"
                                 id="email"
                                 name="email"
+                                value="{{ old('email', auth()->user()->email) }}"
                             >
+                            @error('email')
+                                <div class="text-danger small">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="col-md-4">
                             <label
@@ -352,10 +499,16 @@
                             <input
                                 style="background-color: #D9D9D9;"
                                 type="text"
-                                class="form-control"
+                                class="@error('no_hp') is-invalid @enderror form-control"
                                 id="noHp"
                                 name="no_hp"
+                                value="{{ old('no_hp', auth()->user()->no_hp) }}"
                             >
+                            @error('no_hp')
+                                <div class="text-danger small">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
                     <div class="mb-3 pt-5 text-center">

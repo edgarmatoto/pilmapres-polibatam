@@ -22,7 +22,7 @@ return new class extends Migration
             $table->date('tgl_lahir')->nullable();
             $table->string('kelas')->nullable();
             $table->year('angkatan')->nullable();
-            $table->string('dosen_wali')->nullable();
+            $table->string('waldos')->nullable();
             $table->date('tgl_masuk')->nullable();
             $table->enum('status', ['aktif', 'cuti'])->default('aktif');
             $table->enum('jenkel', ['laki-laki', 'perempuan'])->nullable();
