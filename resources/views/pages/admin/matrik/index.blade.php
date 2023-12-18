@@ -46,30 +46,19 @@
                                         Matrik Keputusan(X)
                                     </caption>
                                     <tr>
-                                        <th rowspan='2'>Alternatif</th>
-                                        <th colspan='6'>Kriteria</th>
+                                        <th rowspan='{{ $alternatif->count() + 2 }}'>Alternatif</th>
+                                        <th colspan='{{ $kriteria->count() }}'>Kriteria</th>
                                     </tr>
                                     <tr>
-                                        <th>C1</th>
-                                        <th>C2</th>
-                                        <th>C3</th>
-                                        <th>C4</th>
-                                        <th colspan="2">C5</th>
+                                        @forelse ($kriteria as $item)
+                                            <th {{ $loop->last ? 'colspan="2"' : '' }}>{{ $item->nama }}</th>
+                                        @empty
+                                            <th>...</th>
+                                        @endforelse
                                     </tr>
-                                    <tr class='center'>
-                                        <th>A<sub>id_alternative</sub>name</th>
-                                        <td>C1</td>
-                                        <td>C2</td>
-                                        <td>C3</td>
-                                        <td>C4</td>
-                                        <td>C5</td>
-                                        <td>
-                                            <a
-                                                href='keputusan-hapus.php?id={$row->id_alternative}'
-                                                class='btn btn-danger btn-sm'
-                                            >Hapus</a>
-                                        </td>
-                                    </tr>
+                                    <tbody id="data">
+                                        @include('pages.admin.matrik.data_x')
+                                    </tbody>
                                 </table>
 
                                 <table class="table table-striped mb-0">
@@ -77,24 +66,19 @@
                                         Matrik Ternormalisasi (R)
                                     </caption>
                                     <tr>
-                                        <th rowspan='2'>Alternatif</th>
-                                        <th colspan='5'>Kriteria</th>
+                                        <th rowspan='{{ $alternatif->count() + 2 }}'>Alternatif</th>
+                                        <th colspan='{{ $kriteria->count() }}'>Kriteria</th>
                                     </tr>
                                     <tr>
-                                        <th>C1</th>
-                                        <th>C2</th>
-                                        <th>C3</th>
-                                        <th>C4</th>
-                                        <th>C5</th>
+                                        @forelse ($kriteria as $item)
+                                            <th>{{ $item->nama }}</th>
+                                        @empty
+                                            <th>...</th>
+                                        @endforelse
                                     </tr>
-                                    <tr class='center'>
-                                        <th>A</th>
-                                        <td>C1</td>
-                                        <td>C2</td>
-                                        <td>C3</td>
-                                        <td>C4</td>
-                                        <td>C5</td>
-                                    </tr>
+                                    <tbody id="dataR">
+                                        @include('pages.admin.matrik.data_r')
+                                    </tbody>
                                 </table>
                             </div>
                         </div>

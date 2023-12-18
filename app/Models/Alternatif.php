@@ -17,4 +17,9 @@ class Alternatif extends Model
     {
         return $this->belongsTo(Mahasiswa::class, 'mahasiswa_id', 'id');
     }
+
+    public function evaluasi()
+    {
+        return $this->hasMany(Evaluasi::class, 'alternatif_id', 'id');
+    }
 }
