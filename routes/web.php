@@ -35,6 +35,7 @@ Route::group([
     'middleware'    => ['auth:mhs']
 ], function () {
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::post('/logout', 'LogoutController@logout')->name('logout');
 
     Route::group([
         'as'            => 'pelayanan.',

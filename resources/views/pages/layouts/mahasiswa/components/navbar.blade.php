@@ -65,10 +65,16 @@
                         >Profile</a>
                     </li>
                     <li>
-                        <a
-                            class="dropdown-item py-2"
-                            href="#"
-                        >Logout</a>
+                        <form
+                            action="{{ route('mhs.logout') }}"
+                            method="post"
+                        >
+                            @csrf
+                            <button
+                                type="submit"
+                                class="dropdown-item py-2"
+                            >Logout</button>
+                        </form>
                     </li>
                 </ul>
             </div>
