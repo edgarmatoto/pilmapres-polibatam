@@ -149,7 +149,7 @@
                                 class="form-control form-select"
                                 name="alternatif_id"
                             >
-                                @forelse ($alternatif as $item)
+                                @forelse ($kandidat as $item)
                                     <option
                                         value="{{ $item->mahasiswa->id }}"
                                         {{ old('alternatif') == $item->mahasiswa->id ? 'selected' : '' }}

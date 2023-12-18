@@ -16,7 +16,7 @@
     <tr class='center'>
         <td
             class="text-center"
-            colspan="{{ $alternatif->count() + 2 }}"
+            colspan="{{ $alternatif->count() + 3 }}"
         >Tidak ada data ditemukan</td>
     </tr>
 @endforelse

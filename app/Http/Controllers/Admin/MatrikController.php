@@ -14,9 +14,10 @@ class MatrikController extends Controller
     public function index()
     {
         $kriteria   = Kriteria::orderBy('nama', 'ASC')->orderBy('bobot', 'ASC')->get();
-        $alternatif = Alternatif::latest()->get();
+        $alternatif = Alternatif::has('evaluasi')->get();
+        $kandidat   = Alternatif::all();
 
-        return view('pages.admin.matrik.index', compact('kriteria', 'alternatif'));
+        return view('pages.admin.matrik.index', compact('kriteria', 'alternatif', 'kandidat'));
     }
 
     public function store(Request $request)
@@ -56,18 +57,18 @@ class MatrikController extends Controller
 
     public function destroy(Alternatif $alternatif)
     {
-        try {
-            $alternatif->evaluasi()->delete();
-            $kriteria   = Kriteria::orderBy('nama', 'ASC')->orderBy('bobot', 'ASC')->get();
-            $alternatif = Alternatif::latest()->get();
-            $dataX      = view('pages.admin.matrik.data_x', compact('kriteria', 'alternatif'))->render();
-            $dataR      = view('pages.admin.matrik.data_r', compact('kriteria', 'alternatif'))->render();
+        $alternatif->evaluasi()->delete();
+        $kriteria   = Kriteria::orderBy('nama', 'ASC')->orderBy('bobot', 'ASC')->get();
+        $alternatif = Alternatif::has('evaluasi')->get();
+        $dataX      = view('pages.admin.matrik.data_x', compact('kriteria', 'alternatif'))->render();
+        $dataR      = view('pages.admin.matrik.data_r', compact('kriteria', 'alternatif'))->render();
 
-            return response()->json([
-                'dataX'     => $dataX,
-                'dataR'     => $dataR,
-                'success'   => 'Data matrik berhasil dihapus.'
-            ]);
+        return response()->json([
+            'dataX'     => $dataX,
+            'dataR'     => $dataR,
+            'success'   => 'Data matrik berhasil dihapus.'
+        ]);
+        try {
         } catch (\Throwable $th) {
             return back()->withError('Data gagal dihapus, silahkan coba lagi nanti.');
         }

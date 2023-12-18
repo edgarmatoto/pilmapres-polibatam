@@ -14,7 +14,7 @@
                         ->where('evaluasi.kriteria_id', $kri->id)
                         ->first()?->nilai;
                 @endphp
-                {{ round($kri->atribut == 'benefit' ? $matrikX / $bobot : $bobot / $matrikX, 2) }}
+                {{ round($bobot ? ($kri->atribut == 'benefit' ? $matrikX / $bobot : $bobot / $matrikX) : 0, 2) }}
             </td>
         @endforeach
     </tr>
@@ -22,7 +22,7 @@
     <tr class='center'>
         <td
             class="text-center"
-            colspan="{{ $alternatif->count() + 2 }}"
+            colspan="{{ $alternatif->count() + 3 }}"
         >Tidak ada data ditemukan</td>
     </tr>
 @endforelse
