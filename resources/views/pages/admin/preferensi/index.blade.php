@@ -33,7 +33,6 @@
                             <div class="table-responsive">
                                 <table class="table table-striped mb-0">
                                     <caption>
-
                                         Nilai Preferensi (P)
                                     </caption>
                                     <tr>
@@ -41,11 +40,21 @@
                                         <th>Alternatif</th>
                                         <th>Hasil</th>
                                     </tr>
-                                    <tr class='center'>
-                                        <td>...</td>
-                                        <td>...</td>
-                                        <td>...</td>
-                                    </tr>
+                                    @forelse ($preferensi as $item)
+                                        <tr class='center'>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $item['alternatif'] }}</td>
+                                            <td>{{ $item['result'] }}</td>
+                                        </tr>
+                                    @empty
+                                        <tr class='center'>
+                                            <td
+                                                colspan="3"
+                                                class="text-center"
+                                            >Tidak ada data ditemukan</td>
+                                        </tr>
+                                    @endforelse
+
                                 </table>
                             </div>
                         </div>

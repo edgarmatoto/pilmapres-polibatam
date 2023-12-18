@@ -14,7 +14,7 @@
                         ->where('evaluasi.kriteria_id', $kri->id)
                         ->first()?->nilai;
                 @endphp
-                {{ round($bobot ? ($kri->atribut == 'benefit' ? $matrikX / $bobot : $bobot / $matrikX) : 0, 2) }}
+                {{ round($bobot && $matrikX ? ($kri->atribut == 'benefit' ? $matrikX / $bobot : $bobot / $matrikX) : 0, 2) }}
             </td>
         @endforeach
     </tr>
