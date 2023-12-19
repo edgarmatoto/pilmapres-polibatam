@@ -15,8 +15,9 @@
     </style>
 @endpush
 
+@include('pages.layouts.guest.components.navbar')
+
 @section('content')
-    @include('pages.layouts.guest.components.navbar')
     <section
         class="pt-3 py-md-4 position-relative"
         style="min-height: calc(100vh - 170px);"

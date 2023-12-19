@@ -16,10 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::redirect('/mhs', '/mhs/home');
 Route::redirect('/admin', '/admin/home');
 
+Route::get('/ketentuan-privasi', 'App\Http\Controllers\KetentuanPrivasiController@index')->name('ketentuan-privasi');
+Route::get('/bantuan', 'App\Http\Controllers\BantuanController@index')->name('bantuan');
+
 //== guest route
 Route::group(['middleware' => 'guest'], function () {
     Route::get('/', 'App\Http\Controllers\WelcomeController@index')->name('welcome');
-    Route::get('/ketentuan-privasi', 'App\Http\Controllers\KetentuanPrivasiController@index')->name('ketentuan-privasi');
 
     Route::group(['namespace' => 'App\Http\Controllers\Auth'], function () {
         Route::post('/authentication', 'LoginController@authentication')->name('authentication');

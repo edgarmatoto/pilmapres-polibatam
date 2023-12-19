@@ -27,7 +27,7 @@
                 <a
                     class="nav-link active text-blue-sky fw-semibold"
                     aria-current="page"
-                    href="#"
+                    href="{{ route('bantuan') }}"
                 >Bantuan</a>
             </div>
         </div>

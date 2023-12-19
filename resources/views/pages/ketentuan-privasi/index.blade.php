@@ -4,8 +4,9 @@
     Sistem Rekomendasi Pemilihan Mahasiswa Berprestasi Politeknik Negeri Batam
 @endsection
 
+@include('pages.layouts.guest.components.navbar_2')
+
 @section('content')
-    @include('pages.layouts.guest.components.navbar_2')
     <section
         class="pt-3 py-md-4 position-relative"
         style="min-height: calc(100vh - 170px);"
