@@ -16,6 +16,7 @@
 @endpush
 
 @section('content')
+    @include('pages.layouts.guest.components.navbar')
     <section
         class="pt-3 py-md-4 position-relative"
         style="min-height: calc(100vh - 170px);"
@@ -150,14 +151,13 @@
             style="background: linear-gradient(to bottom, #5080B9, #1F68BD);"
         >
             <a
-                href="#"
+                href="{{ route('ketentuan-privasi') }}"
                 class="text-white text-decoration-none"
-            >Ketentuan</a>
-            <span class="mx-1">|</span>
-            <a
-                href="#"
-                class="text-white text-decoration-none"
-            >Privasi</a>
+            >
+                Ketentuan
+                <span class="mx-1">|</span>
+                Privasi
+            </a>
         </div>
     </section>
 @endsection
