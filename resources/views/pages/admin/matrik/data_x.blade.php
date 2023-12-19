@@ -16,7 +16,7 @@
     <tr class='center'>
         <td
             class="text-center"
-            colspan="{{ $alternatif->count() + 3 }}"
+            colspan="{{ $kriteria->count() + 2 }}"
         >Tidak ada data ditemukan</td>
     </tr>
 @endforelse
