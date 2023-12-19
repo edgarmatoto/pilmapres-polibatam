@@ -19,7 +19,6 @@
         <div class="sidebar-menu">
             <ul class="menu">
                 <li class="sidebar-title">Menu</li>
-
                 <li class="sidebar-item">
                     <a
                         href="{{ route('admin.home') }}"
@@ -29,7 +28,6 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
-
                 <li class="sidebar-item  has-sub">
                     <div class='sidebar-link'>
                         <i class="bi bi-file-earmark-spreadsheet-fill"></i>
@@ -44,7 +42,6 @@
                         </li>
                     </ul>
                 </li>
-
                 <li class="sidebar-item">
                     <a
                         href="{{ route('admin.matrik.index') }}"
@@ -54,7 +51,6 @@
                         <span>Matrik</span>
                     </a>
                 </li>
-
                 <li class="sidebar-item">
                     <a
                         href="{{ route('admin.preferensi.index') }}"
@@ -64,7 +60,6 @@
                         <span>Nilai Preferensi</span>
                     </a>
                 </li>
-
                 <li class="sidebar-item">
                     <form
                         action="{{ route('admin.logout') }}"
