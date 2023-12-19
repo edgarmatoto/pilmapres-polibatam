@@ -25,7 +25,7 @@
         >
             <div class="navbar-nav gap-xl-3 me-auto">
                 <a
-                    class="nav-link active"
+                    class="nav-link"
                     href="{{ route('mhs.home') }}"
                 >Home</a>
                 <a
@@ -34,16 +34,24 @@
                 >Pelayanan</a>
                 <a
                     class="nav-link"
-                    href="#"
+                    href="{{ route('bantuan') }}"
                 >Bantuan</a>
                 <a
                     class="nav-link d-lg-none"
                     href="{{ route('mhs.profile.index') }}"
                 >Profile</a>
-                <a
-                    class="nav-link d-lg-none"
-                    href="#"
-                >logout</a>
+                <div class="nav-link d-lg-none">
+                    <form
+                        action="{{ route('mhs.logout') }}"
+                        method="post"
+                    >
+                        @csrf
+                        <button
+                            type="submit"
+                            class="dropdown-item py-2"
+                        >Logout</button>
+                    </form>
+                </div>
             </div>
             <div class="btn-group d-none d-lg-block">
                 <button

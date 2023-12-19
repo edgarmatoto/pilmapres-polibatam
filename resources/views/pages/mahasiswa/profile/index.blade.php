@@ -28,7 +28,7 @@
                             <p
                                 class="fw-bold mt-3"
                                 style="color: #9B9B9B;"
-                            >Muhammad Zaidan Bagaskara</p>
+                            >{{ ucwords(auth()->user()->nama) }}</p>
                         </div>
                     </div>
                 </div>

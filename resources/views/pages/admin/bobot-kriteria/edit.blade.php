@@ -57,10 +57,11 @@
                                             class="form-label"
                                         >Bobot</label>
                                         <input
-                                            type="text"
+                                            type="number"
                                             class="@error('bobot') is-invalid @enderror form-control"
                                             id="bobot"
                                             name="bobot"
+                                            step="0.1"
                                             value="{{ old('bobot', $kriteria->bobot) }}"
                                         >
                                         @error('bobot')

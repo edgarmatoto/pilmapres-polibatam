@@ -74,6 +74,7 @@
                                             <th>Jenis Perlombaan</th>
                                             <th>Tingkat Perlombaan</th>
                                             <th>Capaian Prestasi</th>
+                                            <th>IPK</th>
                                             <th>Tempat Perlombaan</th>
                                             <th>Tanggal Perlombaan</th>
                                             <th colspan="2">Berkas</th>
@@ -119,147 +120,168 @@
                         <i data-feather="x"></i>
                     </button>
                 </div>
-                <form
-                    action="{{ route('admin.alternatif.store') }}"
-                    method="POST"
-                    enctype="multipart/form-data"
+                <div
+                    class="h-100"
+                    style="overflow-y: auto;"
                 >
-                    @csrf
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label
-                                for="nama"
-                                class="form-label"
-                            >Nama Lengkap</label>
-                            <input
-                                type="text"
-                                class="form-control"
-                                id="nama"
-                                name="nama"
-                                value="{{ old('nama') }}"
-                            >
+                    <form
+                        action="{{ route('admin.alternatif.store') }}"
+                        method="POST"
+                        enctype="multipart/form-data"
+                    >
+                        @csrf
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label
+                                    for="nama"
+                                    class="form-label"
+                                >Nama Lengkap</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="nama"
+                                    name="nama"
+                                    value="{{ old('nama') }}"
+                                >
+                            </div>
+                            <div class="mb-3">
+                                <label
+                                    for="nim"
+                                    class="form-label"
+                                >NIM</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="nim"
+                                    name="nim"
+                                    value="{{ old('nim') }}"
+                                >
+                            </div>
+                            <div class="mb-3">
+                                <label
+                                    for="jenisPerlombaan"
+                                    class="form-label"
+                                >Jenis Perlombaan</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="jenisPerlombaan"
+                                    name="jenis_perlombaan"
+                                    placeholder="Kontes Robot Indonesia"
+                                    value="{{ old('jenis_perlombaan') }}"
+                                >
+                            </div>
+                            <div class="mb-3">
+                                <label
+                                    for="tingkatPerlombaan"
+                                    class="form-label"
+                                >Tingkat Perlombaan</label>
+                                <select
+                                    id="tingkatPerlombaan"
+                                    class="form-select"
+                                    aria-label="Default select example"
+                                    name="tingkat_perlombaan"
+                                >
+                                    <option
+                                        value="internasional"
+                                        {{ old('tingkat_perlombaan') == 'internasional' ? 'selected' : '' }}
+                                    >Internasional</option>
+                                    <option
+                                        value="nasional"
+                                        {{ old('tingkat_perlombaan') == 'nasional' ? 'selected' : '' }}
+                                    >Nasional</option>
+                                    <option
+                                        value="kabupaten/kota"
+                                        {{ old('tingkat_perlombaan') == 'kabupaten/kota' ? 'selected' : '' }}
+                                    >Kabupaten/Kota</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label
+                                    for="capaianPrestasi"
+                                    class="form-label"
+                                >Capaian Prestasi</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="capaianPrestasi"
+                                    name="capaian_prestasi"
+                                    placeholder="Juara 1"
+                                    value="{{ old('capaian_prestasi') }}"
+                                >
+                            </div>
+                            <div class="mb-3">
+                                <label
+                                    for="ipk"
+                                    class="form-label"
+                                >IPK</label>
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    id="ipk"
+                                    name="ipk"
+                                    step="0.01"
+                                    placeholder="3.00"
+                                    value="{{ old('ipk') }}"
+                                >
+                            </div>
+                            <div class="mb-3">
+                                <label
+                                    for="tmptPerlombaan"
+                                    class="form-label"
+                                >Tempat Perlombaan</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="tmptPerlombaan"
+                                    name="tmpt_perlombaan"
+                                    placeholder="Online/Politeknik Negeri Batam"
+                                    value="{{ old('tmpt_perlombaan') }}"
+                                >
+                            </div>
+                            <div class="mb-3">
+                                <label
+                                    for="tglPerlombaan"
+                                    class="form-label"
+                                >Tanggal Perlombaan</label>
+                                <input
+                                    type="date"
+                                    class="form-control"
+                                    id="tglPerlombaan"
+                                    name="tgl_perlombaan"
+                                    value="{{ old('tgl_perlombaan') }}"
+                                >
+                            </div>
+                            <div class="mb-3">
+                                <label
+                                    for="berkas"
+                                    class="form-label"
+                                >Berkas</label>
+                                <input
+                                    type="file"
+                                    class="form-control"
+                                    id="berkas"
+                                    name="berkas"
+                                >
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label
-                                for="nim"
-                                class="form-label"
-                            >NIM</label>
-                            <input
-                                type="text"
-                                class="form-control"
-                                id="nim"
-                                name="nim"
-                                value="{{ old('nim') }}"
+                        <div class="modal-footer">
+                            <button
+                                type="reset"
+                                class="btn btn-light-secondary"
+                                data-bs-dismiss="modal"
                             >
-                        </div>
-                        <div class="mb-3">
-                            <label
-                                for="jenisPerlombaan"
-                                class="form-label"
-                            >Jenis Perlombaan</label>
-                            <input
-                                type="text"
-                                class="form-control"
-                                id="jenisPerlombaan"
-                                name="jenis_perlombaan"
-                                value="{{ old('jenis_perlombaan') }}"
+                                Close
+                            </button>
+                            <button
+                                type="submit"
+                                class="btn btn-primary ml-1"
                             >
+                                Simpan
+                            </button>
                         </div>
-                        <div class="mb-3">
-                            <label
-                                for="tingkatPerlombaan"
-                                class="form-label"
-                            >Tingkat Perlombaan</label>
-                            <select
-                                id="tingkatPerlombaan"
-                                class="form-select"
-                                aria-label="Default select example"
-                                name="tingkat_perlombaan"
-                            >
-                                <option
-                                    value="internasional"
-                                    {{ old('tingkat_perlombaan') == 'internasional' ? 'selected' : '' }}
-                                >Internasional</option>
-                                <option
-                                    value="nasional"
-                                    {{ old('tingkat_perlombaan') == 'nasional' ? 'selected' : '' }}
-                                >Nasional</option>
-                                <option
-                                    value="kabupaten/kota"
-                                    {{ old('tingkat_perlombaan') == 'kabupaten/kota' ? 'selected' : '' }}
-                                >Kabupaten/Kota</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label
-                                for="capaianPrestasi"
-                                class="form-label"
-                            >Capaian Prestasi</label>
-                            <input
-                                type="text"
-                                class="form-control"
-                                id="capaianPrestasi"
-                                name="capaian_prestasi"
-                                value="{{ old('capaian_prestasi') }}"
-                            >
-                        </div>
-                        <div class="mb-3">
-                            <label
-                                for="tmptPerlombaan"
-                                class="form-label"
-                            >Tempat Perlombaan</label>
-                            <input
-                                type="text"
-                                class="form-control"
-                                id="tmptPerlombaan"
-                                name="tmpt_perlombaan"
-                                value="{{ old('tmpt_perlombaan') }}"
-                            >
-                        </div>
-                        <div class="mb-3">
-                            <label
-                                for="tglPerlombaan"
-                                class="form-label"
-                            >Tanggal Perlombaan</label>
-                            <input
-                                type="date"
-                                class="form-control"
-                                id="tglPerlombaan"
-                                name="tgl_perlombaan"
-                                value="{{ old('tgl_perlombaan') }}"
-                            >
-                        </div>
-                        <div class="mb-3">
-                            <label
-                                for="berkas"
-                                class="form-label"
-                            >Berkas</label>
-                            <input
-                                type="file"
-                                class="form-control"
-                                id="berkas"
-                                name="berkas"
-                            >
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button
-                            type="reset"
-                            class="btn btn-light-secondary"
-                            data-bs-dismiss="modal"
-                        >
-                            <i class="bx bx-x d-block d-sm-none"></i>
-                            <span class="d-none d-sm-block">Close</span>
-                        </button>
-                        <button
-                            type="submit"
-                            class="btn btn-primary ml-1"
-                        >
-                            <i class="bx bx-check d-block d-sm-none"></i>
-                            <span class="d-none d-sm-block">Simpan</span>
-                        </button>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

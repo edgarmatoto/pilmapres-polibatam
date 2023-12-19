@@ -18,7 +18,7 @@ class BobotKriteriaController extends Controller
     {
         $rules = [
             'nama'      => 'required|string|max:100|unique:kriteria',
-            'bobot'     => 'required|numeric|min:1|max_digits:20',
+            'bobot'     => 'required|numeric|min:1|max:5',
             'atribut'   => 'required|in:cost,benefit'
         ];
         $attributes = [
@@ -48,7 +48,7 @@ class BobotKriteriaController extends Controller
     {
         $rules = [
             'nama'      => 'required|string|max:100|unique:kriteria,nama,' . $kriteria->id,
-            'bobot'     => 'required|numeric|min:1|max_digits:20',
+            'bobot'     => 'required|numeric|min:1|max:5',
             'atribut'   => 'required|in:cost,benefit'
         ];
         $attributes = [

@@ -142,6 +142,7 @@
                                 class="form-control"
                                 id="bobot"
                                 name="bobot"
+                                step="0.1"
                                 value="{{ old('bobot') }}"
                             >
                         </div>

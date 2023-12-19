@@ -80,6 +80,7 @@
                                             class="@error('jenis_perlombaan') is-invalid @enderror form-control"
                                             id="jenisPerlombaan"
                                             name="jenis_perlombaan"
+                                            placeholder="Kontes Robot Indonesia"
                                             value="{{ old('jenis_perlombaan', $alternatif->jenis_perlombaan) }}"
                                         >
                                         @error('jenis_perlombaan')
@@ -128,9 +129,30 @@
                                             class="@error('capaian_prestasi') is-invalid @enderror form-control"
                                             id="capaianPrestasi"
                                             name="capaian_prestasi"
+                                            placeholder="Juara 1"
                                             value="{{ old('capaian_prestasi', $alternatif->capaian_prestasi) }}"
                                         >
                                         @error('capaian_prestasi')
+                                            <div class="text-danger small">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <label
+                                            for="ipk"
+                                            class="form-label"
+                                        >IPK</label>
+                                        <input
+                                            type="number"
+                                            class="@error('ipk') is-invalid @enderror form-control"
+                                            id="ipk"
+                                            name="ipk"
+                                            step="0.01"
+                                            placeholder="3.00"
+                                            value="{{ old('ipk', $alternatif->ipk) }}"
+                                        >
+                                        @error('ipk')
                                             <div class="text-danger small">
                                                 {{ $message }}
                                             </div>
@@ -146,6 +168,7 @@
                                             class="@error('tmpt_perlombaan') is-invalid @enderror form-control"
                                             id="tmptPerlombaan"
                                             name="tmpt_perlombaan"
+                                            placeholder="Online/Politeknik Negeri Batam"
                                             value="{{ old('tmpt_perlombaan', $alternatif->tmpt_perlombaan) }}"
                                         >
                                         @error('tmpt_perlombaan')

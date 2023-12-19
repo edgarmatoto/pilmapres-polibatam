@@ -18,7 +18,7 @@ class AdminSeeder extends Seeder
         $dataAdmin = [
             [
                 'username'      => 'admin',
-                'password'      => Hash::make('P@ssword*'),
+                'password'      => bcrypt('admin'),
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now()
             ]

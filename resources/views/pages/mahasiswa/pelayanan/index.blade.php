@@ -12,7 +12,7 @@
         <div class="container">
             <div class="d-flex justify-content-center">
                 @php
-                    $hideCard = blank(old('jenis_perlombaan')) && blank(old('tingkat_perlombaan')) && blank(old('capaian_prestasi')) && blank(old('tmpt_perlombaan')) && blank(old('tgl_perlombaan'));
+                    $hideCard = blank(old('jenis_perlombaan')) && blank(old('tingkat_perlombaan')) && blank(old('capaian_prestasi')) && blank(old('tmpt_perlombaan')) && blank(old('tgl_perlombaan')) && blank(old('ipk'));
                 @endphp
                 <div
                     id="card"
@@ -40,6 +40,7 @@
                                         name="jenis_perlombaan"
                                         id="jenisPerlombaan"
                                         style="border-bottom: 1px solid #00000040 !important;"
+                                        placeholder="Kontes Robot Indonesia"
                                         value="{{ old('jenis_perlombaan') }}"
                                     >
                                     @error('jenis_perlombaan')
@@ -95,9 +96,32 @@
                                         name="capaian_prestasi"
                                         id="capaianPrestasi"
                                         style="border-bottom: 1px solid #00000040 !important;"
+                                        placeholder="Juara 1"
                                         value="{{ old('capaian_prestasi') }}"
                                     >
                                     @error('capaian_prestasi')
+                                        <div class="text-danger small">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label
+                                        style="color: #00000087;"
+                                        for="ipk"
+                                        class="form-label mb-0"
+                                    >IPK</label>
+                                    <input
+                                        type="number"
+                                        class="@error('ipk') is-invalid @enderror form-control rounded-0 shadow-none px-0 border-0"
+                                        name="ipk"
+                                        step="0.01"
+                                        id="ipk"
+                                        style="border-bottom: 1px solid #00000040 !important;"
+                                        placeholder="3.00"
+                                        value="{{ old('ipk') }}"
+                                    >
+                                    @error('ipk')
                                         <div class="text-danger small">
                                             {{ $message }}
                                         </div>
@@ -115,6 +139,7 @@
                                         name="tmpt_perlombaan"
                                         id="tmptPerlombaan"
                                         style="border-bottom: 1px solid #00000040 !important;"
+                                        placeholder="Online/Politeknik Negeri Batam"
                                         value="{{ old('tmpt_perlombaan') }}"
                                     >
                                     @error('tmpt_perlombaan')

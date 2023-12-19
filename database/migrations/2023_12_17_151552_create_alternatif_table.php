@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('jenis_perlombaan');
             $table->enum('tingkat_perlombaan', ['internasional', 'nasional', 'kabupaten/kota']);
             $table->string('capaian_prestasi');
+            $table->string('ipk');
             $table->string('tmpt_perlombaan');
             $table->string('tgl_perlombaan');
             $table->string('lokasi_berkas');

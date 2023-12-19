@@ -6,8 +6,9 @@
         <td class='center'>{{ $item->jenis_perlombaan }}</td>
         <td class='center'>{{ $item->tingkat_perlombaan }}</td>
         <td class='center'>{{ $item->capaian_prestasi }}</td>
+        <td class='center'>{{ $item->ipk }}</td>
         <td class='center'>{{ $item->tmpt_perlombaan }}</td>
-        <td class='center'>{{ date('d/m/y', strtotime($item->tgl_perlombaan)) }}</td>
+        <td class='center'>{{ date('d/m/Y', strtotime($item->tgl_perlombaan)) }}</td>
         <td class='center'>
             <a href="{{ route('admin.alternatif.unduh-berkas', ['alternatif' => $item]) }}">
                 {{ $item->nama_berkas }}
