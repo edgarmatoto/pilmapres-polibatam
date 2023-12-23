@@ -4,6 +4,42 @@
     Pengajuan Prestasi - Sistem Rekomendasi Pemilihan Mahasiswa Berprestasi Politeknik Negeri Batam
 @endsection
 
+@push('styles')
+    <style>
+        .bg-gray-100 {
+            background-color: #D9D9D9 !important;
+        }
+
+        .bg-pink-100 {
+            background-color: #E6B1B1 !important;
+        }
+
+        .bg-blue-100 {
+            background-color: #ACD1F3 !important;
+        }
+
+        .bg-green-100 {
+            background-color: #C9F8C1 !important;
+        }
+
+        .bg-gray-50 {
+            background-color: #EDEDED !important;
+        }
+
+        .bg-pink-50 {
+            background-color: #FCF0F0 !important;
+        }
+
+        .bg-blue-50 {
+            background-color: #EEF7FF !important;
+        }
+
+        .bg-green-50 {
+            background-color: #F1FFEE !important;
+        }
+    </style>
+@endpush
+
 @section('content')
     <section
         class="pt-3 py-4"
@@ -235,14 +271,15 @@
                     </div>
                 </div>
                 <div
-                    onclick="card.classList.remove('d-none'); this.classList.add('d-none'); return false;"
-                    class="mt-5 text-center {{ !$hideCard ? 'd-none' : '' }}"
+                    id="pelayanan"
+                    class="mt-5 text-center w-100 {{ !$hideCard ? 'd-none' : '' }}"
                 >
                     <h1
                         class="fw-bold"
                         style="color: #707070D4;"
                     >Pengajuan Prestasi</h1>
                     <button
+                        onclick="card.classList.remove('d-none'); pelayanan.classList.add('d-none'); return false;"
                         style="background-color: #6DA1D1;"
                         type="button"
                         class="text-white border-0 px-4 py-2 mt-3 rounded-2"
@@ -254,6 +291,39 @@
                         >
                         Ajukan Prestasi
                     </button>
+                    <div
+                        class="table-responsive"
+                        style="margin-top: 95px;"
+                    >
+                        <table class="table table-bordered border-dark">
+                            <thead class="bg-transparent">
+                                <tr>
+                                    <th class="bg-gray-100 py-3">No</th>
+                                    <th class="bg-pink-100 py-3">Nama</th>
+                                    <th class="bg-blue-100 py-3">NIM</th>
+                                    <th class="bg-green-100 py-3">Poin</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ([] as $item)
+                                    <tr>
+                                        <td class="bg-gray-50 py-3">1</td>
+                                        <td class="bg-pink-50 py-3">Jodi Kurniawan</td>
+                                        <td class="bg-blue-50 py-3">3312001105</td>
+                                        <td class="bg-green-50 py-3">10</td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td
+                                            class="bg-gray-50 py-3"
+                                            colspan="4"
+                                        >Tidak ada data ditemukan</td>
+                                    </tr>
+                                @endforelse
+
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
