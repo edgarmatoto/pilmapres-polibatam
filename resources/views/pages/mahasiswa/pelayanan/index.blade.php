@@ -315,12 +315,11 @@
                                 @empty
                                     <tr>
                                         <td
-                                            class="bg-gray-50 py-3"
+                                            class="bg-transparent py-3"
                                             colspan="4"
                                         >Tidak ada data ditemukan</td>
                                     </tr>
                                 @endforelse
-
                             </tbody>
                         </table>
                     </div>
