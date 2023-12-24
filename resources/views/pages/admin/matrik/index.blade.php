@@ -151,8 +151,8 @@
                             >
                                 @forelse ($kandidat as $item)
                                     <option
-                                        value="{{ $item->mahasiswa->id }}"
-                                        {{ old('alternatif') == $item->mahasiswa->id ? 'selected' : '' }}
+                                        value="{{ $item->id }}"
+                                        {{ old('alternatif') == $item->id ? 'selected' : '' }}
                                     >{{ 'A' . $loop->iteration }} - {{ ucwords($item->mahasiswa->nama) }}</option>
                                 @empty
                                     <option>...</option>

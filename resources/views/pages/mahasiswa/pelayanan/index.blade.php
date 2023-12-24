@@ -305,12 +305,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ([] as $item)
+                                @forelse ($preferensi as $item)
                                     <tr>
-                                        <td class="bg-gray-50 py-3">1</td>
-                                        <td class="bg-pink-50 py-3">Jodi Kurniawan</td>
-                                        <td class="bg-blue-50 py-3">3312001105</td>
-                                        <td class="bg-green-50 py-3">10</td>
+                                        <td class="bg-gray-50 py-3">{{ $loop->iteration }}</td>
+                                        <td class="bg-pink-50 py-3">{{ $item['nama'] }}</td>
+                                        <td class="bg-blue-50 py-3">{{ $item['nim'] }}</td>
+                                        <td class="bg-green-50 py-3">{{ $item['poin'] }}</td>
                                     </tr>
                                 @empty
                                     <tr>

@@ -39,6 +39,7 @@ Route::group([
 ], function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::post('/logout', 'LogoutController@logout')->name('logout');
+    Route::post('/ulasan/{alternatif}', 'UlasanController@store')->name('ulasan');
 
     Route::group([
         'as'            => 'pelayanan.',

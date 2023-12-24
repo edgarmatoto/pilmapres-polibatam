@@ -22,4 +22,9 @@ class Alternatif extends Model
     {
         return $this->hasMany(Evaluasi::class, 'alternatif_id', 'id');
     }
+
+    public function ulasan()
+    {
+        return $this->hasOne(Ulasan::class, 'alternatif_id', 'id');
+    }
 }
