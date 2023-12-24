@@ -31,4 +31,18 @@ class UlasanController extends Controller
                 ->json(['error' => 'Sepertinya kami tidak dapat mengirimkan umpan balik anda, silahkan coba lagi nanti.']);
         }
     }
+
+    public function decline(Alternatif $alternatif)
+    {
+        try {
+            $abort = Ulasan::where('alternatif_id', $alternatif->id)->exists() || $alternatif->mahasiswa_id != auth()->user()->id;
+            if ($abort) return response()->json(['error' => 'Anda tidak memiliki akses untuk tindakan ini, silahkan hubungi administrator jika memiliki pertanyaan.']);
+
+            $alternatif->ulasan()->create(['ditolak' => true]);
+            return response()->json(['success' => 'Umpan balik berhasil ditolak.']);
+        } catch (\Throwable $th) {
+            return response()
+                ->json(['error' => 'Sepertinya kami tidak dapat menyembunyikan umpan balik anda, silahkan coba lagi nanti.']);
+        }
+    }
 }

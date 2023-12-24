@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('ulasan', function (Blueprint $table) {
             $table->id();
             $table->foreignId('alternatif_id')->constrained('alternatif')->onDelete('cascade')->onUpdate('cascade');
-            $table->text('isi', 500);
-            $table->boolean('disembunyikan')->default(0);
+            $table->text('isi', 500)->nullable();
+            $table->boolean('ditolak')->default(0);
             $table->timestamps();
         });
     }

@@ -10,7 +10,7 @@ class UlasanController extends Controller
 {
     public function index()
     {
-        $ulasan = Ulasan::latest()->get();
+        $ulasan = Ulasan::where('ditolak', '!=', true)->latest()->get();
         return view('pages.admin.ulasan.index', compact('ulasan'));
     }
 }

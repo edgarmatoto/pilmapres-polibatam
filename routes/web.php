@@ -39,7 +39,6 @@ Route::group([
 ], function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::post('/logout', 'LogoutController@logout')->name('logout');
-    Route::post('/ulasan/{alternatif}', 'UlasanController@store')->name('ulasan');
 
     Route::group([
         'as'            => 'pelayanan.',
@@ -55,6 +54,14 @@ Route::group([
     ], function () {
         Route::get('/profile', 'index')->name('index');
         Route::put('/profile', 'update')->name('update');
+    });
+
+    Route::group([
+        'as'            => 'ulasan.',
+        'controller'    => 'UlasanController'
+    ], function () {
+        Route::post('/ulasan/{alternatif}/store', 'store')->name('store');
+        Route::post('/ulasan/{alternatif}/decline', 'decline')->name('decline');
     });
 });
 

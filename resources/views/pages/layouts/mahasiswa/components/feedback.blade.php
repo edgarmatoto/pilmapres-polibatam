@@ -32,6 +32,7 @@
                 </button>
             </div>
             <button
+                onclick="decline()"
                 type="button"
                 class="position-absolute top-0 start-0 translate-middle ms-1 mt-1 border-0 rounded-circle btn btn-danger p-1 z-2"
             >
@@ -67,7 +68,7 @@
 <script>
     function store(value) {
         $.ajax({
-            url: "{{ route('mhs.ulasan', ['alternatif' => ulasan()]) }}",
+            url: "{{ route('mhs.ulasan.store', ['alternatif' => alternatifDoesntHaveUlasan()]) }}",
             type: 'POST',
             data: {
                 '_token': '{{ csrf_token() }}',
@@ -110,6 +111,67 @@
                     title: 'Oops!',
                     text: 'Data gagal dieksekusi, silahkan coba lagi atau hubungi administrator untuk permasalahan ini.',
                     confirmButtonColor: "#045464"
+                });
+            }
+        });
+    }
+
+    function decline() {
+        Swal.fire({
+            title: "Anda Yakin?",
+            text: "Anda tidak akan bisa mengisi ulasan/umpan balik ini lagi.",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#045464",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Ya, tolak!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "{{ route('mhs.ulasan.decline', ['alternatif' => alternatifDoesntHaveUlasan()]) }}",
+                    type: 'POST',
+                    data: {
+                        '_token': '{{ csrf_token() }}'
+                    },
+                    beforeSend: () => {
+                        Swal.fire({
+                            allowOutsideClick: false,
+                            showConfirmButton: false,
+                            willOpen: () => Swal.showLoading(),
+                        });
+                    },
+                    success: (response) => {
+                        if (response.success) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success!',
+                                text: response.success,
+                                confirmButtonColor: "#045464"
+                            }).then(() => ulasanModal.remove());
+                        } else if (response.error) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops!',
+                                text: response.error,
+                                confirmButtonColor: "#045464"
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops!',
+                                text: 'Tidak dapat memproses tindakan ini, silahkan coba lagi atau hubungi administrator untuk permasalahan ini.',
+                                confirmButtonColor: "#045464"
+                            });
+                        }
+                    },
+                    error: () => {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops!',
+                            text: 'Tidak dapat memproses tindakan ini, silahkan coba lagi atau hubungi administrator untuk permasalahan ini.',
+                            confirmButtonColor: "#045464"
+                        });
+                    }
                 });
             }
         });
