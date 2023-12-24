@@ -102,7 +102,7 @@
                                                 </div>
                                             @enderror
                                         </div>
-                                        <div class="mb-3 text-center">
+                                        <div class="mb-4 text-center">
                                             <button
                                                 type="submit"
                                                 class="rounded-3 border-0 text-white px-5 py-1"
@@ -110,15 +110,6 @@
                                             >
                                                 Masuk
                                             </button>
-                                        </div>
-                                        <div class="mb-5 text-end">
-                                            <a
-                                                href="#"
-                                                class="text-decoration-none"
-                                                style="color: #009DCE;"
-                                            >
-                                                Lupa Password?
-                                            </a>
                                         </div>
                                         <div class="mb-3 text-center">
                                             <a
