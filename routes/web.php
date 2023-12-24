@@ -67,6 +67,7 @@ Route::group([
 ], function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/preferensi', 'PreferensiController@index')->name('preferensi.index');
+    Route::get('/ulasan', 'UlasanController@index')->name('ulasan');
     Route::post('/logout', 'LogoutController@logout')->name('logout');
 
     Route::group([
