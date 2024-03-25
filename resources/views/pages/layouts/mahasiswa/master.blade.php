@@ -4,6 +4,7 @@
 
 <body>
     @include('pages.layouts.mahasiswa.components.navbar')
+    @include('pages.layouts.mahasiswa.components.bottomNavbar')
     @yield('content')
     @include('pages.layouts.mahasiswa.components.scripts')
     @include('pages.layouts.mahasiswa.components.alerts')

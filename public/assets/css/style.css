@@ -5,6 +5,33 @@ body {
     font-family: "Poly", serif !important;
 }
 
+.bottom-navbar {
+    position: fixed;
+    bottom: 0%;
+    height: 4.5rem;
+    width: 100%;
+    background-color: white;
+}
+
+.nav-item {
+    color: black;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.nav-item-active {
+    background-color: #2883B6;
+    border-radius: 15%;
+}
+
+.nav-text {
+    font-size: small;
+}
+
 .text-blue-sky {
     color: #009dce !important;
 }
