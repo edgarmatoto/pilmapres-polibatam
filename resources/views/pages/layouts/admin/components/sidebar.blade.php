@@ -3,18 +3,15 @@
     class="active"
 >
     <div class="sidebar-wrapper active">
-        <div class="sidebar-header">
-            <div class="d-flex justify-content-between">
-                <div class="logo">
-                    <a href="{{ route('admin.home') }}">Mahasiswa Berprestasi Politeknik Negeri Batam</a>
-                </div>
-                <div class="toggler">
-                    <a
-                        href="#"
-                        class="sidebar-hide d-xl-none d-block"
-                    ><i class="bi bi-x bi-middle"></i></a>
-                </div>
-            </div>
+        <div class="text-center">
+            <a href="{{ route('admin.home') }}">
+                <img
+                    style="width: 100px;"
+                    class="navbar-brand img-fluid logo"
+                    src="{{ asset('assets/images/logo.jpeg') }}"
+                    alt="logo_poltek"
+                >
+            </a>
         </div>
         <div class="sidebar-menu">
             <ul class="menu">
