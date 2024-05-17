@@ -3,12 +3,12 @@
     "short_name": "PP",
     "start_url": "/index.php",
     "background_color": "#6777ef",
-    "description": "Tutorial of Laravel Package",
+    "description": "Halaman untuk melakukan pengajuan prestasi untuk Pilmapres Polibatam",
     "display": "fullscreen",
     "theme_color": "#6777ef",
     "icons": [
         {
-            "src": "logo.PNG",
+            "src": "logo.png",
             "sizes": "512x512",
             "type": "image/png",
             "purpose": "any maskable"

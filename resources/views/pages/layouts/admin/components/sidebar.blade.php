@@ -2,7 +2,7 @@
     id="sidebar"
     class="active"
 >
-    <div class="sidebar-wrapper active">
+    <div class="sidebar-wrapper active pt-4">
         <div class="text-center">
             <a href="{{ route('admin.home') }}">
                 <img
