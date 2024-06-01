@@ -41,15 +41,6 @@
                 </li>
                 <li class="sidebar-item">
                     <a
-                        href="{{ route('admin.matrik.index') }}"
-                        class='sidebar-link'
-                    >
-                        <i class="bi bi-pentagon-fill"></i>
-                        <span>Matrik</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a
                         href="{{ route('admin.preferensi.index') }}"
                         class='sidebar-link'
                     >

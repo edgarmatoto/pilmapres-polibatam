@@ -126,15 +126,41 @@
                                         for="capaianPrestasi"
                                         class="form-label mb-0"
                                     >Capaian Prestasi</label>
-                                    <input
-                                        type="text"
-                                        class="@error('capaian_prestasi') is-invalid @enderror form-control rounded-0 shadow-none px-0 border-0"
-                                        name="capaian_prestasi"
-                                        id="capaianPrestasi"
+                                    <select
                                         style="border-bottom: 1px solid #00000040 !important;"
-                                        placeholder="Juara 1"
-                                        value="{{ old('capaian_prestasi') }}"
+                                        id="capaianPrestasi"
+                                        class="@error('capaian_prestasi') is-invalid @enderror form-select rounded-0 shadow-none px-0 border-0"
+                                        name="capaian_prestasi"
                                     >
+                                        <option
+                                            disabled
+                                            selected
+                                        >---Pilih---</option>
+                                        <option
+                                            value="1"
+                                            {{ old('capaian_prestasi') == '1' ? 'selected' : '' }}
+                                        >Juara 1</option>
+                                        <option
+                                            value="2"
+                                            {{ old('capaian_prestasi') == '2' ? 'selected' : '' }}
+                                        >Juara 2</option>
+                                        <option
+                                            value="3"
+                                            {{ old('capaian_prestasi') == '3' ? 'selected' : '' }}
+                                        >Juara 3</option>
+                                        <option
+                                            value="4"
+                                            {{ old('capaian_prestasi') == '4' ? 'selected' : '' }}
+                                        >Juara Harapan 1</option>
+                                        <option
+                                            value="5"
+                                            {{ old('capaian_prestasi') == '5' ? 'selected' : '' }}
+                                        >Juara Harapan 2</option>
+                                        <option
+                                            value="6"
+                                            {{ old('capaian_prestasi') == '6' ? 'selected' : '' }}
+                                        >Juara Harapan 3</option>
+                                    </select>
                                     @error('capaian_prestasi')
                                         <div class="text-danger small">
                                             {{ $message }}
@@ -151,6 +177,8 @@
                                         type="number"
                                         class="@error('ipk') is-invalid @enderror form-control rounded-0 shadow-none px-0 border-0"
                                         name="ipk"
+                                        min="0"
+                                        max="3"
                                         step="0.01"
                                         id="ipk"
                                         style="border-bottom: 1px solid #00000040 !important;"

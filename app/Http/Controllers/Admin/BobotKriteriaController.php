@@ -16,27 +16,7 @@ class BobotKriteriaController extends Controller
 
     public function store(Request $request)
     {
-        $rules = [
-            'nama'      => 'required|string|max:100|unique:kriteria',
-            'bobot'     => 'required|numeric|min:1|max:5',
-            'atribut'   => 'required|in:cost,benefit'
-        ];
-        $attributes = [
-            'nama'      => 'Kriteria',
-            'bobot'     => 'Bobot',
-            'atribut'   => 'Atribut'
-        ];
-        $validator = $request->validate($rules, [], $attributes);
-
-        try {
-            Kriteria::create($validator);
-
-            return redirect()
-                ->route('admin.bobot-kriteria.index')
-                ->withSuccess('Data bobot kriteria berhasil disimpan.');
-        } catch (\Throwable $th) {
-            return back()->withError('Data yang anda inputkan gagal disimpan, silahkan coba lagi nanti.');
-        }
+        //
     }
 
     public function edit(Kriteria $kriteria)
@@ -47,14 +27,10 @@ class BobotKriteriaController extends Controller
     public function update(Request $request, Kriteria $kriteria)
     {
         $rules = [
-            'nama'      => 'required|string|max:100|unique:kriteria,nama,' . $kriteria->id,
-            'bobot'     => 'required|numeric|min:1|max:5',
-            'atribut'   => 'required|in:cost,benefit'
+            'bobot'     => 'required|numeric|min:1',
         ];
         $attributes = [
-            'nama'      => 'Kriteria',
             'bobot'     => 'Bobot',
-            'atribut'   => 'Atribut'
         ];
         $validator = $request->validate($rules, [], $attributes);
 

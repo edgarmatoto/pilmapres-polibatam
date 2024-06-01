@@ -44,6 +44,7 @@
                                             id="kriteria"
                                             name="nama"
                                             value="{{ old('nama', $kriteria->nama) }}"
+                                            disabled
                                         >
                                         @error('nama')
                                             <div class="text-danger small">
@@ -61,36 +62,10 @@
                                             class="@error('bobot') is-invalid @enderror form-control"
                                             id="bobot"
                                             name="bobot"
-                                            step="0.1"
+                                            step="1"
                                             value="{{ old('bobot', $kriteria->bobot) }}"
                                         >
                                         @error('bobot')
-                                            <div class="text-danger small">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
-                                    <div style="margin-bottom: 55px;">
-                                        <label
-                                            for="atribut"
-                                            class="form-label"
-                                        >Atribut</label>
-                                        <select
-                                            id="atribut"
-                                            class="@error('atribut') is-invalid @enderror form-select"
-                                            aria-label="Default select example"
-                                            name="atribut"
-                                        >
-                                            <option
-                                                value="cost"
-                                                {{ old('atribut', $kriteria->atribut) == 'cost' ? 'selected' : '' }}
-                                            >Cost</option>
-                                            <option
-                                                value="benefit"
-                                                {{ old('atribut', $kriteria->atribut) == 'benefit' ? 'selected' : '' }}
-                                            >Benefit</option>
-                                        </select>
-                                        @error('atribut')
                                             <div class="text-danger small">
                                                 {{ $message }}
                                             </div>

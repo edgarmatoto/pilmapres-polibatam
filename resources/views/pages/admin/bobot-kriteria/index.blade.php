@@ -48,29 +48,19 @@
                         <div class="card-content">
                             <div class="card-body">
                                 <p class="card-text">Pengambil keputusan memberi bobot preferensi dari setiap kriteria dengan
-                                    masing-masing jenisnya (keuntungan/benefit atau biaya/cost):</p>
+                                    masing-masing jenisnya:</p>
                             </div>
-                            <button
-                                type="button"
-                                class="btn btn-outline-success btn-sm m-2"
-                                data-bs-toggle="modal"
-                                data-bs-target="#inlineForm"
-                            >
-                                Tambah Bobot Kriteria
-                            </button>
                             <hr>
                             <div class="table-responsive">
                                 <table class="table table-striped mb-0">
                                     <caption>
-                                        Tabel Kriteria C<sub>i</sub>
+                                        Bobot Capaian Prestasi
                                     </caption>
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Simbol</th>
                                             <th>Kriteria</th>
                                             <th>Bobot</th>
-                                            <th colspan="2">Atribut</th>
                                         </tr>
                                     </thead>
                                     <tbody id="data">
@@ -113,78 +103,6 @@
                         <i data-feather="x"></i>
                     </button>
                 </div>
-                <form
-                    action="{{ route('admin.bobot-kriteria.store') }}"
-                    method="POST"
-                >
-                    @csrf
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label
-                                for="nama"
-                                class="form-label"
-                            >Kriteria</label>
-                            <input
-                                type="text"
-                                class="form-control"
-                                id="nama"
-                                name="nama"
-                                value="{{ old('nama') }}"
-                            >
-                        </div>
-                        <div class="mb-3">
-                            <label
-                                for="bobot"
-                                class="form-label"
-                            >Bobot</label>
-                            <input
-                                type="number"
-                                class="form-control"
-                                id="bobot"
-                                name="bobot"
-                                step="0.1"
-                                value="{{ old('bobot') }}"
-                            >
-                        </div>
-                        <div class="mb-3">
-                            <label
-                                for="atribut"
-                                class="form-label"
-                            >Attribute</label>
-                            <select
-                                class="form-select"
-                                aria-label="Default select example"
-                                name="atribut"
-                            >
-                                <option
-                                    value="cost"
-                                    {{ old('atribut') == 'cost' ? 'selected' : '' }}
-                                >Cost</option>
-                                <option
-                                    value="benefit"
-                                    {{ old('atribute') == 'benefit' ? 'selected' : '' }}
-                                >Benefit</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button
-                            type="reset"
-                            class="btn btn-light-secondary"
-                            data-bs-dismiss="modal"
-                        >
-                            <i class="bx bx-x d-block d-sm-none"></i>
-                            <span class="d-none d-sm-block">Close</span>
-                        </button>
-                        <button
-                            type="submit"
-                            class="btn btn-primary ml-1"
-                        >
-                            <i class="bx bx-check d-block d-sm-none"></i>
-                            <span class="d-none d-sm-block">Simpan</span>
-                        </button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>

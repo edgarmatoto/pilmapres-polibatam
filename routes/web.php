@@ -96,17 +96,7 @@ Route::group([
         Route::get('/bobot-kriteria', 'index')->name('index');
         Route::get('/bobot-kriteria/{kriteria}/edit', 'edit')->name('edit');
         Route::put('/bobot-kriteria/{kriteria}', 'update')->name('update');
-        Route::post('/bobot-kriteria', 'store')->name('store');
         Route::delete('/bobot-kriteria/{kriteria}', 'destroy')->name('destroy');
-    });
-
-    Route::group([
-        'as'            => 'matrik.',
-        'controller'    => 'MatrikController'
-    ], function () {
-        Route::get('/matrik', 'index')->name('index');
-        Route::post('/matrik', 'store')->name('store');
-        Route::delete('/matrik/{alternatif}', 'destroy')->name('destroy');
     });
 });
 

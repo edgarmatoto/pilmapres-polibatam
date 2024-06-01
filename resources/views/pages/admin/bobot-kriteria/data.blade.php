@@ -1,7 +1,6 @@
 @forelse ($kriteria as $item)
     <tr>
         <td class='right'>{{ $loop->iteration }}</td>
-        <td class='center'>{{ 'C' . $loop->iteration }}</td>
         <td class='center'>{{ ucwords($item->nama) }}</td>
         <td class='center'>{{ $item->bobot }}</td>
         <td class='center'>{{ $item->atribut }}</td>
@@ -26,11 +25,11 @@
                             class='dropdown-item'
                             href='{{ route('admin.bobot-kriteria.edit', ['kriteria' => $item]) }}'
                         >Edit</a>
-                        <button
-                            class='dropdown-item'
-                            type="button"
-                            onclick="hapusData('{{ route('admin.bobot-kriteria.destroy', ['kriteria' => $item]) }}')"
-                        >Hapus</button>
+{{--                        <button--}}
+{{--                            class='dropdown-item'--}}
+{{--                            type="button"--}}
+{{--                            onclick="hapusData('{{ route('admin.bobot-kriteria.destroy', ['kriteria' => $item]) }}')"--}}
+{{--                        >Hapus</button>--}}
                     </div>
                 </div>
             </div>
