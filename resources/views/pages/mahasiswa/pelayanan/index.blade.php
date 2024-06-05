@@ -106,18 +106,53 @@
                                             {{ old('tingkat_perlombaan') == 'internasional' ? 'selected' : '' }}
                                         >Internasional</option>
                                         <option
+                                            value="regional"
+                                            {{ old('tingkat_perlombaan') == 'regional' ? 'selected' : '' }}
+                                        >Regional</option>
+                                        <option
                                             value="nasional"
                                             {{ old('tingkat_perlombaan') == 'nasional' ? 'selected' : '' }}
                                         >Nasional</option>
                                         <option
-                                            value="kabupaten/kota"
-                                            {{ old('tingkat_perlombaan') == 'kabupaten/kota' ? 'selected' : '' }}
-                                        >Kabupaten/Kota</option>
+                                            value="provinsi"
+                                            {{ old('tingkat_perlombaan') == 'provinsi' ? 'selected' : '' }}
+                                        >Provinsi</option>
                                     </select>
                                     @error('tingkat_perlombaan')
                                         <div class="text-danger small">
                                             {{ $message }}
                                         </div>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label
+                                        style="color: #00000087;"
+                                        for="individuKelompok"
+                                        class="form-label mb-0"
+                                    >Individu/Kelompok</label>
+                                    <select
+                                        style="border-bottom: 1px solid #00000040 !important;"
+                                        id="individuKelompok"
+                                        class="@error('individu_kelompok') is-invalid @enderror form-select rounded-0 shadow-none px-0 border-0"
+                                        name="individu_kelompok"
+                                    >
+                                        <option
+                                            disabled
+                                            selected
+                                        >---Pilih---</option>
+                                        <option
+                                            value="individu"
+                                            {{ old('individu_kelompok') == 'individu' ? 'selected' : '' }}
+                                        >Individu</option>
+                                        <option
+                                            value="regional"
+                                            {{ old('individu_kelompok') == 'kelompok' ? 'selected' : '' }}
+                                        >Kelompok</option>
+                                    </select>
+                                    @error('individu_kelompok')
+                                    <div class="text-danger small">
+                                        {{ $message }}
+                                    </div>
                                     @enderror
                                 </div>
                                 <div class="mb-3">
@@ -137,6 +172,10 @@
                                             selected
                                         >---Pilih---</option>
                                         <option
+                                            value="0"
+                                            {{ old('capaian_prestasi') == '0' ? 'selected' : '' }}
+                                        >Penghargaan/Pengakuan</option>
+                                        <option
                                             value="1"
                                             {{ old('capaian_prestasi') == '1' ? 'selected' : '' }}
                                         >Juara 1</option>
@@ -148,18 +187,6 @@
                                             value="3"
                                             {{ old('capaian_prestasi') == '3' ? 'selected' : '' }}
                                         >Juara 3</option>
-                                        <option
-                                            value="4"
-                                            {{ old('capaian_prestasi') == '4' ? 'selected' : '' }}
-                                        >Juara Harapan 1</option>
-                                        <option
-                                            value="5"
-                                            {{ old('capaian_prestasi') == '5' ? 'selected' : '' }}
-                                        >Juara Harapan 2</option>
-                                        <option
-                                            value="6"
-                                            {{ old('capaian_prestasi') == '6' ? 'selected' : '' }}
-                                        >Juara Harapan 3</option>
                                     </select>
                                     @error('capaian_prestasi')
                                         <div class="text-danger small">
@@ -178,7 +205,7 @@
                                         class="@error('ipk') is-invalid @enderror form-control rounded-0 shadow-none px-0 border-0"
                                         name="ipk"
                                         min="0"
-                                        max="3"
+                                        max="4"
                                         step="0.01"
                                         id="ipk"
                                         style="border-bottom: 1px solid #00000040 !important;"
