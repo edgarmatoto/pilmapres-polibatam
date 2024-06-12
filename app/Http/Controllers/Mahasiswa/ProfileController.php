@@ -23,6 +23,7 @@ class ProfileController extends Controller
             'nim'               => 'required|numeric|max_digits:15|unique:mahasiswa,nim,' . auth()->user()->id,
             'prodi_id'          => 'required|exists:prodi,id',
             'kelas'             => 'required|string|max:100',
+            'ipk'               => 'required|numeric|min:0|max:4',
             'angkatan'          => 'required|date_format:Y',
             'waldos'            => 'required|string|max:100',
             'tgl_lahir'         => 'required|date',
@@ -30,7 +31,7 @@ class ProfileController extends Controller
             'agama'             => 'required|string|max:100',
             'alamat'            => 'required|string|max:100',
             'email'             => 'required|string|max:100|email',
-            'no_hp'             => 'required|numeric|max_digits:15',
+            'no_hp'             => 'required|string|max:18',
             'password'          => 'nullable|string|min:5|max:20|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/|exclude',
         ];
         $attributes = [
@@ -38,6 +39,7 @@ class ProfileController extends Controller
             'nim'               => 'NIM',
             'prodi_id'          => 'Program Studi',
             'kelas'             => 'Kelas',
+            'ipk'               => 'IPK',
             'angkatan'          => 'Angkatan',
             'waldos'            => 'Dosen Wali',
             'tgl_lahir'         => 'Tanggal Lahir',

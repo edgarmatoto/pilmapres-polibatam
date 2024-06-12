@@ -141,8 +141,7 @@
                                     class="@error('ipk') is-invalid @enderror form-control"
                                     id="ipk"
                                     name="ipk"
-{{--                                    value="{{ old('ipk', $ipk) }}"--}}
-                                    value="{{ old('ipk', 0) }}"
+                                    value="{{ old('ipk', auth()->user()->ipk) }}"
                                     min="0"
                                     max="4"
                                     step="0.1"
