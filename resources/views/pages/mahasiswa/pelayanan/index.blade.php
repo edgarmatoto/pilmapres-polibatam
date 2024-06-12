@@ -145,7 +145,7 @@
                                             {{ old('jenis_perlombaan') == 'individu' ? 'selected' : '' }}
                                         >Individu</option>
                                         <option
-                                            value="regional"
+                                            value="kelompok"
                                             {{ old('jenis_perlombaan') == 'kelompok' ? 'selected' : '' }}
                                         >Kelompok</option>
                                     </select>
