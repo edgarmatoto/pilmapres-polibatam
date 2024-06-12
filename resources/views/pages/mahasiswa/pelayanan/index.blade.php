@@ -172,10 +172,6 @@
                                             selected
                                         >---Pilih---</option>
                                         <option
-                                            value="0"
-                                            {{ old('capaian_prestasi') == '0' ? 'selected' : '' }}
-                                        >Penghargaan/Pengakuan</option>
-                                        <option
                                             value="1"
                                             {{ old('capaian_prestasi') == '1' ? 'selected' : '' }}
                                         >Juara 1</option>

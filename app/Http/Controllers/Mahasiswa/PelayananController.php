@@ -67,19 +67,19 @@ class PelayananController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'jenis_perlombaan'      => 'required|string|max:100',
+            'nama_perlombaan'      => 'required|string|max:255',
+            'jenis_perlombaan'      => 'required|in:individu,kelompok',
             'tingkat_perlombaan'    => 'required|in:internasional,nasional,kabupaten/kota',
-            'capaian_prestasi'      => 'required|string|max:100',
-            'ipk'                   => 'required|numeric|min:1|max:4',
-            'tmpt_perlombaan'       => 'required|string|max:100',
+            'capaian_prestasi'      => 'required|in:1,2,3',
+            'tmpt_perlombaan'       => 'required|string|max:255',
             'tgl_perlombaan'        => 'required|date',
             'berkas'                => 'required|file|mimes:pdf,jpeg,png|max:5120',
         ];
         $attributes = [
+            'nama_perlombaan'      => 'Nama Perlombaan',
             'jenis_perlombaan'      => 'Jenis Perlombaan',
             'tingkat_perlombaan'    => 'Tingkat Perlombaan',
             'capaian_prestasi'      => 'Capaian Prestasi',
-            'ipk'                   => 'IPK',
             'tmpt_perlombaan'       => 'Tempat Perlombaan',
             'tgl_perlombaan'        => 'Tanggal Perlombaan',
             'berkas'                => 'Berkas',
