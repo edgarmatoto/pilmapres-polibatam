@@ -10,9 +10,10 @@ services:
         image: pengajuan-prestasi
         container_name: pengajuan-prestasi-app
         restart: unless-stopped
-        working_dir: /var/www/
-        volumes:
-            - ./:/var/www
+        depends_on:
+            - db
+        #volumes:
+        #    - ./:/var/www
         networks:
             - pengajuan-prestasi
     db:

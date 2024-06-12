@@ -32,4 +32,8 @@ RUN mkdir -p /home/$user/.composer && \
 # Set working directory
 WORKDIR /var/www
 
+COPY --chown=$user --chmod=775 . .
+
 USER $user
+
+CMD [ "php-fpm" ]
