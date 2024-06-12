@@ -60,7 +60,7 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Kriteria</th>
-                                            <th>Bobot</th>
+                                            <th>Bobot (100%)</th>
                                         </tr>
                                     </thead>
                                     <tbody id="data">

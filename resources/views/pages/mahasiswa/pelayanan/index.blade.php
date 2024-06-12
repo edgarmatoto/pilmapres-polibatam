@@ -67,19 +67,19 @@
                                 <div class="mb-3">
                                     <label
                                         style="color: #00000087;"
-                                        for="jenisPerlombaan"
+                                        for="namaPerlombaan"
                                         class="form-label mb-0"
-                                    >Jenis Perlombaan</label>
+                                    >Nama Perlombaan</label>
                                     <input
                                         type="text"
-                                        class="@error('jenis_perlombaan') is-invalid @enderror form-control rounded-0 shadow-none px-0 border-0"
-                                        name="jenis_perlombaan"
-                                        id="jenisPerlombaan"
+                                        class="@error('nama_perlombaan') is-invalid @enderror form-control rounded-0 shadow-none px-0 border-0"
+                                        name="nama_perlombaan"
+                                        id="namaPerlombaan"
                                         style="border-bottom: 1px solid #00000040 !important;"
                                         placeholder="Kontes Robot Indonesia"
-                                        value="{{ old('jenis_perlombaan') }}"
+                                        value="{{ old('nama_perlombaan') }}"
                                     >
-                                    @error('jenis_perlombaan')
+                                    @error('nama_perlombaan')
                                         <div class="text-danger small">
                                             {{ $message }}
                                         </div>
@@ -127,14 +127,14 @@
                                 <div class="mb-3">
                                     <label
                                         style="color: #00000087;"
-                                        for="individuKelompok"
+                                        for="jenisPerlombaan"
                                         class="form-label mb-0"
-                                    >Individu/Kelompok</label>
+                                    >Jenis Perlombaan</label>
                                     <select
                                         style="border-bottom: 1px solid #00000040 !important;"
-                                        id="individuKelompok"
-                                        class="@error('individu_kelompok') is-invalid @enderror form-select rounded-0 shadow-none px-0 border-0"
-                                        name="individu_kelompok"
+                                        id="jenisPerlombaan"
+                                        class="@error('jenis_perlombaan') is-invalid @enderror form-select rounded-0 shadow-none px-0 border-0"
+                                        name="jenis_perlombaan"
                                     >
                                         <option
                                             disabled
@@ -142,14 +142,14 @@
                                         >---Pilih---</option>
                                         <option
                                             value="individu"
-                                            {{ old('individu_kelompok') == 'individu' ? 'selected' : '' }}
+                                            {{ old('jenis_perlombaan') == 'individu' ? 'selected' : '' }}
                                         >Individu</option>
                                         <option
                                             value="regional"
-                                            {{ old('individu_kelompok') == 'kelompok' ? 'selected' : '' }}
+                                            {{ old('jenis_perlombaan') == 'kelompok' ? 'selected' : '' }}
                                         >Kelompok</option>
                                     </select>
-                                    @error('individu_kelompok')
+                                    @error('jenis_perlombaan')
                                     <div class="text-danger small">
                                         {{ $message }}
                                     </div>
@@ -189,30 +189,6 @@
                                         >Juara 3</option>
                                     </select>
                                     @error('capaian_prestasi')
-                                        <div class="text-danger small">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                                <div class="mb-3">
-                                    <label
-                                        style="color: #00000087;"
-                                        for="ipk"
-                                        class="form-label mb-0"
-                                    >IPK</label>
-                                    <input
-                                        type="number"
-                                        class="@error('ipk') is-invalid @enderror form-control rounded-0 shadow-none px-0 border-0"
-                                        name="ipk"
-                                        min="0"
-                                        max="4"
-                                        step="0.01"
-                                        id="ipk"
-                                        style="border-bottom: 1px solid #00000040 !important;"
-                                        placeholder="3.00"
-                                        value="{{ old('ipk') }}"
-                                    >
-                                    @error('ipk')
                                         <div class="text-danger small">
                                             {{ $message }}
                                         </div>
