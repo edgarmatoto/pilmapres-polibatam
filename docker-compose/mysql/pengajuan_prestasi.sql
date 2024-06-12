@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 13, 2024 at 05:18 PM
+-- Generation Time: Jun 12, 2024 at 04:40 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.2.14
 
@@ -52,14 +52,15 @@ INSERT INTO `admin` (`id`, `username`, `password`, `remember_token`, `created_at
 CREATE TABLE `alternatif` (
   `id` bigint UNSIGNED NOT NULL,
   `mahasiswa_id` bigint UNSIGNED NOT NULL,
-  `jenis_perlombaan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tingkat_perlombaan` enum('internasional','nasional','kabupaten/kota') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `capaian_prestasi` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ipk` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nama_perlombaan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `jenis_perlombaan` enum('individu','kelompok') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tingkat_perlombaan` enum('internasional','regional','nasional','provinsi') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `capaian_prestasi` enum('1','2','3') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `tmpt_perlombaan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tgl_perlombaan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `lokasi_berkas` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nama_berkas` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `skor` float NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -68,8 +69,8 @@ CREATE TABLE `alternatif` (
 -- Dumping data for table `alternatif`
 --
 
-INSERT INTO `alternatif` (`id`, `mahasiswa_id`, `jenis_perlombaan`, `tingkat_perlombaan`, `capaian_prestasi`, `ipk`, `tmpt_perlombaan`, `tgl_perlombaan`, `lokasi_berkas`, `nama_berkas`, `created_at`, `updated_at`) VALUES
-(2, 2, 'bola', 'nasional', 'juara 1', '3', 'oNLINE', '2024-03-22', 'alternatif/MYU8WV4furWeFh37zGj48Bjc1MFdVkbjsoUSmOlA.jpg', 'IMG_20230802_153113.jpg', '2024-03-22 00:26:46', '2024-03-22 00:26:46');
+INSERT INTO `alternatif` (`id`, `mahasiswa_id`, `nama_perlombaan`, `jenis_perlombaan`, `tingkat_perlombaan`, `capaian_prestasi`, `tmpt_perlombaan`, `tgl_perlombaan`, `lokasi_berkas`, `nama_berkas`, `skor`, `created_at`, `updated_at`) VALUES
+(18, 3, 'hackahton', 'kelompok', 'nasional', '2', 'Jakarta', '2024-06-12', 'alternatif/1q8UhdoSc88fh5Xdan6oroHOTqptYEcYh6pUxcQu.jpg', 'DSC08795 (1).jpg', 9.16667, '2024-06-12 05:21:20', '2024-06-12 05:21:20');
 
 -- --------------------------------------------------------
 
@@ -79,12 +80,18 @@ INSERT INTO `alternatif` (`id`, `mahasiswa_id`, `jenis_perlombaan`, `tingkat_per
 
 CREATE TABLE `evaluasi` (
   `id` bigint UNSIGNED NOT NULL,
-  `alternatif_id` bigint UNSIGNED NOT NULL,
-  `kriteria_id` bigint UNSIGNED NOT NULL,
-  `nilai` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mahasiswa_id` bigint UNSIGNED NOT NULL,
+  `total_skor` float NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `evaluasi`
+--
+
+INSERT INTO `evaluasi` (`id`, `mahasiswa_id`, `total_skor`, `created_at`, `updated_at`) VALUES
+(5, 3, 42.9167, '2024-06-12 05:21:20', '2024-06-12 05:21:20');
 
 -- --------------------------------------------------------
 
@@ -111,8 +118,7 @@ CREATE TABLE `failed_jobs` (
 CREATE TABLE `kriteria` (
   `id` bigint UNSIGNED NOT NULL,
   `nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `bobot` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `atribut` enum('cost','benefit') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bobot` int NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -121,8 +127,9 @@ CREATE TABLE `kriteria` (
 -- Dumping data for table `kriteria`
 --
 
-INSERT INTO `kriteria` (`id`, `nama`, `bobot`, `atribut`, `created_at`, `updated_at`) VALUES
-(2, 'Teknologi', '5', 'cost', '2024-04-17 01:51:43', '2024-04-17 01:51:43');
+INSERT INTO `kriteria` (`id`, `nama`, `bobot`, `created_at`, `updated_at`) VALUES
+(1, 'IPK', 45, NULL, '2024-06-05 07:19:45'),
+(2, 'Pencapaian', 55, NULL, '2024-06-05 07:19:52');
 
 -- --------------------------------------------------------
 
@@ -134,26 +141,18 @@ CREATE TABLE `mahasiswa` (
   `id` bigint UNSIGNED NOT NULL,
   `prodi_id` bigint UNSIGNED DEFAULT NULL,
   `nim` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ipk` decimal(3,2) NOT NULL,
+  `skor_ipk` float NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `no_hp` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `nik` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tgl_lahir` date DEFAULT NULL,
   `kelas` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `angkatan` year DEFAULT NULL,
   `waldos` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `tgl_masuk` date DEFAULT NULL,
-  `status` enum('aktif','cuti') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'aktif',
   `jenkel` enum('laki-laki','perempuan') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status_martial` enum('lajang','sudah menikah') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `tmpt_lahir` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `kewarganegaraan` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `agama` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `gol_darah` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `kode_pos` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `alamat` text COLLATE utf8mb4_unicode_ci,
-  `kelurahan` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `kecamatan` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -164,10 +163,8 @@ CREATE TABLE `mahasiswa` (
 -- Dumping data for table `mahasiswa`
 --
 
-INSERT INTO `mahasiswa` (`id`, `prodi_id`, `nim`, `email`, `no_hp`, `nik`, `nama`, `tgl_lahir`, `kelas`, `angkatan`, `waldos`, `tgl_masuk`, `status`, `jenkel`, `status_martial`, `tmpt_lahir`, `kewarganegaraan`, `agama`, `gol_darah`, `kode_pos`, `alamat`, `kelurahan`, `kecamatan`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(2, NULL, '6042302016', 'edgar@example.com', '082123456789', NULL, 'Edgar Matoto', '2001-01-01', NULL, NULL, NULL, NULL, 'aktif', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$12$GgR52SXkXhfKwDKFfcre1.nGbl5v5LJVgID/y1.q.0VmFE9mzReZ2', NULL, '2024-02-24 22:15:51', '2024-03-22 00:30:17'),
-(3, NULL, '6042302017', 'edgar@gmail.com', '12345', NULL, 'Edgar Matoto', '2000-01-23', NULL, NULL, NULL, NULL, 'aktif', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$12$N1rQ5GFvZoNRN5OKAgEcLe7e/1qS8h554poho3g6DZ7PgUx64Ompi', NULL, '2024-03-23 08:53:58', '2024-03-23 08:53:58'),
-(4, NULL, '6042302018', 'johndoe@example.com', '1234', NULL, 'Budi utomo', '2001-01-01', NULL, NULL, NULL, NULL, 'aktif', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$12$9EirAoiF0Mm6L0imsgRAju93imm7KpRiMXqzhTue5rKxyRjcUMET2', NULL, '2024-03-30 00:52:30', '2024-03-30 00:52:30');
+INSERT INTO `mahasiswa` (`id`, `prodi_id`, `nim`, `ipk`, `skor_ipk`, `email`, `no_hp`, `nama`, `tgl_lahir`, `kelas`, `angkatan`, `waldos`, `jenkel`, `agama`, `alamat`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(3, 2, '6042302017', '3.00', 33.75, 'edgar@gmail.com', '12345', 'Edgar Matoto', '2000-01-24', '2', 2022, 'desi', 'perempuan', 'krusten', 'Jalan Kebahagiaan Timur No. A/133, Kecamatan Tamalanrea, Kota Makassar, Sulawesi Selatan 90245', '$2y$12$N1rQ5GFvZoNRN5OKAgEcLe7e/1qS8h554poho3g6DZ7PgUx64Ompi', NULL, '2024-03-23 08:53:58', '2024-06-12 03:43:24');
 
 -- --------------------------------------------------------
 
@@ -281,6 +278,13 @@ CREATE TABLE `ulasan` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `ulasan`
+--
+
+INSERT INTO `ulasan` (`id`, `alternatif_id`, `isi`, `ditolak`, `created_at`, `updated_at`) VALUES
+(15, 18, NULL, 1, '2024-06-12 05:27:39', '2024-06-12 05:27:39');
+
 -- --------------------------------------------------------
 
 --
@@ -321,8 +325,7 @@ ALTER TABLE `alternatif`
 --
 ALTER TABLE `evaluasi`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `evaluasi_alternatif_id_foreign` (`alternatif_id`),
-  ADD KEY `evaluasi_kriteria_id_foreign` (`kriteria_id`);
+  ADD KEY `evaluasi_mahasiswa_id_foreign` (`mahasiswa_id`);
 
 --
 -- Indexes for table `failed_jobs`
@@ -346,7 +349,6 @@ ALTER TABLE `mahasiswa`
   ADD UNIQUE KEY `mahasiswa_nim_unique` (`nim`),
   ADD UNIQUE KEY `mahasiswa_email_unique` (`email`),
   ADD UNIQUE KEY `mahasiswa_no_hp_unique` (`no_hp`),
-  ADD UNIQUE KEY `mahasiswa_nik_unique` (`nik`),
   ADD KEY `mahasiswa_prodi_id_foreign` (`prodi_id`);
 
 --
@@ -403,13 +405,13 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `alternatif`
 --
 ALTER TABLE `alternatif`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `evaluasi`
 --
 ALTER TABLE `evaluasi`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -421,7 +423,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `kriteria`
 --
 ALTER TABLE `kriteria`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `mahasiswa`
@@ -451,7 +453,7 @@ ALTER TABLE `prodi`
 -- AUTO_INCREMENT for table `ulasan`
 --
 ALTER TABLE `ulasan`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -473,8 +475,7 @@ ALTER TABLE `alternatif`
 -- Constraints for table `evaluasi`
 --
 ALTER TABLE `evaluasi`
-  ADD CONSTRAINT `evaluasi_alternatif_id_foreign` FOREIGN KEY (`alternatif_id`) REFERENCES `alternatif` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `evaluasi_kriteria_id_foreign` FOREIGN KEY (`kriteria_id`) REFERENCES `kriteria` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `evaluasi_mahasiswa_id_foreign` FOREIGN KEY (`mahasiswa_id`) REFERENCES `mahasiswa` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `mahasiswa`
