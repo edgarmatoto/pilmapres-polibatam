@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Mahasiswa;
 
 use App\Http\Controllers\Controller;
+use App\Models\Evaluasi;
+use App\Models\Kriteria;
 use App\Models\Mahasiswa;
 use App\Models\Prodi;
 use Illuminate\Http\Request;
@@ -62,6 +64,23 @@ class ProfileController extends Controller
             if ($request->password) {
                 $data['password'] = Hash::make($request->password);
             }
+
+            // calculate ipk score
+            $ipk = floatval($request->ipk);
+            $bobotIpk = Kriteria::select('bobot')
+                ->where('id', 1)
+                ->get()
+                ->first()
+                ->bobot;
+
+            // normalize ipk value (ipk / [max_ipk])
+            $normalizedIpk = $ipk / 4;
+
+            //calculate score
+            $ipkScore = $bobotIpk * $normalizedIpk;
+            $data["skor_ipk"] = $ipkScore;
+
+            // update profile data
             $mahasiswa->update($data);
 
             return redirect()
