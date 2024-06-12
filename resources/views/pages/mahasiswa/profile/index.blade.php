@@ -132,6 +132,30 @@
                             <div class="col-md-4">
                                 <label
                                     style="color: #A1A1A1;"
+                                    for="ipk"
+                                    class="form-label fw-bold"
+                                >IPK</label>
+                                <input
+                                    style="background-color: #D9D9D9;"
+                                    type="number"
+                                    class="@error('ipk') is-invalid @enderror form-control"
+                                    id="ipk"
+                                    name="ipk"
+{{--                                    value="{{ old('ipk', $ipk) }}"--}}
+                                    value="{{ old('ipk', 0) }}"
+                                    min="0"
+                                    max="4"
+                                    step="0.1"
+                                >
+                                @error('ipk')
+                                    <div class="text-danger small">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="col-md-4">
+                                <label
+                                    style="color: #A1A1A1;"
                                     for="angkatan"
                                     class="form-label fw-bold"
                                 >Angkatan</label>
@@ -149,6 +173,7 @@
                                     </div>
                                 @enderror
                             </div>
+                            <div class="w-100 d-none d-md-block"></div>
                             <div class="col-md-4">
                                 <label
                                     style="color: #A1A1A1;"
@@ -169,7 +194,6 @@
                                     </div>
                                 @enderror
                             </div>
-                            <div class="w-100 d-none d-md-block"></div>
                         </div>
                         <hr class="my-5">
                         <div class="row row-gap-2">
