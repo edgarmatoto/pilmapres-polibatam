@@ -170,96 +170,9 @@
                                 @enderror
                             </div>
                             <div class="w-100 d-none d-md-block"></div>
-                            <div class="col-md-4">
-                                <label
-                                    style="color: #A1A1A1;"
-                                    for="tglMasuk"
-                                    class="form-label fw-bold"
-                                >Tanggal Masuk</label>
-                                <input
-                                    style="background-color: #D9D9D9;"
-                                    type="date"
-                                    class="@error('tgl_masuk') is-invalid @enderror form-control"
-                                    id="tglMasuk"
-                                    name="tgl_masuk"
-                                    value="{{ old('tgl_masuk', auth()->user()->tgl_masuk) }}"
-                                >
-                                @error('tgl_masuk')
-                                    <div class="text-danger small">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                            <div class="col-md-4">
-                                <label
-                                    style="color: #A1A1A1;"
-                                    for="status"
-                                    class="form-label fw-bold"
-                                >Status Kemahasiswaan</label>
-                                <select
-                                    style="background-color: #D9D9D9;"
-                                    id="status"
-                                    class="@error('status') is-invalid @enderror form-select"
-                                    name="status"
-                                >
-                                    <option
-                                        value="aktif"
-                                        {{ old('status', auth()->user()->status) == 'aktif' ? 'selected' : '' }}
-                                    >Aktif</option>
-                                    <option
-                                        value="cuti"
-                                        {{ old('status', auth()->user()->status) == 'cuti' ? 'selected' : '' }}
-                                    >Cuti</option>
-                                </select>
-                                @error('status')
-                                    <div class="text-danger small">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
                         </div>
                         <hr class="my-5">
                         <div class="row row-gap-2">
-                            <div class="col-md-4">
-                                <label
-                                    style="color: #A1A1A1;"
-                                    for="nik"
-                                    class="form-label fw-bold"
-                                >NIK / No KTP</label>
-                                <input
-                                    style="background-color: #D9D9D9;"
-                                    type="text"
-                                    class="@error('nik') is-invalid @enderror form-control"
-                                    id="nik"
-                                    name="nik"
-                                    value="{{ old('nik', auth()->user()->nik) }}"
-                                >
-                                @error('nik')
-                                    <div class="text-danger small">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                            <div class="col-md-4">
-                                <label
-                                    style="color: #A1A1A1;"
-                                    for="tmptLahir"
-                                    class="form-label fw-bold"
-                                >Tempat Lahir</label>
-                                <input
-                                    style="background-color: #D9D9D9;"
-                                    type="text"
-                                    class="@error('tmpt_lahir') is-invalid @enderror form-control"
-                                    id="tmptLahir"
-                                    name="tmpt_lahir"
-                                    value="{{ old('tmpt_lahir', auth()->user()->tmpt_lahir) }}"
-                                >
-                                @error('tmpt_lahir')
-                                    <div class="text-danger small">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
                             <div class="col-md-4">
                                 <label
                                     style="color: #A1A1A1;"
@@ -275,27 +188,6 @@
                                     value="{{ old('tgl_lahir', auth()->user()->tgl_lahir) }}"
                                 >
                                 @error('tgl_lahir')
-                                    <div class="text-danger small">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                            <div class="w-100 d-none d-md-block"></div>
-                            <div class="col-md-4">
-                                <label
-                                    style="color: #A1A1A1;"
-                                    for="kewarganegaraan"
-                                    class="form-label fw-bold"
-                                >Kewarganegaraan</label>
-                                <input
-                                    style="background-color: #D9D9D9;"
-                                    type="text"
-                                    class="@error('kewarganegaraan') is-invalid @enderror form-control"
-                                    id="kewarganegaraan"
-                                    name="kewarganegaraan"
-                                    value="{{ old('kewarganegaraan', auth()->user()->kewarganegaraan) }}"
-                                >
-                                @error('kewarganegaraan')
                                     <div class="text-danger small">
                                         {{ $message }}
                                     </div>
@@ -349,75 +241,7 @@
                                 @enderror
                             </div>
                             <div class="w-100 d-none d-md-block"></div>
-                            <div class="col-md-4">
-                                <label
-                                    style="color: #A1A1A1;"
-                                    for="statusMartial"
-                                    class="form-label fw-bold"
-                                >Status Martial</label>
-                                <select
-                                    style="background-color: #D9D9D9;"
-                                    id="statusMartial"
-                                    class="@error('status_martial') is-invalid @enderror form-select"
-                                    name="status_martial"
-                                >
-                                    <option
-                                        value="lajang"
-                                        {{ old('status_martial', auth()->user()->status_martial) == 'lajang' ? 'selected' : '' }}
-                                    >Lajang</option>
-                                    <option
-                                        value="sudah menikah"
-                                        {{ old('status_martial', auth()->user()->status_martial) == 'sudah menikah' ? 'selected' : '' }}
-                                    >sudah menikah</option>
-                                </select>
-                                @error('status_martial')
-                                    <div class="text-danger small">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                            <div class="col-md-4">
-                                <label
-                                    style="color: #A1A1A1;"
-                                    for="golDarah"
-                                    class="form-label fw-bold"
-                                >Golongan Darah</label>
-                                <input
-                                    style="background-color: #D9D9D9;"
-                                    type="text"
-                                    class="@error('gol_darah') is-invalid @enderror form-control"
-                                    id="golDarah"
-                                    name="gol_darah"
-                                    value="{{ old('gol_darah', auth()->user()->gol_darah) }}"
-                                >
-                                @error('gol_darah')
-                                    <div class="text-danger small">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                            <div class="col-md-4">
-                                <label
-                                    style="color: #A1A1A1;"
-                                    for="kodePos"
-                                    class="form-label fw-bold"
-                                >Kode Pos</label>
-                                <input
-                                    style="background-color: #D9D9D9;"
-                                    type="text"
-                                    class="@error('kode_pos') is-invalid @enderror form-control"
-                                    id="kodePos"
-                                    name="kode_pos"
-                                    value="{{ old('kode_pos', auth()->user()->kode_pos) }}"
-                                >
-                                @error('kode_pos')
-                                    <div class="text-danger small">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                            <div class="w-100 d-none d-md-block"></div>
-                            <div class="col-md-8">
+                            <div class="col-md-12">
                                 <label
                                     style="color: #A1A1A1;"
                                     for="alamat"
@@ -436,47 +260,7 @@
                                     </div>
                                 @enderror
                             </div>
-                            <div class="col-md-4">
-                                <label
-                                    style="color: #A1A1A1;"
-                                    for="kelurahan"
-                                    class="form-label fw-bold"
-                                >Kelurahan</label>
-                                <input
-                                    style="background-color: #D9D9D9;"
-                                    type="text"
-                                    class="@error('kelurahan') is-invalid @enderror form-control"
-                                    id="kelurahan"
-                                    name="kelurahan"
-                                    value="{{ old('kelurahan', auth()->user()->kelurahan) }}"
-                                >
-                                @error('kelurahan')
-                                    <div class="text-danger small">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
                             <div class="w-100 d-none d-md-block"></div>
-                            <div class="col-md-4">
-                                <label
-                                    style="color: #A1A1A1;"
-                                    for="kecamatan"
-                                    class="form-label fw-bold"
-                                >Kecamatan</label>
-                                <input
-                                    style="background-color: #D9D9D9;"
-                                    type="text"
-                                    class="@error('kecamatan') is-invalid @enderror form-control"
-                                    id="kecamatan"
-                                    name="kecamatan"
-                                    value="{{ old('kecamatan', auth()->user()->kecamatan) }}"
-                                >
-                                @error('kecamatan')
-                                    <div class="text-danger small">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
                             <div class="col-md-4">
                                 <label
                                     style="color: #A1A1A1;"
@@ -517,7 +301,6 @@
                                     </div>
                                 @enderror
                             </div>
-                            <div class="w-100 d-none d-md-block"></div>
                             <div class="col-md-4">
                                 <label
                                     style="color: #A1A1A1;"
