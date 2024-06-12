@@ -37,14 +37,16 @@
                                     </caption>
                                     <tr>
                                         <th>No</th>
-                                        <th>Alternatif</th>
+                                        <th>Nama</th>
+                                        <th>NIM</th>
                                         <th>Hasil</th>
                                     </tr>
-                                    @forelse ($preferensi as $item)
+                                    @forelse ($evaluasi as $item)
                                         <tr class='center'>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $item['alternatif'] }}</td>
-                                            <td>{{ $item['result'] }}</td>
+                                            <td>{{ $item->mahasiswa->nama }}</td>
+                                            <td>{{ $item->mahasiswa->nim }}</td>
+                                            <td>{{ $item->total_skor }}</td>
                                         </tr>
                                     @empty
                                         <tr class='center'>

@@ -27,6 +27,11 @@ class Mahasiswa extends Authenticatable
 
     public function alternatif()
     {
-        return $this->hasOne(Alternatif::class, 'mahasiswa_id', 'id');
+        return $this->hasMany(Alternatif::class, 'mahasiswa_id', 'id');
+    }
+
+    public function evaluasi()
+    {
+        return $this->hasMany(Evaluasi::class, 'mahasiswa_id', 'id');
     }
 }

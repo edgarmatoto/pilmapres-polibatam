@@ -14,50 +14,12 @@ class PelayananController extends Controller
     public function index()
     {
         try {
-            $kriteria   = Kriteria::orderBy('nama', 'ASC')->orderBy('bobot', 'ASC')->get();
-//            $alternatif = Alternatif::has('evaluasi')->get();
+            $evaluasi = Evaluasi::with('mahasiswa')
+                ->select('mahasiswa_id', 'total_skor')
+                ->orderBy('total_skor')
+                ->get();
 
-            $preferensi = collect([]);
-//            foreach ($alternatif as $index => $alt) {
-//                $result = 0;
-//
-//                foreach ($kriteria as $kri) {
-//                    $bobot = $kri
-//                        ->evaluasi()
-//                        ->orderByRaw('CAST(evaluasi.nilai AS INT) ' . ($kri->atribut == 'benefit' ? 'DESC' : 'ASC'))
-//                        ->value('evaluasi.nilai');
-//
-//                    $matrikX = $alt
-//                        ->evaluasi()
-//                        ->where('evaluasi.kriteria_id', $kri->id)
-//                        ->first()?->nilai;
-//
-//                    $result += ($bobot && $matrikX ? ($kri->atribut == 'benefit' ? $matrikX / $bobot : $bobot / $matrikX) : 0) * $kri->bobot;
-//                    $result = round($result, 2);
-//                }
-//
-//                $existingNIM = $preferensi->search(fn ($item) => $item['nim'] == $alt->mahasiswa->nim);
-//                if ($existingNIM !== false) {
-//
-//                    $preferensi->transform(function ($item) use ($result, $alt) {
-//                        if ($item['nim'] == $alt->mahasiswa->nim && $item['poin'] < $result) {
-//                            $item['poin'] = $result;
-//                        }
-//
-//                        return $item;
-//                    });
-//                } else {
-//
-//                    $preferensi->push([
-//                        'nim'   => $alt->mahasiswa->nim,
-//                        'nama'  => ucwords($alt->mahasiswa->nama),
-//                        'poin'  => $result
-//                    ]);
-//                }
-//            }
-//
-//            $preferensi = $preferensi->sortByDesc('poin');
-            return view('pages.mahasiswa.pelayanan.index', compact('preferensi'));
+            return view('pages.mahasiswa.pelayanan.index', compact('evaluasi'));
         } catch (\Throwable $th) {
             return redirect()
                 ->route('mhs.home')

@@ -12,4 +12,9 @@ class Evaluasi extends Model
     protected
         $table      = 'evaluasi',
         $guarded    = ['id'];
+
+    public function mahasiswa()
+    {
+        return $this->belongsTo(Mahasiswa::class, 'mahasiswa_id', 'id');
+    }
 }

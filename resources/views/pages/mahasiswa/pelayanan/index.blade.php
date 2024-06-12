@@ -332,12 +332,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($preferensi as $item)
+                                @forelse ($evaluasi as $item)
                                     <tr>
                                         <td class="bg-gray-50 py-3">{{ $loop->iteration }}</td>
-                                        <td class="bg-pink-50 py-3">{{ $item['nama'] }}</td>
-                                        <td class="bg-blue-50 py-3">{{ $item['nim'] }}</td>
-                                        <td class="bg-green-50 py-3">{{ $item['poin'] }}</td>
+                                        <td class="bg-pink-50 py-3">{{ $item->mahasiswa->nama }}</td>
+                                        <td class="bg-blue-50 py-3">{{ $item->mahasiswa->nim }}</td>
+                                        <td class="bg-green-50 py-3">{{ $item->total_skor }}</td>
                                     </tr>
                                 @empty
                                     <tr>
