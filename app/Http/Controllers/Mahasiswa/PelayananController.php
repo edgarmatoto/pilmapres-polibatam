@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Mahasiswa;
 
 use App\Http\Controllers\Controller;
 use App\Models\Alternatif;
+use App\Models\Evaluasi;
 use App\Models\Kriteria;
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
@@ -112,10 +113,43 @@ class PelayananController extends Controller
             if ($request->jenis_perlombaan == "kelompok") {
                 $skor = $skor / 2;
             }
+
+            // normalize the score
+            $skor = $skor / 12;
+
+            // multiply the bobot by the skor
+            $bobotPencapaian = Kriteria::select('bobot')
+                ->where('id', 2)
+                ->get()
+                ->first()
+                ->bobot;
+            $skor = $bobotPencapaian * $skor;
             $data["skor"] = $skor;
 
             // store data
             $mahasiswa->alternatif()->create($data);
+
+            // store total skor to evaluasi table
+            // Check if the record with the same mahasiswa_id already exists
+            $evaluasi = Evaluasi::where('mahasiswa_id', $mahasiswa->id)->first();
+
+            if ($evaluasi) {
+                // If record exists, update the total_skor
+                $evaluasi->total_skor += $skor;
+                $evaluasi->save();
+            } else {
+                // If record does not exist, create a new record
+                $ipkScore = Mahasiswa::select('skor_ipk')
+                    ->where('id', $mahasiswa->id)
+                    ->first()
+                    ->skor_ipk;
+                $skor += $ipkScore;
+
+                Evaluasi::create([
+                    'mahasiswa_id' => $mahasiswa->id,
+                    'total_skor' => $skor,
+                ]);
+            }
 
             return redirect()
                 ->route('mhs.pelayanan.index')
