@@ -2,6 +2,7 @@
     <div class="container">
         <a href="{{ route('welcome') }}">
             <img
+                style="width: 70px;"
                 class="navbar-brand img-fluid logo"
                 src="{{ asset('assets/images/logo.jpeg') }}"
                 alt="logo_poltek"
