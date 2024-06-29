@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 12, 2024 at 04:40 PM
+-- Generation Time: Jun 29, 2024 at 08:14 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.2.14
 
@@ -70,7 +70,9 @@ CREATE TABLE `alternatif` (
 --
 
 INSERT INTO `alternatif` (`id`, `mahasiswa_id`, `nama_perlombaan`, `jenis_perlombaan`, `tingkat_perlombaan`, `capaian_prestasi`, `tmpt_perlombaan`, `tgl_perlombaan`, `lokasi_berkas`, `nama_berkas`, `skor`, `created_at`, `updated_at`) VALUES
-(18, 3, 'hackahton', 'kelompok', 'nasional', '2', 'Jakarta', '2024-06-12', 'alternatif/1q8UhdoSc88fh5Xdan6oroHOTqptYEcYh6pUxcQu.jpg', 'DSC08795 (1).jpg', 9.16667, '2024-06-12 05:21:20', '2024-06-12 05:21:20');
+(22, 5, 'Kompetisi Mahasiswa Informatika Politeknik Nasional', 'kelompok', 'nasional', '1', 'Surabaya', '2024-06-27', 'alternatif/n00Wgxqr8xmKW0WKGduEWknWTXP9JTZuvLH6SVDC.jpg', 'P1307128 (1).jpg', 13.75, '2024-06-27 09:22:06', '2024-06-27 09:22:06'),
+(23, 3, 'Kontes Robot Indonesia', 'kelompok', 'nasional', '2', 'Surabaya', '2024-06-27', 'alternatif/zRJrLDIzO9Et6h8WXcan6lIGJfMsvUXiYwuYJSsz.jpg', '63afff4d-8d9a-4f58-bb48-abe4b1a69b42.jpeg', 9.16667, '2024-06-27 09:23:34', '2024-06-27 09:23:34'),
+(24, 6, 'Kontes Menyanyi', 'individu', 'provinsi', '1', 'Batam', '2024-06-19', 'alternatif/TpSspLRkXHqyUbiLntNmINzOzO7w2mm82kqb1bxI.jpg', 'WhatsApp Image 2024-06-26 at 15.15.11.jpeg', 13.75, '2024-06-27 09:55:04', '2024-06-27 09:55:04');
 
 -- --------------------------------------------------------
 
@@ -91,7 +93,9 @@ CREATE TABLE `evaluasi` (
 --
 
 INSERT INTO `evaluasi` (`id`, `mahasiswa_id`, `total_skor`, `created_at`, `updated_at`) VALUES
-(5, 3, 42.9167, '2024-06-12 05:21:20', '2024-06-12 05:21:20');
+(8, 5, 53.125, '2024-06-27 09:22:06', '2024-06-27 09:22:06'),
+(9, 3, 42.9167, '2024-06-27 09:23:34', '2024-06-27 09:23:34'),
+(10, 6, 55.375, '2024-06-27 09:55:04', '2024-06-27 09:55:04');
 
 -- --------------------------------------------------------
 
@@ -141,8 +145,8 @@ CREATE TABLE `mahasiswa` (
   `id` bigint UNSIGNED NOT NULL,
   `prodi_id` bigint UNSIGNED DEFAULT NULL,
   `nim` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ipk` decimal(3,2) NOT NULL,
-  `skor_ipk` float NOT NULL,
+  `ipk` decimal(3,2) DEFAULT NULL,
+  `skor_ipk` float DEFAULT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `no_hp` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -164,7 +168,9 @@ CREATE TABLE `mahasiswa` (
 --
 
 INSERT INTO `mahasiswa` (`id`, `prodi_id`, `nim`, `ipk`, `skor_ipk`, `email`, `no_hp`, `nama`, `tgl_lahir`, `kelas`, `angkatan`, `waldos`, `jenkel`, `agama`, `alamat`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(3, 2, '6042302017', '3.00', 33.75, 'edgar@gmail.com', '12345', 'Edgar Matoto', '2000-01-24', '2', 2022, 'desi', 'perempuan', 'krusten', 'Jalan Kebahagiaan Timur No. A/133, Kecamatan Tamalanrea, Kota Makassar, Sulawesi Selatan 90245', '$2y$12$N1rQ5GFvZoNRN5OKAgEcLe7e/1qS8h554poho3g6DZ7PgUx64Ompi', NULL, '2024-03-23 08:53:58', '2024-06-12 03:43:24');
+(3, 2, '6042302017', '3.00', 33.75, 'edgar@gmail.com', '12345', 'Edgar Matoto', '2000-01-24', '2', 2022, 'desi', 'perempuan', 'krusten', 'Jalan Kebahagiaan Timur No. A/133, Kecamatan Tamalanrea, Kota Makassar, Sulawesi Selatan 90245', '$2y$12$N1rQ5GFvZoNRN5OKAgEcLe7e/1qS8h554poho3g6DZ7PgUx64Ompi', NULL, '2024-03-23 08:53:58', '2024-06-12 03:43:24'),
+(5, 3, '6042302018', '3.50', 39.375, 'admin@ex.com', '098364826321', 'Budi Utomo', '2003-12-12', 'IF 4A', 2021, 'Asep', 'laki-laki', 'Kristen', 'Jalan kenangan', '$2y$12$XLFX4rVdCQ41EboOceOy8erXsxlCaBeFciASHo06anYtH8ssm1B6O', NULL, '2024-06-27 09:12:25', '2024-06-27 09:18:37'),
+(6, 3, '6042302019', '3.70', 41.625, 'example@example.com', '083926332344', 'Kris Pan', '2004-12-13', 'IF 4A', 2022, 'Leri', 'laki-laki', 'Kristen', 'Jalan Kenangan', '$2y$12$KEvJ7PXlX6jVx0rT7di2F.ugdASQqovcuMhnznFiGNZgqwoMi/c2m', NULL, '2024-06-27 09:51:15', '2024-06-27 09:53:31');
 
 -- --------------------------------------------------------
 
@@ -283,7 +289,9 @@ CREATE TABLE `ulasan` (
 --
 
 INSERT INTO `ulasan` (`id`, `alternatif_id`, `isi`, `ditolak`, `created_at`, `updated_at`) VALUES
-(15, 18, NULL, 1, '2024-06-12 05:27:39', '2024-06-12 05:27:39');
+(18, 22, 'Dikembangkan lebih baik lagi..', 0, '2024-06-27 09:22:40', '2024-06-27 09:22:40'),
+(19, 23, 'Tampilan diperbagus', 0, '2024-06-27 09:24:02', '2024-06-27 09:24:02'),
+(20, 24, 'Feedback random', 0, '2024-06-27 09:56:32', '2024-06-27 09:56:32');
 
 -- --------------------------------------------------------
 
@@ -405,13 +413,13 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `alternatif`
 --
 ALTER TABLE `alternatif`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `evaluasi`
 --
 ALTER TABLE `evaluasi`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -429,7 +437,7 @@ ALTER TABLE `kriteria`
 -- AUTO_INCREMENT for table `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -453,7 +461,7 @@ ALTER TABLE `prodi`
 -- AUTO_INCREMENT for table `ulasan`
 --
 ALTER TABLE `ulasan`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `users`
