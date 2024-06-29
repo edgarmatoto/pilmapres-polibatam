@@ -16,7 +16,7 @@ class PelayananController extends Controller
         try {
             $evaluasi = Evaluasi::with('mahasiswa')
                 ->select('mahasiswa_id', 'total_skor')
-                ->orderBy('total_skor')
+                ->orderBy('total_skor', 'desc')
                 ->get();
 
             return view('pages.mahasiswa.pelayanan.index', compact('evaluasi'));
@@ -85,7 +85,7 @@ class PelayananController extends Controller
                 ->get()
                 ->first()
                 ->bobot;
-            $skor = $bobotPencapaian * $skor;
+            $skor = ($bobotPencapaian / 100) * $skor * 100;
             $data["skor"] = $skor;
 
             // store data

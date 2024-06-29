@@ -20,9 +20,9 @@ class RegisterController extends Controller
         try {
             $rules = [
                 'nama'      => 'required|string|max:100|regex:/^[a-zA-Z\s]+$/',
-                'nim'       => 'required|numeric|max_digits:15|unique:mahasiswa',
+                'nim'       => 'required|string|max:100|unique:mahasiswa',
                 'email'     => 'required|string|max:100|email|unique:mahasiswa',
-                'no_hp'     => 'required|numeric|max_digits:15|unique:mahasiswa',
+                'no_hp'     => 'required|string|max:100|unique:mahasiswa',
                 'tanggal'   => 'required|numeric|between:1,31',
                 'bulan'     => 'required|numeric|between:1,12',
                 'tahun'     => 'required|date_format:Y',

@@ -15,7 +15,7 @@ class PreferensiController extends Controller
         try {
             $evaluasi = Evaluasi::with('mahasiswa')
                 ->select('mahasiswa_id', 'total_skor')
-                ->orderBy('total_skor')
+                ->orderBy('total_skor', 'desc')
                 ->get();
 
             return view('pages.admin.preferensi.index', compact('evaluasi'));

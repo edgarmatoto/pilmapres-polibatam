@@ -52,14 +52,14 @@
                                     tabel berikut:
                                 </p>
                             </div>
-                            <button
-                                type="button"
-                                class="btn btn-outline-success btn-sm m-2"
-                                data-bs-toggle="modal"
-                                data-bs-target="#inlineForm"
-                            >
-                                Tambah Alternatif
-                            </button>
+{{--                            <button--}}
+{{--                                type="button"--}}
+{{--                                class="btn btn-outline-success btn-sm m-2"--}}
+{{--                                data-bs-toggle="modal"--}}
+{{--                                data-bs-target="#inlineForm"--}}
+{{--                            >--}}
+{{--                                Tambah Alternatif--}}
+{{--                            </button>--}}
                             <hr>
                             <div class="table-responsive">
                                 <table class="table table-striped mb-0">
@@ -74,7 +74,7 @@
                                             <th>Jenis Perlombaan</th>
                                             <th>Tingkat Perlombaan</th>
                                             <th>Capaian Prestasi</th>
-                                            <th>IPK</th>
+                                            <th></th>
                                             <th>Tempat Perlombaan</th>
                                             <th>Tanggal Perlombaan</th>
                                             <th colspan="2">Berkas</th>
